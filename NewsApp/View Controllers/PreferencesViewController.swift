@@ -108,7 +108,6 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.reloadData()
     }
     
     // MARK: Flow Layout
