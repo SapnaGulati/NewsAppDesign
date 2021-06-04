@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class TableViewCell: UITableViewCell {
     
@@ -30,8 +31,6 @@ class TableViewCell: UITableViewCell {
         soundButton.alpha = 0
         moreLabel.isUserInteractionEnabled = true
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 400)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapLabel(tap:)))
-        moreLabel.addGestureRecognizer(tap)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -67,23 +66,5 @@ class TableViewCell: UITableViewCell {
         dateLabel.textColor = UIColor(hexString: "#343333")
         sourceLabel.font = UIFont(name: "Poppins-Medium", size: 17)
         sourceLabel.textColor = UIColor(hexString: "#b80d00")
-    }
-    
-    @objc func tapLabel(tap: UITapGestureRecognizer) {
-//        let termString = moreLabel.text! as NSString
-//        let termRange = termString.range(of: moreLabel.text ?? "more")
-
-//        let tapLocation = gesture.location(in: moreLabel)
-//        let index = termLabel.indexOfAttributedTextCharacterAtPoint(point: tapLocation)
-//
-//        if checkRange(termRange, contain: index) == true {
-//            handleViewTermOfUse()
-//            return
-//        }
-//
-//        if checkRange(policyRange, contain: index) {
-//            handleViewPrivacy()
-            return
-//        }
     }
 }

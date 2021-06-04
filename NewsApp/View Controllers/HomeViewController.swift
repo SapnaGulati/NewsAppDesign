@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class HomeViewController: UIViewController {
     
@@ -88,6 +89,10 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped(_:)))
+        tap.numberOfTapsRequired = 1
+        cell.moreLabel.isUserInteractionEnabled = true
+        cell.moreLabel.addGestureRecognizer(tap)
 //        let items = NewsViewModel.shared.newsData.articles[indexPath.row]
 //        cell.titleLabel?.text = items.title ?? ""
 //        cell.contentLabel?.text = items.description
@@ -107,5 +112,12 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
 //        if let linkData = try? Data(contentsOf: link!) {
 //        }
         return cell
+    }
+
+    @objc
+    func labelTapped(_ tap: UITapGestureRecognizer) {
+        guard let url = URL(string: "https://www.google.com") else {return}
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true)
     }
 }
