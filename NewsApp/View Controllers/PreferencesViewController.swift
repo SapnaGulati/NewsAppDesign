@@ -108,7 +108,7 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-//        collectionView.reloadData()
+        collectionView.reloadData()
     }
     
     // MARK: Flow Layout
@@ -135,6 +135,9 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
         if indexPath.row == cID {
             cell.isSelected = true
         }
+        else {
+            cell.isSelected = false
+        }
         if(cell.isSelected) {
             cell.contentView.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
         }
@@ -159,40 +162,9 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        let cID = defaults.integer(forKey: "cID")
-        if indexPath.row == cID {
-            cell?.isSelected = false
-            cell?.layer.borderColor = UIColor.lightGray.cgColor
-        }
-//        if cell!.isSelected {
-//            if indexPath.row == cID {
-//                cell?.isSelected = false
-//            }
-//            defaults.removeObject(forKey: "cID")
-//        } else {
-            let selectedCountry = categories[indexPath.row].name
-            defaults.set(selectedCountry, forKey: "selectedCountry")
-            cell?.isSelected = true
-            cell?.layer.cornerRadius = 12.0
-            cell?.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
-            cell?.layer.borderWidth = 2
-//        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-//        if cell!.isSelected {
-//            let cID = defaults.integer(forKey: "cID")
-//            if indexPath.row == cID {
-//                cell?.isSelected = false
-//            }
-//            defaults.removeObject(forKey: "cID")
-//        }
-        cell?.isSelected = false
-        cell?.layer.cornerRadius = 12.0
-        cell?.layer.borderColor = UIColor.lightGray.cgColor
-        cell?.layer.borderWidth = 2
+        defaults.set(indexPath.row, forKey: "cID")
+        defaults.synchronize()
+        self.collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
