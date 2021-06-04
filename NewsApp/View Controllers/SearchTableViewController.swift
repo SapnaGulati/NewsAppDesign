@@ -44,7 +44,7 @@ class SearchTableViewController: UIViewController {
             searchBar.searchTextField.layer.borderColor = UIColor.white.cgColor
             searchBar.searchTextField.layer.borderWidth = 2
             searchBar.layer.borderColor = UIColor.systemGray6.cgColor
-            searchBar.layer.cornerRadius = 18
+            searchBar.layer.cornerRadius = 12
         }
         searchBar.delegate = self
         searchBar.tintColor = UIColor(hexString: "#b80d00")

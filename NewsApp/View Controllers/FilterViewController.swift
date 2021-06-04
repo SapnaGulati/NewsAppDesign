@@ -111,7 +111,7 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCell", for: indexPath) as! FilterCell
         let cID = defaults.integer(forKey: "cID")
         if indexPath.row == cID {
-            cell.isSelected = true
+            cell.contentView.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
         }
         if(cell.isSelected) {
             cell.contentView.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
@@ -121,6 +121,7 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         cell.contentView.layer.cornerRadius = 12.0
         cell.contentView.layer.borderWidth = 2
+        cell.contentView.layer.masksToBounds = true
         cell.cellLabel.text = categories[indexPath.row].name
         cell.cellImage.image = UIImage(named: categories[indexPath.row].name!)
         cell.cellLabel.font = UIFont(name: "Poppins-SemiBold", size: 18)
@@ -130,7 +131,7 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.layer.shadowOffset = CGSize(width: 1, height: 1)
         cell.layer.shadowRadius = 2
         cell.layer.shadowOpacity = 0.5
-        cell.layer.masksToBounds = false
+        cell.layer.masksToBounds = true
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:12).cgPath
         return cell
     }

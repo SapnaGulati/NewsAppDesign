@@ -101,19 +101,14 @@ class PreferencesViewController: UIViewController {
     }
 }
 
-// MARK: Custom Collection View Cell Class
-class PreferencesCell: UICollectionViewCell {
-    @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var cellImage: UIImageView!
-}
-
 // MARK: Collection View Delegate and Data Source and Flow Layout
 extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func setupCollectionView() {
-        collectionView.register(PreferencesCell.self, forCellWithReuseIdentifier: "cellId")
+        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "cellId")
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+//        collectionView.reloadData()
     }
     
     // MARK: Flow Layout
@@ -135,7 +130,7 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
         }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "preferencesCell", for: indexPath) as! PreferencesCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         let cID = defaults.integer(forKey: "cID")
         if indexPath.row == cID {
             cell.isSelected = true
@@ -158,23 +153,42 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
         cell.layer.shadowOffset = CGSize(width: 1, height: 1)
         cell.layer.shadowRadius = 2
         cell.layer.shadowOpacity = 0.5
-        cell.layer.masksToBounds = false
+        cell.layer.masksToBounds = true
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:12).cgPath
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedCountry = categories[indexPath.row].name
-        defaults.set(selectedCountry, forKey: "selectedCountry")
         let cell = collectionView.cellForItem(at: indexPath)
-        cell?.isSelected = true
-        cell?.layer.cornerRadius = 12.0
-        cell?.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
-        cell?.layer.borderWidth = 2
+        let cID = defaults.integer(forKey: "cID")
+        if indexPath.row == cID {
+            cell?.isSelected = false
+            cell?.layer.borderColor = UIColor.lightGray.cgColor
+        }
+//        if cell!.isSelected {
+//            if indexPath.row == cID {
+//                cell?.isSelected = false
+//            }
+//            defaults.removeObject(forKey: "cID")
+//        } else {
+            let selectedCountry = categories[indexPath.row].name
+            defaults.set(selectedCountry, forKey: "selectedCountry")
+            cell?.isSelected = true
+            cell?.layer.cornerRadius = 12.0
+            cell?.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
+            cell?.layer.borderWidth = 2
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
+//        if cell!.isSelected {
+//            let cID = defaults.integer(forKey: "cID")
+//            if indexPath.row == cID {
+//                cell?.isSelected = false
+//            }
+//            defaults.removeObject(forKey: "cID")
+//        }
         cell?.isSelected = false
         cell?.layer.cornerRadius = 12.0
         cell?.layer.borderColor = UIColor.lightGray.cgColor

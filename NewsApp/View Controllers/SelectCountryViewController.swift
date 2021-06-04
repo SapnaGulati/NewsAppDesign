@@ -130,7 +130,7 @@ class CountryCell: UITableViewCell {
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-        cellView.layer.shadowColor = UIColor.systemGreen.cgColor
+        cellView.layer.shadowColor = UIColor.systemGray.cgColor
         cellView.layer.shadowOffset = (CGSize(width: 1, height: 0.8))
         cellView.layer.shadowRadius = 2
         cellView.layer.shadowOpacity = 0.5
