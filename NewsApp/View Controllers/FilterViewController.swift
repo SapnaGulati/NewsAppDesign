@@ -111,7 +111,10 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCell", for: indexPath) as! FilterCell
         let cID = defaults.integer(forKey: "cID")
         if indexPath.row == cID {
-            cell.contentView.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
+            cell.isSelected = true
+        }
+        else {
+            cell.isSelected = false
         }
         if(cell.isSelected) {
             cell.contentView.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
@@ -137,19 +140,8 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let selectedCountry = categories[indexPath.row].name
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.isSelected = true
-        cell?.layer.cornerRadius = 12.0
-        cell?.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
-        cell?.layer.borderWidth = 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.isSelected = false
-        cell?.layer.cornerRadius = 12.0
-        cell?.layer.borderColor = UIColor.lightGray.cgColor
-        cell?.layer.borderWidth = 2
+        defaults.set(indexPath.row, forKey: "cID")
+        defaults.synchronize()
+        self.collectionView.reloadData()
     }
 }
