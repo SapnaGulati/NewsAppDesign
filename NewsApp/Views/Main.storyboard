@@ -223,9 +223,9 @@
                             <constraint firstItem="wxs-zk-hZY" firstAttribute="centerX" secondItem="iJT-zq-mtE" secondAttribute="centerX" id="8O2-MI-P2g"/>
                             <constraint firstItem="iJT-zq-mtE" firstAttribute="width" secondItem="N5X-qJ-hqO" secondAttribute="width" multiplier="0.9" id="B6i-G7-lzH"/>
                             <constraint firstItem="iJT-zq-mtE" firstAttribute="leading" secondItem="N5X-qJ-hqO" secondAttribute="leadingMargin" id="Ehf-bx-pJg"/>
-                            <constraint firstAttribute="bottom" secondItem="wxs-zk-hZY" secondAttribute="bottom" id="ONC-BY-eHg"/>
                             <constraint firstItem="gou-Fw-9tj" firstAttribute="top" secondItem="iJT-zq-mtE" secondAttribute="top" constant="8" id="SUo-kL-DLK"/>
                             <constraint firstItem="wxs-zk-hZY" firstAttribute="width" secondItem="N5X-qJ-hqO" secondAttribute="width" multiplier="0.9" id="VlU-Co-wvC"/>
+                            <constraint firstItem="wxs-zk-hZY" firstAttribute="bottom" secondItem="N5X-qJ-hqO" secondAttribute="bottom" id="eCe-au-tM5"/>
                             <constraint firstItem="wxs-zk-hZY" firstAttribute="top" secondItem="iJT-zq-mtE" secondAttribute="bottom" id="pg0-ld-fjP"/>
                         </constraints>
                     </view>
@@ -276,7 +276,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZG-eH-d6m" userLabel="cellLabel">
-                                                            <rect key="frame" x="53.5" y="48" width="41" height="27"/>
+                                                            <rect key="frame" x="0.0" y="48" width="147.5" height="27"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="viM-Vy-4bZ"/>
                                                             </constraints>
@@ -297,6 +297,7 @@
                                                         <constraint firstItem="PJ9-g4-DRr" firstAttribute="centerX" secondItem="PeO-ba-R18" secondAttribute="centerX" id="QpC-VN-HYe"/>
                                                         <constraint firstItem="JZG-eH-d6m" firstAttribute="centerX" secondItem="PeO-ba-R18" secondAttribute="centerX" id="S0e-wF-Iv9"/>
                                                         <constraint firstItem="JZG-eH-d6m" firstAttribute="top" secondItem="PJ9-g4-DRr" secondAttribute="bottom" constant="8" id="bxd-Nb-YhE"/>
+                                                        <constraint firstItem="JZG-eH-d6m" firstAttribute="width" secondItem="PeO-ba-R18" secondAttribute="width" id="mlC-wc-Icb"/>
                                                         <constraint firstItem="JZG-eH-d6m" firstAttribute="bottom" secondItem="PeO-ba-R18" secondAttribute="bottom" id="xTx-Bv-fHL"/>
                                                     </constraints>
                                                 </view>
@@ -480,7 +481,7 @@
                                                     <rect key="frame" x="8" y="15" width="148" height="120"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywa-DR-ZZe" userLabel="cellLabel">
-                                                            <rect key="frame" x="53.5" y="70" width="41" height="50"/>
+                                                            <rect key="frame" x="0.0" y="70" width="148" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="Pmi-TW-tUA"/>
                                                             </constraints>
@@ -499,6 +500,7 @@
                                                     <constraints>
                                                         <constraint firstItem="Ywa-DR-ZZe" firstAttribute="centerX" secondItem="jc2-OR-RIM" secondAttribute="centerX" id="OZr-aG-otO"/>
                                                         <constraint firstItem="peY-he-1QS" firstAttribute="centerX" secondItem="jc2-OR-RIM" secondAttribute="centerX" id="TYJ-FL-OEf"/>
+                                                        <constraint firstItem="Ywa-DR-ZZe" firstAttribute="width" secondItem="jc2-OR-RIM" secondAttribute="width" id="g4d-gJ-fsL"/>
                                                         <constraint firstItem="Ywa-DR-ZZe" firstAttribute="bottom" secondItem="jc2-OR-RIM" secondAttribute="bottom" id="hVR-1g-cY5"/>
                                                         <constraint firstItem="Ywa-DR-ZZe" firstAttribute="top" secondItem="peY-he-1QS" secondAttribute="bottom" constant="8" id="nFL-bD-wcT"/>
                                                     </constraints>
@@ -573,7 +575,7 @@
                                                     <rect key="frame" x="8" y="15" width="148" height="120"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6T-qf-Z7z" userLabel="cellLabel">
-                                                            <rect key="frame" x="53.5" y="70" width="41" height="50"/>
+                                                            <rect key="frame" x="0.0" y="70" width="148" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="luq-zl-m4C"/>
                                                             </constraints>
@@ -582,7 +584,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Re4-b0-wbc" userLabel="cellImage">
-                                                            <rect key="frame" x="49" y="22" width="50" height="40"/>
+                                                            <rect key="frame" x="49" y="26" width="50" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="NRo-ri-m0v"/>
                                                                 <constraint firstAttribute="height" constant="40" id="NpD-il-XFB"/>
@@ -590,9 +592,10 @@
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="x6T-qf-Z7z" firstAttribute="width" secondItem="ntW-jq-wsv" secondAttribute="width" id="1IT-UQ-hQI"/>
                                                         <constraint firstItem="x6T-qf-Z7z" firstAttribute="centerX" secondItem="ntW-jq-wsv" secondAttribute="centerX" id="5Xx-T5-FuC"/>
                                                         <constraint firstItem="Re4-b0-wbc" firstAttribute="centerX" secondItem="ntW-jq-wsv" secondAttribute="centerX" id="Ije-jQ-pQN"/>
-                                                        <constraint firstItem="x6T-qf-Z7z" firstAttribute="top" secondItem="Re4-b0-wbc" secondAttribute="bottom" constant="8" id="hXs-f5-VN2"/>
+                                                        <constraint firstItem="x6T-qf-Z7z" firstAttribute="top" secondItem="Re4-b0-wbc" secondAttribute="bottom" constant="4" id="hXs-f5-VN2"/>
                                                         <constraint firstItem="x6T-qf-Z7z" firstAttribute="bottom" secondItem="ntW-jq-wsv" secondAttribute="bottom" id="lRy-m1-Uuv"/>
                                                     </constraints>
                                                 </view>

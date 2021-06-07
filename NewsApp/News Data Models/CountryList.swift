@@ -18,6 +18,15 @@ class CountryList {
     country(name: "Russia", c_code: "ru"),
     country(name: "Australia", c_code: "au"),
     country(name: "Belgium", c_code: "bg"),
+    country(name: "China", c_code: "cn"),
+    country(name: "India", c_code: "in"),
+    country(name: "U.S.A", c_code: "us"),
+    country(name: "Canada", c_code: "ca"),
+    country(name: "United Kingdom", c_code: "gb"),
+    country(name: "France", c_code: "fr"),
+    country(name: "Russia", c_code: "ru"),
+    country(name: "Australia", c_code: "au"),
+    country(name: "Belgium", c_code: "bg"),
     country(name: "China", c_code: "cn")
     ]
    return countries

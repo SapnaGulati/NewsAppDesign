@@ -196,12 +196,6 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         view.addSubview(countrytableview)
         countrytableview.delegate = self
         countrytableview.dataSource = self
-        if (countrytableview.contentSize.height < countrytableview.frame.size.height) {
-            countrytableview.isScrollEnabled = false
-          }
-         else {
-            countrytableview.isScrollEnabled = true
-          }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
