@@ -53,16 +53,16 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="599.5"/>
                                 <subviews>
                                     <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="w05-Zo-3S6" userLabel="LabelView">
-                                        <rect key="frame" x="0.0" y="331.5" width="414" height="144"/>
+                                        <rect key="frame" x="0.0" y="331.5" width="414" height="140"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue With" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnY-iK-J2f">
-                                                <rect key="frame" x="153" y="62" width="108.5" height="20.5"/>
+                                                <rect key="frame" x="153" y="60" width="108.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUj-FM-Qjn">
-                                                <rect key="frame" x="153" y="83" width="108.5" height="1.5"/>
+                                                <rect key="frame" x="153" y="80.5" width="108.5" height="1.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1.5" id="o3N-ED-G9Q"/>
@@ -72,7 +72,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="HnY-iK-J2f" firstAttribute="leading" secondItem="gUj-FM-Qjn" secondAttribute="leading" id="Djr-xn-Go2"/>
-                                            <constraint firstItem="gUj-FM-Qjn" firstAttribute="top" secondItem="HnY-iK-J2f" secondAttribute="bottom" constant="0.5" id="IT9-IS-5Al"/>
+                                            <constraint firstItem="gUj-FM-Qjn" firstAttribute="top" secondItem="HnY-iK-J2f" secondAttribute="bottom" constant="0.34999999999999998" id="IT9-IS-5Al"/>
                                             <constraint firstItem="HnY-iK-J2f" firstAttribute="centerY" secondItem="w05-Zo-3S6" secondAttribute="centerY" id="a5c-32-zcg"/>
                                             <constraint firstItem="gUj-FM-Qjn" firstAttribute="width" secondItem="HnY-iK-J2f" secondAttribute="width" id="e0i-0X-Y4o"/>
                                             <constraint firstItem="HnY-iK-J2f" firstAttribute="centerX" secondItem="w05-Zo-3S6" secondAttribute="centerX" id="k6p-kF-afi"/>
@@ -124,7 +124,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="Jhs-eI-W0E" firstAttribute="top" secondItem="w05-Zo-3S6" secondAttribute="bottom" constant="32" id="5ra-Gu-cMA"/>
+                                    <constraint firstItem="Jhs-eI-W0E" firstAttribute="top" secondItem="w05-Zo-3S6" secondAttribute="bottom" constant="36" id="5ra-Gu-cMA"/>
                                     <constraint firstItem="w05-Zo-3S6" firstAttribute="width" secondItem="ikp-AB-EPe" secondAttribute="width" id="6WB-9r-K7h"/>
                                     <constraint firstItem="Jhs-eI-W0E" firstAttribute="centerX" secondItem="ikp-AB-EPe" secondAttribute="centerX" id="AXT-Xk-0PM"/>
                                     <constraint firstItem="u3b-XC-dum" firstAttribute="top" secondItem="ikp-AB-EPe" secondAttribute="top" id="Aa2-ga-fGK"/>

@@ -71,7 +71,6 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     func setupTableView() {
         self.tableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
-//        self.tableView.dataSource = self
         NewsViewModel.shared.bindNewsViewModelToController = {
             self.tableView.dataSource = self
         }

@@ -31,6 +31,15 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.delegate = self
         defaults.set(false, forKey: "googleLogIn")
         defaults.set(false, forKey: "facebookLogIn")
+        if #available(iOS 13.0, *) {
+            let statusBar = UIView(frame: UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+            statusBar.backgroundColor = UIColor(hexString: "#ffffff")
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
+        }
+        else {
+            let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+            statusBar?.backgroundColor = UIColor(hexString: "#ffffff")
+        }
 //        let tap = UITapGestureRecognizer(target: self, action: #selector(LogInViewController.tapFunction))
 //        continueLabel.isUserInteractionEnabled = true
 //        continueLabel.addGestureRecognizer(tap)

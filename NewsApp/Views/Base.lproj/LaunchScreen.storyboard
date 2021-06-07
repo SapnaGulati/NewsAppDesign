@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="VA7-Ss-Fqt">
-                                <rect key="frame" x="-41.333333333333329" y="0.0" width="495.66666666666663" height="736"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="VA7-Ss-Fqt">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                             </imageView>
                         </subviews>
@@ -25,7 +26,7 @@
                         <constraints>
                             <constraint firstItem="VA7-Ss-Fqt" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="9Ec-ct-aIL"/>
                             <constraint firstItem="VA7-Ss-Fqt" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="FtE-0Q-4Gc"/>
-                            <constraint firstItem="VA7-Ss-Fqt" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="1.2" id="gvZ-qu-95Z"/>
+                            <constraint firstItem="VA7-Ss-Fqt" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="gvZ-qu-95Z"/>
                             <constraint firstItem="VA7-Ss-Fqt" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zS8-C5-XNg"/>
                         </constraints>
                     </view>

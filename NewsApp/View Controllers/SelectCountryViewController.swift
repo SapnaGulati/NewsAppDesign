@@ -47,12 +47,13 @@ class SelectCountryViewController: UIViewController {
         if #available(iOS 13.0, *) {
             search.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes:attributes)
             search.returnKeyType = .done
+            search.backgroundColor = .white
+            search.clipsToBounds = true
+            search.layer.borderWidth = 2
+            search.layer.borderColor = UIColor.systemGray6.cgColor
+            search.layer.cornerRadius = 30
+            search.layer.frame.size.height = 60
             search.searchTextField.backgroundColor = .white
-            search.searchTextField.clipsToBounds = true
-            search.searchTextField.layer.borderWidth = 2
-            search.searchTextField.layer.borderColor = UIColor.systemGray6.cgColor
-            search.searchTextField.layer.cornerRadius = 20
-            search.searchTextField.frame.size.height = 60
         }
         search.tintColor = UIColor(hexString: "#b80d00")
         search.backgroundImage = UIImage()
@@ -219,7 +220,7 @@ extension UIStatusBarStyle {
     func setupStatusBar(string: String) {
         if #available(iOS 13.0, *) {
             let statusBar = UIView(frame: UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
-            statusBar.backgroundColor = UIColor(hexString: string)
+            statusBar.backgroundColor = UIColor(hexString: "#b80d00")
             UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
         }
         else {
