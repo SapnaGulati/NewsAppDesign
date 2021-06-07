@@ -18,6 +18,7 @@ class SearchTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tvHeight: NSLayoutConstraint!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var searchView: UIView!
     
     // View Cycle
     override func viewDidLoad() {
@@ -26,7 +27,10 @@ class SearchTableViewController: UIViewController {
         filteredData = data
         setupSearchBar()
         setupTableView()
-        tvHeight.constant = CGFloat((self.filteredData.count + 1) * 40)
+        searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
+        searchView.layer.cornerRadius = 22
+        searchView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        tvHeight.constant = CGFloat((self.filteredData.count) * 40)
     }
     
     @IBAction func doneButton(_ sender: Any) {
@@ -100,7 +104,7 @@ extension SearchTableViewController: UISearchBarDelegate {
                 }
             }
         }
-        self.tvHeight.constant = CGFloat((self.filteredData.count + 1) * 40)
+        self.tvHeight.constant = CGFloat((self.filteredData.count) * 40)
         self.tableView.reloadData()
     }
     
@@ -117,18 +121,15 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.layer.borderColor = UIColor.lightGray.cgColor
-        self.tableView.layer.borderWidth = 1
-//        self.tableView.layer.cornerRadius = 12
+        self.tableView.layer.borderWidth = 0
+        self.tableView.layer.cornerRadius = 12
+        self.tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         self.tableView.backgroundColor = UIColor(hexString: "#d6d4d3")
         self.tableView.layer.shadowColor = UIColor.black.cgColor
         self.tableView.layer.shadowRadius = 5
         self.tableView.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.tableView.layer.shadowOpacity = 0.8
         self.tableView.layer.masksToBounds = true
-        self.tableView.round(corners: [.topLeft], cornerRadius: 20)
-        self.tableView.round(corners: [.bottomLeft], cornerRadius: 12)
-        self.tableView.round(corners: [.bottomRight], cornerRadius: 12)
-        self.tableView.round(corners: [.topRight], cornerRadius: 20)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -174,19 +175,5 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         cell?.isHighlighted = false
         cell?.backgroundColor = UIColor(hexString: "#d6d4d3")
         cell?.textLabel?.textColor = UIColor(hexString: "#918e8c")
-    }
-}
-
-extension UITableView {
-    func round(corners: UIRectCorner, cornerRadius: Double) {
-//        let size = CGSize(width: cornerRadius, height: cornerRadius)
-//        let bezierPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: size)
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.frame = self.bounds
-//        shapeLayer.path = bezierPath.cgPath
-//        self.layer.mask = shapeLayerlet
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath
-        self.layer.mask = maskLayer
     }
 }
