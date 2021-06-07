@@ -32,6 +32,10 @@ class BookMarksViewController: UIViewController {
         setupFonts()
         homeImage.layer.borderColor = UIColor.lightGray.cgColor
         homeImage.layer.borderWidth = 0.5
+        homeImage.layer.shadowColor = UIColor.lightGray.cgColor
+        homeImage.layer.shadowRadius = 5
+        homeImage.layer.shadowOffset = CGSize(width: 0, height: 4)
+        homeImage.layer.shadowOpacity = 0.7
         shareButton.alpha = 0
         bookmarkButton.alpha = 0
         soundButton.alpha = 0

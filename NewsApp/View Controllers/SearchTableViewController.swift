@@ -48,7 +48,7 @@ class SearchTableViewController: UIViewController {
             searchBar.searchTextField.layer.borderColor = UIColor.white.cgColor
             searchBar.searchTextField.layer.borderWidth = 2
             searchBar.layer.borderColor = UIColor.systemGray6.cgColor
-            searchBar.layer.cornerRadius = 12
+            searchBar.layer.cornerRadius = 22
         }
         searchBar.delegate = self
         searchBar.tintColor = UIColor(hexString: "#b80d00")
@@ -118,13 +118,17 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         self.tableView.dataSource = self
         self.tableView.layer.borderColor = UIColor.lightGray.cgColor
         self.tableView.layer.borderWidth = 1
-        self.tableView.layer.cornerRadius = 12
+//        self.tableView.layer.cornerRadius = 12
         self.tableView.backgroundColor = UIColor(hexString: "#d6d4d3")
         self.tableView.layer.shadowColor = UIColor.black.cgColor
         self.tableView.layer.shadowRadius = 5
         self.tableView.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.tableView.layer.shadowOpacity = 0.8
         self.tableView.layer.masksToBounds = true
+        self.tableView.round(corners: [.topLeft], cornerRadius: 20)
+        self.tableView.round(corners: [.bottomLeft], cornerRadius: 12)
+        self.tableView.round(corners: [.bottomRight], cornerRadius: 12)
+        self.tableView.round(corners: [.topRight], cornerRadius: 20)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -170,5 +174,19 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         cell?.isHighlighted = false
         cell?.backgroundColor = UIColor(hexString: "#d6d4d3")
         cell?.textLabel?.textColor = UIColor(hexString: "#918e8c")
+    }
+}
+
+extension UITableView {
+    func round(corners: UIRectCorner, cornerRadius: Double) {
+//        let size = CGSize(width: cornerRadius, height: cornerRadius)
+//        let bezierPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: size)
+//        let shapeLayer = CAShapeLayer()
+//        shapeLayer.frame = self.bounds
+//        shapeLayer.path = bezierPath.cgPath
+//        self.layer.mask = shapeLayerlet
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath
+        self.layer.mask = maskLayer
     }
 }

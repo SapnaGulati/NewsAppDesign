@@ -33,7 +33,7 @@ class PreferencesViewController: UIViewController {
         textField.textColor = UIColor(hexString: "#302f2f")
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .white
-        textField.layer.borderWidth = 1
+        textField.layer.borderWidth = 2
         textField.tintColor = UIColor(hexString: "#b80d00")
         if #available(iOS 13.0, *) {
             textField.layer.borderColor = UIColor.systemGray6.cgColor
@@ -50,7 +50,7 @@ class PreferencesViewController: UIViewController {
         let outerLeftView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding, height: 36))
         let anotherView = UIView(frame: CGRect(x:15, y:3, width: size+6, height: 30))
         let leftIconView  = UIImageView(frame: CGRect(x: 3, y: 5, width: size, height: 17))
-        anotherView.layer.borderWidth = 1
+        anotherView.layer.borderWidth = 0.5
         anotherView.layer.borderColor = UIColor.lightGray.cgColor
         anotherView.layer.cornerRadius = 5
         leftIconView.contentMode = .center
@@ -116,7 +116,7 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
         if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumInteritemSpacing = 8
             flowLayout.minimumLineSpacing = 8
-            flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 40)/2, height: 145)
+            flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 56)/2, height: 145)
         }
     }
 

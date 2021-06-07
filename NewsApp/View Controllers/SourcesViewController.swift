@@ -83,13 +83,13 @@ class SourcesCell: UITableViewCell {
         NSLayoutConstraint.activate([
             cellView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             cellView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
             cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12)
         ])
         
-        label.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: 10).isActive = true
+        label.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
         label.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
         cellView.layer.shadowColor = UIColor.systemGray.cgColor
         cellView.layer.shadowOffset = (CGSize(width: 1, height: 1))
@@ -107,12 +107,6 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
         view.addSubview(sourcesTable)
         sourcesTable.delegate = self
         sourcesTable.dataSource = self
-        if (sourcesTable.contentSize.height < sourcesTable.frame.size.height) {
-            sourcesTable.isScrollEnabled = false
-          }
-         else {
-            sourcesTable.isScrollEnabled = true
-          }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,7 +119,7 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 90
     }
     
     func scrollToBottom(){
