@@ -136,12 +136,12 @@ class CountryCell: UITableViewCell {
         cellView.layer.shadowRadius = 2
         cellView.layer.shadowOpacity = 0.5
         
-        countryImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor, constant: 10).isActive = true
+        countryImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor, constant: 6).isActive = true
         countryImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant: 20).isActive = true
         countryImageView.widthAnchor.constraint(equalToConstant:30).isActive = true
         countryImageView.heightAnchor.constraint(equalToConstant:30).isActive = true
         
-        countryNameLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: 12).isActive = true
+        countryNameLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: 8).isActive = true
         countryNameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         countryNameLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         countryNameLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 50).isActive = true
@@ -191,6 +191,12 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         view.addSubview(countrytableview)
         countrytableview.delegate = self
         countrytableview.dataSource = self
+        if (countrytableview.contentSize.height < countrytableview.frame.size.height) {
+            countrytableview.isScrollEnabled = false
+          }
+         else {
+            countrytableview.isScrollEnabled = true
+          }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -205,7 +211,7 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       return 70
+       return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

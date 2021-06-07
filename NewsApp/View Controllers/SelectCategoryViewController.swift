@@ -90,6 +90,7 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
         }
         cell.contentView.layer.cornerRadius = 12.0
         cell.contentView.layer.borderWidth = 2
+        cell.contentView.layer.masksToBounds = true
         cell.cellLabel.text = categories[indexPath.row].name
         cell.cellImage.image = UIImage(named: categories[indexPath.row].name!)
         cell.cellLabel.font = UIFont(name: "Poppins-SemiBold", size: 18)
@@ -97,9 +98,10 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
         cell.backgroundColor = UIColor(hexString: "#efeded")
         cell.layer.shadowColor = UIColor.systemGray.cgColor
         cell.layer.shadowOffset = CGSize(width: 1, height: 1)
+        cell.layer.cornerRadius = 12.0
         cell.layer.shadowRadius = 2
         cell.layer.shadowOpacity = 0.5
-        cell.layer.masksToBounds = true
+        cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:12).cgPath
         return cell
     }

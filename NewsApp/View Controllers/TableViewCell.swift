@@ -31,6 +31,12 @@ class TableViewCell: UITableViewCell {
         soundButton.alpha = 0
         moreLabel.isUserInteractionEnabled = true
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 400)
+        if (scrollView.contentSize.height < scrollView.frame.size.height) {
+            scrollView.isScrollEnabled = false
+          }
+         else {
+            scrollView.isScrollEnabled = true
+          }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

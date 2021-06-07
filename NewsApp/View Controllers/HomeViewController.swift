@@ -84,6 +84,7 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return NewsViewModel.shared.newsData.articles.count
+//        return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -28,7 +28,7 @@ class TabBarViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         setupNavigationBarItems()
-        customTab.layer.cornerRadius = 15
+        customTab.layer.cornerRadius = 20
         customTab.clipsToBounds = true
         customTab.layer.borderWidth = 2
         if #available(iOS 13.0, *) {

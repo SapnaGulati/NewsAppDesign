@@ -107,6 +107,12 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
         view.addSubview(sourcesTable)
         sourcesTable.delegate = self
         sourcesTable.dataSource = self
+        if (sourcesTable.contentSize.height < sourcesTable.frame.size.height) {
+            sourcesTable.isScrollEnabled = false
+          }
+         else {
+            sourcesTable.isScrollEnabled = true
+          }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
