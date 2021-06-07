@@ -119,13 +119,6 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
-    
-    func scrollToBottom(){
-        DispatchQueue.main.async {
-            let indexPath = IndexPath(row: 15-1, section: 0)
-            self.sourcesTable.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
+        return 82
     }
 }

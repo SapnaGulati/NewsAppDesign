@@ -82,36 +82,31 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
+        var image: UIImage!
         if(cell.isSelected) {
-            cell.contentView.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
+            image = UIImage(named: "borderR")
         }
         else {
-            cell.contentView.layer.borderColor = UIColor.lightGray.cgColor
+            image = UIImage(named: "borderG")
         }
-        cell.contentView.layer.cornerRadius = 12.0
-        cell.contentView.layer.borderWidth = 2
+//        cell.contentView.layer.cornerRadius = 12.0
+//        cell.contentView.layer.borderWidth = 2
         cell.contentView.layer.masksToBounds = true
+        let imageView = UIImageView(image: image)
+        cell.backgroundView = imageView
+        cell.backgroundColor = .white
         cell.cellLabel.text = categories[indexPath.row].name
         cell.cellImage.image = UIImage(named: categories[indexPath.row].name!)
         cell.cellLabel.font = UIFont(name: "Poppins-SemiBold", size: 18)
         cell.cellLabel.textColor = UIColor(hexString: "#626262")
         cell.backgroundColor = UIColor(hexString: "#efeded")
-        cell.layer.shadowColor = UIColor.systemGray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 1, height: 1)
-        cell.layer.cornerRadius = 12.0
-        cell.layer.shadowRadius = 2
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:12).cgPath
+        cell.layer.masksToBounds = true
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.isSelected = true
-        cell?.layer.cornerRadius = 12.0
-        cell?.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
-        cell?.layer.borderWidth = 2
         let selectedCategory = categories[indexPath.row].name
         defaults.set(selectedCategory, forKey: "selectedCategory")
         let cID = indexPath.row
@@ -123,9 +118,6 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.isSelected = false
-        cell?.layer.cornerRadius = 12.0
-        cell?.layer.borderColor = UIColor.lightGray.cgColor
-        cell?.layer.borderWidth = 2
     }
     
     // MARK: View Layout
