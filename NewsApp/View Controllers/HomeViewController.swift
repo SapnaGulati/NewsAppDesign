@@ -12,6 +12,7 @@ class HomeViewController: UIViewController {
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
+    var url: URL!
 
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -19,9 +20,9 @@ class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
         setupTableView()
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,10 +71,10 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     func setupTableView() {
         self.tableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
-        self.tableView.dataSource = self
-//        NewsViewModel.shared.bindNewsViewModelToController = {
-//            self.tableView.dataSource = self
-//        }
+//        self.tableView.dataSource = self
+        NewsViewModel.shared.bindNewsViewModelToController = {
+            self.tableView.dataSource = self
+        }
     }
     
     // MARK: Table View Delegate Function
@@ -83,8 +84,7 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return NewsViewModel.shared.newsData.articles.count
-        return 20
+        return NewsViewModel.shared.newsData.articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,31 +93,28 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         tap.numberOfTapsRequired = 1
         cell.moreLabel.isUserInteractionEnabled = true
         cell.moreLabel.addGestureRecognizer(tap)
-//        let items = NewsViewModel.shared.newsData.articles[indexPath.row]
-//        cell.titleLabel?.text = items.title ?? ""
-//        cell.contentLabel?.text = items.description
-//        cell.dateLabel?.text = items.publishedAt
-//        cell.sourceLabel?.text = items.source.endIndex.description
-//        DispatchQueue.main.async {
-//            let url = URL(string: items.urlToImage ?? "HomeImage")
-//        if let data = try? Data(contentsOf: url!) {
-//            cell.imageView?.image = UIImage(data: data)
-//        }
-//        }
+        let items = NewsViewModel.shared.newsData.articles[indexPath.row]
+        cell.titleLabel?.text = items.title ?? ""
+        cell.contentLabel?.text = items.description
+        cell.dateLabel?.text = items.publishedAt
+        cell.sourceLabel?.text = items.source.endIndex.description
+        DispatchQueue.main.async {
+//            let imageURL = URL(string: items.urlToImage ?? "HomeImage")
+//            if let data = try? Data(contentsOf: imageURL!) {
+//                cell.imageView?.image = UIImage(data: data)
+//            }
+            self.url = URL(string: items.url ?? "")
+        }
         cell.imageView?.contentMode = .scaleToFill
         cell.imageView?.translatesAutoresizingMaskIntoConstraints = false
         cell.imageView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
         cell.imageView?.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
-//        let link = URL(string: items.url ?? "")
-//        if let linkData = try? Data(contentsOf: link!) {
-//        }
         return cell
     }
 
     @objc
     func labelTapped(_ tap: UITapGestureRecognizer) {
-        guard let url = URL(string: "https://www.google.com") else {return}
-        let safariViewController = SFSafariViewController(url: url)
+        let safariViewController = SFSafariViewController(url: self.url)
         present(safariViewController, animated: true)
     }
 }

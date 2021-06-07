@@ -4,7 +4,7 @@
 //
 //  Created by ios4 on 26/05/21.
 //
-/*
+
 import Foundation
 
 class NewsViewModel : NSObject {
@@ -31,4 +31,4 @@ class NewsViewModel : NSObject {
             self.newsData = newsDataModel
         }
     }
-}*/
+}
