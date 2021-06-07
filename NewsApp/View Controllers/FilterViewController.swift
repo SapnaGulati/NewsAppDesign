@@ -95,7 +95,7 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumInteritemSpacing = 8
             flowLayout.minimumLineSpacing = 8
-            flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 40)/2, height: 150)
+            flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 40)/2, height: 145)
         }
     }
     

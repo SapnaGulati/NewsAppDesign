@@ -17,6 +17,7 @@ class SearchTableViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tvHeight: NSLayoutConstraint!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     // View Cycle
     override func viewDidLoad() {
@@ -28,6 +29,10 @@ class SearchTableViewController: UIViewController {
         tvHeight.constant = CGFloat((self.filteredData.count + 1) * 40)
     }
     
+    @IBAction func doneButton(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
     // MARK: Search Bar Set Up
     private func setupSearchBar() {
         let attributes = [
@@ -36,7 +41,6 @@ class SearchTableViewController: UIViewController {
         ]
         if #available(iOS 13.0, *) {
             searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes:attributes)
-            searchBar.returnKeyType = .done
             searchBar.backgroundColor = .white
             searchBar.clipsToBounds = true
             searchBar.layer.frame.size.height = 40
@@ -100,8 +104,9 @@ extension SearchTableViewController: UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.inputAccessoryView = toolbar
+        return true
     }
 }
 

@@ -13,6 +13,7 @@ class SelectCountryViewController: UIViewController {
     @IBOutlet weak var search: UISearchBar!
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var countrytableview: UITableView!
+    @IBOutlet weak var toolbar: UIToolbar!
     private let countries = CountryList.getCountries()
     var filteredData: [country] = []
     let defaults = UserDefaults.standard
@@ -32,6 +33,10 @@ class SelectCountryViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
     }
     
+    @IBAction func doneButton(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
     // MARK: Set Up Fonts
     private func setupFonts() {
         label2.font = UIFont(name: "Poppins-Regular", size: 16)
@@ -46,7 +51,6 @@ class SelectCountryViewController: UIViewController {
         ]
         if #available(iOS 13.0, *) {
             search.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes:attributes)
-            search.returnKeyType = .done
             search.backgroundColor = .white
             search.clipsToBounds = true
             search.layer.borderWidth = 2
@@ -177,8 +181,9 @@ extension SelectCountryViewController: UISearchBarDelegate{
         self.countrytableview.reloadData()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.inputAccessoryView = toolbar
+        return true
     }
 }
 
