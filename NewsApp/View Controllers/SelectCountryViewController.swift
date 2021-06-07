@@ -51,7 +51,7 @@ class SelectCountryViewController: UIViewController {
             search.clipsToBounds = true
             search.layer.borderWidth = 2
             search.layer.borderColor = UIColor.systemGray6.cgColor
-            search.layer.cornerRadius = 30
+            search.layer.cornerRadius = 25
             search.layer.frame.size.height = 60
             search.searchTextField.backgroundColor = .white
         }
@@ -126,7 +126,7 @@ class CountryCell: UITableViewCell {
         self.selectionStyle = .none
         
         NSLayoutConstraint.activate([
-            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
             cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
@@ -207,7 +207,7 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        return 70
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCountry = filteredData[indexPath.row].c_code
         defaults.set(selectedCountry, forKey: "selectedCountry")
