@@ -89,17 +89,13 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
         else {
             image = UIImage(named: "borderG")
         }
-//        cell.contentView.layer.cornerRadius = 12.0
-//        cell.contentView.layer.borderWidth = 2
         cell.contentView.layer.masksToBounds = true
         let imageView = UIImageView(image: image)
         cell.backgroundView = imageView
-        cell.backgroundColor = .white
         cell.cellLabel.text = categories[indexPath.row].name
         cell.cellImage.image = UIImage(named: categories[indexPath.row].name!)
         cell.cellLabel.font = UIFont(name: "Poppins-SemiBold", size: 18)
         cell.cellLabel.textColor = UIColor(hexString: "#626262")
-        cell.backgroundColor = UIColor(hexString: "#efeded")
         cell.layer.masksToBounds = true
         return cell
     }
@@ -124,9 +120,9 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.minimumInteritemSpacing = 8
-            flowLayout.minimumLineSpacing = 8
-            flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 40)/2, height: 145)
+            flowLayout.minimumInteritemSpacing = 0
+            flowLayout.minimumLineSpacing = 0
+            flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 32)/2, height: 145)
         }
     }
 }

@@ -19,8 +19,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
-        setupTableView()
         DispatchQueue.main.async {
+            self.setupTableView()
             self.tableView.reloadData()
         }
     }

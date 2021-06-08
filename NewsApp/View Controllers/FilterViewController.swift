@@ -93,9 +93,9 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.minimumInteritemSpacing = 8
-            flowLayout.minimumLineSpacing = 8
-            flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 40)/2, height: 145)
+            flowLayout.minimumInteritemSpacing = 0
+            flowLayout.minimumLineSpacing = 0
+            flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 32)/2, height: 145)
         }
     }
     
@@ -116,27 +116,20 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         else {
             cell.isSelected = false
         }
+        var image: UIImage!
         if(cell.isSelected) {
-            cell.contentView.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
+            image = UIImage(named: "borderR")
         }
         else {
-            cell.contentView.layer.borderColor = UIColor.lightGray.cgColor
+            image = UIImage(named: "borderG")
         }
-        cell.contentView.layer.cornerRadius = 12.0
-        cell.contentView.layer.borderWidth = 2
         cell.contentView.layer.masksToBounds = true
+        let imageView = UIImageView(image: image)
+        cell.backgroundView = imageView
         cell.cellLabel.text = categories[indexPath.row].name
         cell.cellImage.image = UIImage(named: categories[indexPath.row].name!)
         cell.cellLabel.font = UIFont(name: "Poppins-SemiBold", size: 18)
         cell.cellLabel.textColor = UIColor(hexString: "#626262")
-        cell.backgroundColor = UIColor(hexString: "#efeded")
-        cell.layer.shadowColor = UIColor.systemGray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 1, height: 1)
-        cell.layer.cornerRadius = 12.0
-        cell.layer.shadowRadius = 2
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:12).cgPath
         return cell
     }
     

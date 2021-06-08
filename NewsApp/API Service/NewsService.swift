@@ -16,12 +16,15 @@ class NewsAPIService {
     var srcDataArray = [Source]()
     var srcData = JSONDictionary()
     let defaults = UserDefaults.standard
+    var selectedCountry: String!
+    var selectedCategory: String!
+    var url: String!
     
     func getArticles(completion: @escaping (NewsDataModel) ->()) {
-//        let selectedCountry = defaults.string(forKey: "selectedCountry") ?? ""
-        let selectedCategory = defaults.string(forKey: "selectedCategory") ?? ""
-
-        let url = "https://newsapi.org/v2/top-headlines?country=us&category=\(selectedCategory)&apiKey=4d3e1ce2523f46418ff4a356b80f556d"
+        selectedCountry = defaults.string(forKey: "selectedCountry") ?? ""
+        selectedCategory = self.defaults.string(forKey: "selectedCategory") ?? ""
+        url = "https://newsapi.org/v2/top-headlines?country=us&category=\(String(describing: selectedCategory))&apiKey=4d3e1ce2523f46418ff4a356b80f556d"
+        
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {
                     response in
             

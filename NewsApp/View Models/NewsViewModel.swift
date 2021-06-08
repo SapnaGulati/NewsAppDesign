@@ -27,8 +27,10 @@ class NewsViewModel : NSObject {
     }
     
     func callFuncToGetNews() {
-        self.newsService.getArticles { (newsDataModel) in
-            self.newsData = newsDataModel
+        DispatchQueue.main.async {
+            self.newsService.getArticles { (newsDataModel) in
+                self.newsData = newsDataModel
+            }
         }
     }
 }
