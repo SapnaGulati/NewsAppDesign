@@ -431,16 +431,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BT9-p1-Tat" userLabel="Top View">
-                                <rect key="frame" x="24" y="44" width="366" height="136"/>
+                                <rect key="frame" x="24" y="44" width="366" height="135.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PF-Ta-Dj7">
-                                        <rect key="frame" x="0.0" y="32" width="366" height="21"/>
+                                        <rect key="frame" x="0.0" y="32" width="366" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="India" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ni-Ik-YKC">
-                                        <rect key="frame" x="0.0" y="57" width="366" height="47"/>
+                                        <rect key="frame" x="0.0" y="56.5" width="366" height="47"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="47" id="KSu-CI-oer"/>
@@ -461,7 +461,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iHo-v5-T8Y">
-                                <rect key="frame" x="24" y="180" width="366" height="716"/>
+                                <rect key="frame" x="24" y="179.5" width="366" height="716.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RZu-8n-XDD">
                                     <size key="itemSize" width="150" height="150"/>
