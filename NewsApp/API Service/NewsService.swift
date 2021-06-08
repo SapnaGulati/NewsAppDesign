@@ -10,6 +10,9 @@ import Foundation
 import Alamofire
 
 class NewsAPIService {
+    
+    static var shared = NewsAPIService()
+    
     var newsData = NewsDataModel(detail: JSONDictionary())
     var artDataArray = [Articles]()
     var artData = JSONDictionary()

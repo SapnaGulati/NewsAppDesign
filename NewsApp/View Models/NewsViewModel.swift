@@ -11,6 +11,9 @@ class NewsViewModel : NSObject {
     
     static var shared = NewsViewModel()
     private var newsService : NewsAPIService!
+//    var newsData: NewsDataModel!
+    
+//    private override init() {}
     
     private(set) var newsData: NewsDataModel!{
         didSet {
