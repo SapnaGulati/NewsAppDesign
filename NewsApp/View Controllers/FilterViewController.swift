@@ -17,7 +17,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton!
     let defaults = UserDefaults.standard
-    var selectedCountry: String!
+    var selectedCategory: String!
 
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -44,7 +44,8 @@ class FilterViewController: UIViewController {
     
     // MARK: Reset Button Click Handling
     @IBAction func ResetButton(_ sender: UIButton) {
-        defaults.set(selectedCountry, forKey: "selectedCountry")
+        defaults.set(selectedCategory, forKey: "selectedCategory")
+        defaults.synchronize()
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -135,6 +136,8 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         defaults.set(indexPath.row, forKey: "cID")
+        selectedCategory = categories[indexPath.row].name
+        print(selectedCategory as Any)
         defaults.synchronize()
         self.collectionView.reloadData()
     }

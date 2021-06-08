@@ -155,6 +155,8 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCategory = categories[indexPath.row].name
+        defaults.set(selectedCategory, forKey: "selectedCategory")
         defaults.set(indexPath.row, forKey: "cID")
         defaults.synchronize()
         textField.tintColor = UIColor.clear

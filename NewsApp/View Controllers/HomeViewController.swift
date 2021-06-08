@@ -13,21 +13,24 @@ class HomeViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
     var url: URL!
+    var loadingVC: UIViewController!
 
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //MARK: Add loader
-        let loadingVC = LoadingViewController()
+        loadingVC = LoadingViewController()
         loadingVC.modalPresentationStyle = .overCurrentContext
         loadingVC.modalTransitionStyle = .crossDissolve
-        present(loadingVC, animated: true, completion: nil)
+        present(self.loadingVC, animated: true, completion: nil)
         
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
-        DispatchQueue.main.async {
-            self.setupTableView()
+        self.setupTableView()
+        NewsViewModel.shared.bindNewsViewModelToController = {
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
             self.tableView.reloadData()
             self.dismiss(animated: true, completion: nil)
         }
@@ -78,10 +81,6 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     func setupTableView() {
         self.tableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        self.tableView.delegate = self
-        NewsViewModel.shared.bindNewsViewModelToController = {
-            self.tableView.dataSource = self
-        }
     }
     
     // MARK: Table View Delegate Function
@@ -107,10 +106,10 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         cell.dateLabel?.text = items.publishedAt
         cell.sourceLabel?.text = items.source.endIndex.description
         DispatchQueue.main.async {
-//            let imageURL = URL(string: items.urlToImage ?? "HomeImage")
-//            if let data = try? Data(contentsOf: imageURL!) {
-//                cell.imageView?.image = UIImage(data: data)
-//            }
+            let imageURL = URL(string: items.urlToImage ?? "HomeImage")
+            if let data = try? Data(contentsOf: imageURL!) {
+                cell.imageView?.image = UIImage(data: data)
+            }
             self.url = URL(string: items.url ?? "")
         }
         cell.imageView?.contentMode = .scaleToFill

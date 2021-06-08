@@ -22,8 +22,7 @@ class NewsAPIService {
         let selectedCategory = self.defaults.string(forKey: "selectedCategory") ?? ""
         let url = "https://newsapi.org/v2/top-headlines?country=us&category=\(selectedCategory)&apiKey=4d3e1ce2523f46418ff4a356b80f556d"
         
-        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {
-                    response in
+        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
             
             if let error = response.error {
                 print(error.localizedDescription)
