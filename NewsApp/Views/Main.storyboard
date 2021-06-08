@@ -1276,14 +1276,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="LdO-0M-ifj" userLabel="Image View">
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdO-0M-ifj" userLabel="Image View">
                                 <rect key="frame" x="0.0" y="68" width="414" height="224"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeImage" translatesAutoresizingMaskIntoConstraints="NO" id="p2Z-6E-KHi">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                 <constraints>
                                     <constraint firstItem="p2Z-6E-KHi" firstAttribute="top" secondItem="LdO-0M-ifj" secondAttribute="top" id="FMr-yH-hvY"/>
                                     <constraint firstAttribute="trailing" secondItem="p2Z-6E-KHi" secondAttribute="trailing" id="g18-fa-F0y"/>
@@ -1420,7 +1420,7 @@
                         <outlet property="bookmarkButton" destination="Xax-es-a7O" id="JSg-LI-MIX"/>
                         <outlet property="contentLabel" destination="V5B-a7-q3j" id="zeb-PT-pe4"/>
                         <outlet property="dateLabel" destination="u2G-A3-JAp" id="ZTI-80-vXV"/>
-                        <outlet property="homeImage" destination="p2Z-6E-KHi" id="okx-Is-udQ"/>
+                        <outlet property="imageBGView" destination="LdO-0M-ifj" id="GMe-Ta-T5c"/>
                         <outlet property="moreLabel" destination="I5l-fz-l50" id="61X-95-JJD"/>
                         <outlet property="popupButton" destination="T9z-M9-3Zx" id="7HW-a6-dkw"/>
                         <outlet property="shareButton" destination="grv-b7-XIm" id="fA0-xp-e9j"/>
@@ -1462,6 +1462,9 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

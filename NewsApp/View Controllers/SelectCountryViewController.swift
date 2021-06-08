@@ -99,6 +99,8 @@ class CountryCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = UIColor.darkGray
         view.layer.cornerRadius = 10
+        view.layer.borderWidth = 0.3
+        view.layer.borderColor = UIColor.black.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -135,10 +137,6 @@ class CountryCell: UITableViewCell {
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-        cellView.layer.shadowColor = UIColor.systemGray.cgColor
-        cellView.layer.shadowOffset = (CGSize(width: 1, height: 0.8))
-        cellView.layer.shadowRadius = 2
-        cellView.layer.shadowOpacity = 0.5
         
         countryImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor, constant: 6).isActive = true
         countryImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant: 20).isActive = true
@@ -155,9 +153,11 @@ class CountryCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
          super.setSelected(selected, animated: animated)
          if selected {
-             cellView.backgroundColor = UIColor(hexString: "#b80d00")
+            cellView.backgroundColor = UIColor(hexString: "#b80d00")
+            cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 0.7, shadowRadius: 2.5)
          } else {
-             cellView.backgroundColor = UIColor(hexString: "#616163")
+            cellView.backgroundColor = UIColor(hexString: "#616163")
+            cellView.addShadow(shadowColor: UIColor.black.cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 1, shadowRadius: 2.5)
          }
      }
 }

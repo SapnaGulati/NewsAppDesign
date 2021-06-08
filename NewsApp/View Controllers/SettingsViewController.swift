@@ -89,11 +89,7 @@ class SettingsCell: UITableViewCell {
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-        cellView.layer.shadowColor = UIColor.systemGray.cgColor
-        cellView.layer.shadowOffset = (CGSize(width: 1, height: 1))
-        cellView.layer.shadowRadius = 2
-        cellView.layer.shadowOpacity = 0.5
-        
+        cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 0.7, shadowRadius: 2.5)
         label.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: 10).isActive = true
         label.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
     }

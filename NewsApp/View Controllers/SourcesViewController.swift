@@ -56,10 +56,6 @@ class SourcesCell: UITableViewCell {
     let cellView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(hexString: "#b80d00")
-        view.layer.borderWidth = 3
-        if #available(iOS 13.0, *) {
-            view.layer.borderColor = UIColor.systemBackground.cgColor
-        }
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -88,13 +84,10 @@ class SourcesCell: UITableViewCell {
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12)
         ])
+        cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 0.7, shadowRadius: 2.5)
         
         label.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
         label.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
-        cellView.layer.shadowColor = UIColor.systemGray.cgColor
-        cellView.layer.shadowOffset = (CGSize(width: 1, height: 1))
-        cellView.layer.shadowRadius = 2
-        cellView.layer.shadowOpacity = 0.5
     }
 }
 

@@ -19,7 +19,7 @@ class BookMarksViewController: UIViewController {
     @IBOutlet weak var moreLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
-    @IBOutlet weak var homeImage: UIImageView!
+    @IBOutlet weak var imageBGView: UIView!
     
     var popupclicked = false
     
@@ -30,12 +30,7 @@ class BookMarksViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
         setupFonts()
-        homeImage.layer.borderColor = UIColor.lightGray.cgColor
-        homeImage.layer.borderWidth = 0.5
-        homeImage.layer.shadowColor = UIColor.lightGray.cgColor
-        homeImage.layer.shadowRadius = 5
-        homeImage.layer.shadowOffset = CGSize(width: 0, height: 4)
-        homeImage.layer.shadowOpacity = 0.7
+        imageBGView.addShadow(shadowColor: UIColor.lightGray.cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 0.7, shadowRadius: 3)
         shareButton.alpha = 0
         bookmarkButton.alpha = 0
         soundButton.alpha = 0
