@@ -29,24 +29,8 @@ class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
         self.setupTableView()
-        self.getArticles()
-//        self.present(self.loadingVC, animated: true, completion: nil)
-//        self.tableView.delegate = self
-//        self.tableView.dataSource = self
-//        self.tableView.reloadData()
-//        self.dismiss(animated: true, completion: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         self.newsService =  NewsAPIService()
-//        NewsViewModel.shared.bindNewsViewModelToController = {
-////        NewsAPIService.getArticles {
-//            self.present(self.loadingVC, animated: true, completion: nil)
-//            self.tableView.delegate = self
-//            self.tableView.dataSource = self
-//            self.tableView.reloadData()
-//            self.dismiss(animated: true, completion: nil)
-//        }
+        self.getArticles()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,7 +87,7 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NewsAPIService.shared.artDataArray.count
+        return NewsAPIService.shared.newsData.articles.count
 //        return 20
     }
     
@@ -113,8 +97,8 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         tap.numberOfTapsRequired = 1
         cell.moreLabel.isUserInteractionEnabled = true
         cell.moreLabel.addGestureRecognizer(tap)
-        let items = NewsAPIService.shared.artDataArray[indexPath.row]
-        print(items.author!)
+        let items = NewsAPIService.shared.newsData.articles[indexPath.row]
+//        print(items.author!)
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
         cell.dateLabel?.text = items.publishedAt
@@ -143,12 +127,12 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
 extension HomeViewController {
     func getArticles() {
         self.present(self.loadingVC, animated: true, completion: nil)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.reloadData()
-        self.dismiss(animated: true, completion: nil)
-        NewsAPIService.shared.getArticles { (NewsDataModel) in
-            self.newsData = NewsDataModel
+        NewsAPIService.shared.getArticles { (newsData) in
+            self.newsData = newsData
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

