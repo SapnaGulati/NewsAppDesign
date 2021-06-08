@@ -17,11 +17,19 @@ class HomeViewController: UIViewController {
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //MARK: Add loader
+        let loadingVC = LoadingViewController()
+        loadingVC.modalPresentationStyle = .overCurrentContext
+        loadingVC.modalTransitionStyle = .crossDissolve
+        present(loadingVC, animated: true, completion: nil)
+        
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
         DispatchQueue.main.async {
             self.setupTableView()
             self.tableView.reloadData()
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
