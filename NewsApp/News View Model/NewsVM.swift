@@ -16,12 +16,8 @@ class NewsVM {
     var newsData = NewsDataModel(detail: JSONDictionary())
     var artDataArray = [Articles]()
     var artData = Articles(detail: JSONDictionary())
-    var srcDataArray = [Source]()
-    let defaults = UserDefaults.standard
     
     func getArticles(selectedCategory: String, completion: @escaping (NewsDataModel) ->()) {
-//        let selectedCountry = defaults.string(forKey: "selectedCountry") ?? ""
-//        let selectedCategory = self.defaults.string(forKey: "selectedCategory") ?? ""
         let url = "https://newsapi.org/v2/top-headlines?country=us&category=\(selectedCategory)&apiKey=4d3e1ce2523f46418ff4a356b80f556d"
         
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
@@ -32,18 +28,10 @@ class NewsVM {
                 if let dict = response.value as? JSONDictionary
                 {
                     print(dict)
+                    self.artDataArray.removeAll()
                     let arts = dict["articles"] as? JSONArray ?? []
                     for art in arts {
                         let model = Articles(detail: art)
-                        if let srcs = art["source"] as? JSONDictionary
-                        {
-                            let sources = srcs["source"] as? JSONArray ?? []
-                            for src in sources {
-                                let srcModel = Source(detail: src)
-                                self.srcDataArray.append(srcModel)
-                            }
-                        }
-                        self.artData.source = self.srcDataArray
                         self.artDataArray.append(model)
                     }
                     self.newsData.articles = self.artDataArray

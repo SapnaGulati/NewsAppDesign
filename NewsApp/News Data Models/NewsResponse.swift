@@ -29,35 +29,23 @@ struct NewsDataModel {
 }
 
 struct Articles {
-    var source: [Source] = []
     var author: String?
     var title: String?
     var description: String?
     var publishedAt: String?
     var urlToImage: String?
     var url: String?
+    var sourceName: String?
     
     init(detail: JSONDictionary) {
-        for src in detail["source"] as? JSONArray ?? []
-        {
-            let post = Source(detail: src)
-            self.source.append(post)
-        }
         self.author = detail["author"] as? String
         self.title = detail["title"] as? String
         self.description = detail["description"] as? String
         self.publishedAt = detail["publishedAt"] as? String
         self.urlToImage = detail["urlToImage"] as? String
         self.url = detail["url"] as? String
-    }
-}
-
-struct Source {
-    var id: String?
-    var name: String?
-    
-    init(detail: JSONDictionary) {
-        self.id = detail["id"] as? String
-        self.name = detail["name"] as? String
+        if let source =  detail["source"] as? JSONDictionary{
+            self.sourceName = source["name"] as? String
+        }
     }
 }

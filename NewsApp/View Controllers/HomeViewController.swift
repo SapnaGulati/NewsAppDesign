@@ -102,7 +102,7 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         cell.contentLabel?.text = items.description
         cell.dateLabel?.text = items.publishedAt
         cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
-//        cell.sourceLabel?.text = items.source.description
+        cell.sourceLabel?.text = items.sourceName
         self.url = URL(string: items.url ?? "")
         return cell
     }
