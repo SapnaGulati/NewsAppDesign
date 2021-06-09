@@ -17,7 +17,6 @@ class NewsVM {
     var artDataArray = [Articles]()
     var artData = Articles(detail: JSONDictionary())
     var srcDataArray = [Source]()
-    var srcData = JSONDictionary()
     let defaults = UserDefaults.standard
     
     func getArticles(completion: @escaping (NewsDataModel) ->()) {
@@ -47,23 +46,10 @@ class NewsVM {
                         self.artData.source = self.srcDataArray
                         self.artDataArray.append(model)
                     }
-                    
                     self.newsData.articles = self.artDataArray
                     completion(self.newsData)
                 }
             }
-//            if let source = art["source"] as? JSONDictionary
-//            {
-//                let srcs = source["source"] as? JSONArray ?? []
-//                for src in srcs {
-//                    let srcModel = Source(detail: src)
-//                    self.srcDataArray.append(srcModel)
-//                    print(srcModel)
-//                    print(self.srcDataArray)
-//                }
-//            }
-//            model.source = self.srcDataArray
-//            print(model)
         }
     }
 }

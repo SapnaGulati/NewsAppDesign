@@ -100,13 +100,13 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
         cell.dateLabel?.text = items.publishedAt
-        cell.sourceLabel?.text = NewsVM.shared.newsData.articles[indexPath.row].source[0].name
+//        cell.sourceLabel?.text = items.source.description
         DispatchQueue.main.async {
 //            let imageURL = URL(string: items.urlToImage ?? "HomeImage")
 //            if let data = try? Data(contentsOf: imageURL!) {
 //                cell.imageView?.image = UIImage(data: data)
 //            }
-//            self.url = URL(string: items.url ?? "")
+            self.url = URL(string: items.url ?? "")
         }
         cell.imageView?.contentMode = .scaleToFill
         cell.imageView?.translatesAutoresizingMaskIntoConstraints = false

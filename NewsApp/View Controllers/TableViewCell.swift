@@ -20,6 +20,9 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var newsContentView: UIView!
+    @IBOutlet weak var newsView: UIView!
+    @IBOutlet weak var underlineView: UIView!
     
     var popupclicked = false
     
@@ -30,11 +33,8 @@ class TableViewCell: UITableViewCell {
         bookmarkButton.alpha = 0
         soundButton.alpha = 0
         moreLabel.isUserInteractionEnabled = true
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 400)
-        if (scrollView.contentSize.height < scrollView.frame.size.height) {
-            scrollView.isScrollEnabled = false
-          }
-         else {
+        scrollView.isScrollEnabled = false
+        if (scrollView.contentSize.height > newsContentView.frame.size.height) {
             scrollView.isScrollEnabled = true
           }
     }
@@ -72,5 +72,6 @@ class TableViewCell: UITableViewCell {
         dateLabel.textColor = UIColor(hexString: "#343333")
         sourceLabel.font = UIFont(name: "Poppins-Medium", size: 17)
         sourceLabel.textColor = UIColor(hexString: "#b80d00")
+        underlineView.backgroundColor = UIColor(hexString: "#c4272b")
     }
 }
