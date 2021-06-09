@@ -20,6 +20,7 @@ class BookMarksViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var imageBGView: UIView!
+    @IBOutlet weak var underlineView: UIView!
     
     var popupclicked = false
     
@@ -65,6 +66,7 @@ class BookMarksViewController: UIViewController {
         dateLabel.textColor = UIColor(hexString: "#343333")
         sourceLabel.font = UIFont(name: "Poppins-Medium", size: 17)
         sourceLabel.textColor = UIColor(hexString: "#b80d00")
+        underlineView.backgroundColor = UIColor(hexString: "#c4272b")
     }
     
     // MARK: Custom Navigation Bar

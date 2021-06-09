@@ -1294,8 +1294,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bui-Dl-ygu" userLabel="Content View">
                                 <rect key="frame" x="8" y="300" width="398" height="407"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGA-jq-88b">
+                                        <rect key="frame" x="16" y="236" width="39.5" height="1.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1.5" id="kpa-fc-CXs"/>
+                                        </constraints>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5l-fz-l50">
-                                        <rect key="frame" x="16" y="215" width="366" height="20.5"/>
+                                        <rect key="frame" x="16" y="215" width="39.5" height="20.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="More">
                                                 <attributes>
@@ -1327,10 +1334,12 @@
                                     <constraint firstItem="ANt-TD-RsN" firstAttribute="top" secondItem="Bui-Dl-ygu" secondAttribute="top" constant="16" id="7WS-rR-VHR"/>
                                     <constraint firstItem="I5l-fz-l50" firstAttribute="leading" secondItem="Bui-Dl-ygu" secondAttribute="leading" constant="16" id="DPF-r6-1jO"/>
                                     <constraint firstItem="I5l-fz-l50" firstAttribute="top" secondItem="V5B-a7-q3j" secondAttribute="bottom" constant="8" id="G8d-Qk-fhD"/>
+                                    <constraint firstItem="eGA-jq-88b" firstAttribute="width" secondItem="I5l-fz-l50" secondAttribute="width" id="HdZ-an-1ih"/>
                                     <constraint firstItem="V5B-a7-q3j" firstAttribute="leading" secondItem="Bui-Dl-ygu" secondAttribute="leading" constant="16" id="XE2-JY-wO8"/>
                                     <constraint firstItem="V5B-a7-q3j" firstAttribute="top" secondItem="ANt-TD-RsN" secondAttribute="bottom" constant="8" id="Xto-SB-Ina"/>
+                                    <constraint firstItem="eGA-jq-88b" firstAttribute="leading" secondItem="I5l-fz-l50" secondAttribute="leading" id="bHm-RE-vDg"/>
                                     <constraint firstAttribute="trailing" secondItem="V5B-a7-q3j" secondAttribute="trailing" constant="16" id="cAT-fa-6ef"/>
-                                    <constraint firstAttribute="trailing" secondItem="I5l-fz-l50" secondAttribute="trailing" constant="16" id="eJz-68-jIs"/>
+                                    <constraint firstItem="eGA-jq-88b" firstAttribute="top" secondItem="I5l-fz-l50" secondAttribute="bottom" constant="0.25" id="o20-iP-vQN"/>
                                     <constraint firstAttribute="trailing" secondItem="ANt-TD-RsN" secondAttribute="trailing" constant="16" id="q3h-p6-c5I"/>
                                 </constraints>
                             </view>
@@ -1427,6 +1436,7 @@
                         <outlet property="soundButton" destination="f7X-RN-Nqi" id="bFt-Ve-kpj"/>
                         <outlet property="sourceLabel" destination="UzW-bi-BkX" id="Vif-7j-Bis"/>
                         <outlet property="titleLabel" destination="ANt-TD-RsN" id="BEd-Ee-Wmh"/>
+                        <outlet property="underlineView" destination="eGA-jq-88b" id="Rpd-Yl-KnW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Vz-At-PZC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
