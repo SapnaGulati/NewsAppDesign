@@ -7,6 +7,7 @@
 
 import UIKit
 import SafariServices
+import SDWebImage
 
 class HomeViewController: UIViewController {
     
@@ -87,7 +88,6 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return NewsVM.shared.newsData.articles.count
-//        return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,12 +100,9 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
         cell.dateLabel?.text = items.publishedAt
+        cell.homeImageView?.sd_setImage(with: URL(string: items.urlToImage ?? ""), placeholderImage: nil)
 //        cell.sourceLabel?.text = items.source.description
         DispatchQueue.main.async {
-//            let imageURL = URL(string: items.urlToImage ?? "HomeImage")
-//            if let data = try? Data(contentsOf: imageURL!) {
-//                cell.imageView?.image = UIImage(data: data)
-//            }
             self.url = URL(string: items.url ?? "")
         }
         cell.imageView?.contentMode = .scaleToFill

@@ -251,8 +251,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E708DF4264CEB160055F518 /* Build configuration list for PBXNativeTarget "NewsApp" */;
 			buildPhases = (
-				947AD36D87FEFBDCD36D902C /* Assets Catalog Builder */,
 				7B002771DF7A15593B0E02C7 /* [CP] Check Pods Manifest.lock */,
+				947AD36D87FEFBDCD36D902C /* Assets Catalog Builder */,
 				8E708DDC264CEB140055F518 /* Sources */,
 				8E708DDD264CEB140055F518 /* Frameworks */,
 				8E708DDE264CEB140055F518 /* Resources */,

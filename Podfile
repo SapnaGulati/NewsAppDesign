@@ -9,7 +9,7 @@ target 'NewsApp' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'Alamofire'
-
+  pod 'SDWebImage'
   # Pods for NewsApp
 
 end

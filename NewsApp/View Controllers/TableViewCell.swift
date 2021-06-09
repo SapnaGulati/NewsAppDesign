@@ -23,6 +23,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var newsContentView: UIView!
     @IBOutlet weak var newsView: UIView!
     @IBOutlet weak var underlineView: UIView!
+    @IBOutlet weak var homeImageView: UIImageView!
     
     var popupclicked = false
     
@@ -34,9 +35,6 @@ class TableViewCell: UITableViewCell {
         soundButton.alpha = 0
         moreLabel.isUserInteractionEnabled = true
         scrollView.isScrollEnabled = false
-        if (scrollView.contentSize.height > newsContentView.frame.size.height) {
-            scrollView.isScrollEnabled = true
-          }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

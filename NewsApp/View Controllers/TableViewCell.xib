@@ -222,6 +222,7 @@
                 <outlet property="bookmarkButton" destination="xV3-W7-whK" id="gO0-rn-8YC"/>
                 <outlet property="contentLabel" destination="dbx-mQ-Irj" id="V82-l3-K4Z"/>
                 <outlet property="dateLabel" destination="gC3-Se-zeL" id="t8t-2P-4e6"/>
+                <outlet property="homeImageView" destination="eOx-c6-i45" id="lI0-Bo-Pxy"/>
                 <outlet property="moreLabel" destination="PBq-7Y-BLu" id="rQz-9z-bvm"/>
                 <outlet property="newsContentView" destination="20a-72-bVj" id="j86-Wb-pIw"/>
                 <outlet property="newsView" destination="R4b-hT-xMN" id="QWl-Qa-u95"/>
