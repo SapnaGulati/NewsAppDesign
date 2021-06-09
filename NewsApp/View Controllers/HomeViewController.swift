@@ -88,6 +88,12 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if NewsVM.shared.newsData.articles.count == 0 {
+            self.tableView.setEmptyView(message: "News Not Available.")
+        }
+        else {
+            self.tableView.restore()
+        }
         return NewsVM.shared.newsData.articles.count
     }
     
