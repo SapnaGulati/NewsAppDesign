@@ -9,13 +9,13 @@ import UIKit
 import Foundation
 import Alamofire
 
-class NewsAPIService {
+class NewsVM {
     
-    static var shared = NewsAPIService()
+    static var shared = NewsVM()
     
     var newsData = NewsDataModel(detail: JSONDictionary())
     var artDataArray = [Articles]()
-    var artData = JSONDictionary()
+    var artData = Articles(detail: JSONDictionary())
     var srcDataArray = [Source]()
     var srcData = JSONDictionary()
     let defaults = UserDefaults.standard
@@ -35,19 +35,35 @@ class NewsAPIService {
                     print(dict)
                     let arts = dict["articles"] as? JSONArray ?? []
                     for art in arts {
-                        var model = Articles(detail: art)
-                        if let source = art["source"] as? JSONDictionary
+                        let model = Articles(detail: art)
+                        if let srcs = art["source"] as? JSONDictionary
                         {
-                            let src = Source(detail: source)
-                            self.srcDataArray.append(src)
+                            let sources = srcs["source"] as? JSONArray ?? []
+                            for src in sources {
+                                let srcModel = Source(detail: src)
+                                self.srcDataArray.append(srcModel)
+                            }
                         }
-                        model.source = self.srcDataArray
+                        self.artData.source = self.srcDataArray
                         self.artDataArray.append(model)
                     }
+                    
                     self.newsData.articles = self.artDataArray
                     completion(self.newsData)
                 }
             }
+//            if let source = art["source"] as? JSONDictionary
+//            {
+//                let srcs = source["source"] as? JSONArray ?? []
+//                for src in srcs {
+//                    let srcModel = Source(detail: src)
+//                    self.srcDataArray.append(srcModel)
+//                    print(srcModel)
+//                    print(self.srcDataArray)
+//                }
+//            }
+//            model.source = self.srcDataArray
+//            print(model)
         }
     }
 }

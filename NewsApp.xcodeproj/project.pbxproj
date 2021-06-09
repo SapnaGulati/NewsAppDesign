@@ -33,7 +33,7 @@
 		8EADD4212669D8E900E88249 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3F82669D8E900E88249 /* SubscriptionViewController.swift */; };
 		8EADD4222669D8E900E88249 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3F92669D8E900E88249 /* FilterViewController.swift */; };
 		8EADD4232669D8E900E88249 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EADD3FB2669D8E900E88249 /* Preview Assets.xcassets */; };
-		8EADD4242669D8E900E88249 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3FD2669D8E900E88249 /* NewsService.swift */; };
+		8EADD4242669D8E900E88249 /* NewsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3FD2669D8E900E88249 /* NewsVM.swift */; };
 		8EADD4252669D8E900E88249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3FF2669D8E900E88249 /* AppDelegate.swift */; };
 		8EADD4262669D8E900E88249 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD4002669D8E900E88249 /* SceneDelegate.swift */; };
 		8EADD4272669D8E900E88249 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EADD4022669D8E900E88249 /* Poppins-Medium.ttf */; };
@@ -75,7 +75,7 @@
 		8EADD3F82669D8E900E88249 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		8EADD3F92669D8E900E88249 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		8EADD3FB2669D8E900E88249 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8EADD3FD2669D8E900E88249 /* NewsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
+		8EADD3FD2669D8E900E88249 /* NewsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsVM.swift; sourceTree = "<group>"; };
 		8EADD3FF2669D8E900E88249 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EADD4002669D8E900E88249 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8EADD4022669D8E900E88249 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 				8EADD3E82669D8E900E88249 /* Assets.xcassets */,
 				8EADD3E92669D8E900E88249 /* View Controllers */,
 				8EADD3FA2669D8E900E88249 /* Preview Content */,
-				8EADD3FC2669D8E900E88249 /* API Service */,
+				8EADD3FC2669D8E900E88249 /* News View Model */,
 				8EADD3FE2669D8E900E88249 /* Common */,
 				8EADD4012669D8E900E88249 /* Fonts */,
 				8EADD4052669D8E900E88249 /* Views */,
@@ -183,12 +183,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		8EADD3FC2669D8E900E88249 /* API Service */ = {
+		8EADD3FC2669D8E900E88249 /* News View Model */ = {
 			isa = PBXGroup;
 			children = (
-				8EADD3FD2669D8E900E88249 /* NewsService.swift */,
+				8EADD3FD2669D8E900E88249 /* NewsVM.swift */,
 			);
-			path = "API Service";
+			path = "News View Model";
 			sourceTree = "<group>";
 		};
 		8EADD3FE2669D8E900E88249 /* Common */ = {
@@ -420,7 +420,7 @@
 				8EADD41E2669D8E900E88249 /* TabBarViewController.swift in Sources */,
 				8EADD40C2669D8E900E88249 /* CountryList.swift in Sources */,
 				8EADD4212669D8E900E88249 /* SubscriptionViewController.swift in Sources */,
-				8EADD4242669D8E900E88249 /* NewsService.swift in Sources */,
+				8EADD4242669D8E900E88249 /* NewsVM.swift in Sources */,
 				8EADD4142669D8E900E88249 /* BookMarksViewController.swift in Sources */,
 				8EADD4262669D8E900E88249 /* SceneDelegate.swift in Sources */,
 				8EADD4112669D8E900E88249 /* Category.swift in Sources */,

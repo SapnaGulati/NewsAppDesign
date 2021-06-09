@@ -14,7 +14,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var url: URL!
     var loadingVC: UIViewController!
-    private var newsService : NewsAPIService!
     private var newsData : NewsDataModel!
 
     // MARK: View Cycle
@@ -29,7 +28,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
         self.setupTableView()
-        self.newsService =  NewsAPIService()
+        NewsVM.shared.newsData.articles.removeAll()
         self.getArticles()
     }
     
@@ -87,7 +86,7 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NewsAPIService.shared.newsData.articles.count
+        return NewsVM.shared.newsData.articles.count
 //        return 20
     }
     
@@ -97,12 +96,11 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         tap.numberOfTapsRequired = 1
         cell.moreLabel.isUserInteractionEnabled = true
         cell.moreLabel.addGestureRecognizer(tap)
-        let items = NewsAPIService.shared.newsData.articles[indexPath.row]
-//        print(items.author!)
+        let items = NewsVM.shared.newsData.articles[indexPath.row]
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
         cell.dateLabel?.text = items.publishedAt
-        cell.sourceLabel?.text = items.source.endIndex.description
+        cell.sourceLabel?.text = NewsVM.shared.newsData.articles[indexPath.row].source[0].name
         DispatchQueue.main.async {
 //            let imageURL = URL(string: items.urlToImage ?? "HomeImage")
 //            if let data = try? Data(contentsOf: imageURL!) {
@@ -127,7 +125,7 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
 extension HomeViewController {
     func getArticles() {
         self.present(self.loadingVC, animated: true, completion: nil)
-        NewsAPIService.shared.getArticles { (newsData) in
+        NewsVM.shared.getArticles { (newsData) in
             self.newsData = newsData
             self.tableView.delegate = self
             self.tableView.dataSource = self
