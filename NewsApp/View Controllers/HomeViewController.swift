@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     var url: URL!
     var loadingVC: UIViewController!
     private var newsData : NewsDataModel!
-
+    let defaults = UserDefaults.standard
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,8 @@ class HomeViewController: UIViewController {
         setupNavigationBarItems()
         self.setupTableView()
         NewsVM.shared.newsData.articles.removeAll()
-        self.getArticles()
+        let selectedCategory = self.defaults.string(forKey: "selectedCategory") ?? ""
+        self.getArticles(selectedCategory: selectedCategory)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,15 +101,9 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
         cell.dateLabel?.text = items.publishedAt
-        cell.homeImageView?.sd_setImage(with: URL(string: items.urlToImage ?? ""), placeholderImage: nil)
+        cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
 //        cell.sourceLabel?.text = items.source.description
-        DispatchQueue.main.async {
-            self.url = URL(string: items.url ?? "")
-        }
-        cell.imageView?.contentMode = .scaleToFill
-        cell.imageView?.translatesAutoresizingMaskIntoConstraints = false
-        cell.imageView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        cell.imageView?.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
+        self.url = URL(string: items.url ?? "")
         return cell
     }
 
@@ -120,9 +115,9 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
 }
 
 extension HomeViewController {
-    func getArticles() {
+    func getArticles(selectedCategory: String) {
         self.present(self.loadingVC, animated: true, completion: nil)
-        NewsVM.shared.getArticles { (newsData) in
+        NewsVM.shared.getArticles(selectedCategory: selectedCategory) { (newsData) in
             self.newsData = newsData
             self.tableView.delegate = self
             self.tableView.dataSource = self
