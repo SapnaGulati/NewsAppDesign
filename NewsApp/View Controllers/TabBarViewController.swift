@@ -31,11 +31,7 @@ class TabBarViewController: UIViewController {
         customTab.layer.cornerRadius = 20
         customTab.clipsToBounds = true
         customTab.layer.borderWidth = 2
-        if #available(iOS 13.0, *) {
-            customTab.layer.borderColor = UIColor.lightGray.cgColor
-        } else {
-            customTab.layer.borderColor = UIColor.lightGray.cgColor
-        }
+        customTab.layer.borderColor = UIColor(hexString: "#e0e0e0").cgColor
         home.layer.borderWidth = 1
         home.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
         settings.layer.borderWidth = 1
