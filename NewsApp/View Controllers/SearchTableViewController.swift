@@ -109,6 +109,10 @@ extension SearchTableViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.inputAccessoryView = toolbar
         return true
     }
@@ -137,6 +141,16 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(filteredData.count == 0) {
+            searchView.backgroundColor = .none
+            searchBar.layer.borderWidth = 2
+            if #available(iOS 13.0, *) {
+                searchBar.layer.borderColor = UIColor.systemGray6.cgColor
+            }
+        }
+        else {
+            searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
+        }
         return filteredData.count
     }
     

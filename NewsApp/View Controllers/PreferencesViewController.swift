@@ -52,7 +52,7 @@ class PreferencesViewController: UIViewController {
         let leftIconView  = UIImageView(frame: CGRect(x: 3, y: 5, width: size, height: 17))
         anotherView.layer.borderWidth = 0.5
         anotherView.layer.borderColor = UIColor.lightGray.cgColor
-        anotherView.layer.cornerRadius = 5
+        anotherView.layer.cornerRadius = 3.5
         leftIconView.contentMode = .center
         leftIconView.backgroundColor = .white
         leftIconView.image = leftImage
@@ -65,8 +65,8 @@ class PreferencesViewController: UIViewController {
         anotherView.addSubview(leftIconView)
         textField.leftView = outerLeftView
         textField.leftViewMode = .always
-        let outerRightView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding, height: 10))
-        let rightIconView  = UIImageView(frame: CGRect(x: padding, y: 0, width: size, height: 8))
+        let outerRightView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding+12, height: 10))
+        let rightIconView  = UIImageView(frame: CGRect(x: padding, y: 0, width: size+12, height: 8))
         let rightImage = UIImage(named: "arrowG")
         rightIconView.contentMode = .center
         rightIconView.image = rightImage

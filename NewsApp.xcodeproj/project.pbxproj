@@ -46,6 +46,7 @@
 		8EDCE6022671C93200102931 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE6012671C93200102931 /* UIColor.swift */; };
 		8EDCE6052671C96C00102931 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE6042671C96C00102931 /* UIView.swift */; };
 		8EDCE6082671C99000102931 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE6072671C99000102931 /* UITableView.swift */; };
+		8EDCE60C2671E4BA00102931 /* UIStatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		8EDCE6012671C93200102931 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		8EDCE6042671C96C00102931 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		8EDCE6072671C99000102931 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStatusBarStyle.swift; sourceTree = "<group>"; };
 		D88ADE371A1DA52AD93E9339 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -234,6 +236,7 @@
 				8EDCE6012671C93200102931 /* UIColor.swift */,
 				8EDCE6042671C96C00102931 /* UIView.swift */,
 				8EDCE6072671C99000102931 /* UITableView.swift */,
+				8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				8EADD4182669D8E900E88249 /* SelectCountryViewController.swift in Sources */,
 				8EADD41F2669D8E900E88249 /* LogoutViewController.swift in Sources */,
 				8EADD41C2669D8E900E88249 /* loginScreenVC.swift in Sources */,
+				8EDCE60C2671E4BA00102931 /* UIStatusBarStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

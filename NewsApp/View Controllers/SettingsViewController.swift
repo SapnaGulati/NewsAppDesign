@@ -84,7 +84,7 @@ class SettingsCell: UITableViewCell {
         NSLayoutConstraint.activate([
             cellView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             cellView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 24),
             cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)

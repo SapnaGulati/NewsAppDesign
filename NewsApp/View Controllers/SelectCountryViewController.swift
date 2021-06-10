@@ -98,7 +98,7 @@ class CountryCell: UITableViewCell {
     let cellView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.darkGray
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 8
         view.layer.borderWidth = 0.3
         view.layer.borderColor = UIColor.black.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -132,11 +132,12 @@ class CountryCell: UITableViewCell {
         self.selectionStyle = .none
         
         NSLayoutConstraint.activate([
-            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
+            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 13),
             cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
+        cellView.addShadow(shadowColor: UIColor.black.cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 1, shadowRadius: 2.5)
         
         countryImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor, constant: 6).isActive = true
         countryImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant: 20).isActive = true
@@ -218,19 +219,5 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         defaults.set(selectedCountry, forKey: "selectedCountry")
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectCategoryViewController") as! SelectCategoryViewController
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-extension UIStatusBarStyle {
-    func setupStatusBar(string: String) {
-        if #available(iOS 13.0, *) {
-            let statusBar = UIView(frame: UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
-            statusBar.backgroundColor = UIColor(hexString: "#b80d00")
-            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(statusBar)
-        }
-        else {
-            let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
-            statusBar?.backgroundColor = UIColor(hexString: "#b80d00")
-        }
     }
 }
