@@ -47,6 +47,7 @@
 		8EDCE6052671C96C00102931 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE6042671C96C00102931 /* UIView.swift */; };
 		8EDCE6082671C99000102931 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE6072671C99000102931 /* UITableView.swift */; };
 		8EDCE60C2671E4BA00102931 /* UIStatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */; };
+		8EDCE6102672207900102931 /* SelectCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE60F2672207900102931 /* SelectCountry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		8EDCE6042671C96C00102931 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		8EDCE6072671C99000102931 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStatusBarStyle.swift; sourceTree = "<group>"; };
+		8EDCE60F2672207900102931 /* SelectCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountry.swift; sourceTree = "<group>"; };
 		D88ADE371A1DA52AD93E9339 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,6 +135,7 @@
 		8EADD3DC2669D8E900E88249 /* NewsApp */ = {
 			isa = PBXGroup;
 			children = (
+				8EDCE60E2672205F00102931 /* Delegates */,
 				8EDBF0C5266F336F008F9E61 /* Extensions */,
 				8EADD3DF2669D8E900E88249 /* News Data Models */,
 				8EADD3E72669D8E900E88249 /* NewsApp.entitlements */,
@@ -239,6 +242,14 @@
 				8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8EDCE60E2672205F00102931 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				8EDCE60F2672207900102931 /* SelectCountry.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		9F96F8BAE5884B1BD2AFFC3C /* Frameworks */ = {
@@ -442,6 +453,7 @@
 				8EADD4242669D8E900E88249 /* NewsVM.swift in Sources */,
 				8EADD4142669D8E900E88249 /* BookMarksViewController.swift in Sources */,
 				8EADD4262669D8E900E88249 /* SceneDelegate.swift in Sources */,
+				8EDCE6102672207900102931 /* SelectCountry.swift in Sources */,
 				8EADD4112669D8E900E88249 /* Category.swift in Sources */,
 				8EADD4182669D8E900E88249 /* SelectCountryViewController.swift in Sources */,
 				8EADD41F2669D8E900E88249 /* LogoutViewController.swift in Sources */,

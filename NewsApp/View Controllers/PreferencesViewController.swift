@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PreferencesViewController: UIViewController {
+class PreferencesViewController: UIViewController, SelectCountry {
     
     // MARK: Outlets
     private let categories = CategoryList.getCategories()
@@ -15,6 +15,7 @@ class PreferencesViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var textField: UITextField!
     let defaults = UserDefaults.standard
+    var leftIconView: UIImageView!
 
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -46,10 +47,12 @@ class PreferencesViewController: UIViewController {
     private func setupTextField() {
         let padding = 28
         let size = 25
-        let leftImage = UIImage(named: "India")
+        let selectedCountry = self.defaults.string(forKey: "selectedCountry") ?? ""
+        self.textField.text = selectedCountry
+        let leftImage = UIImage(named: selectedCountry)
         let outerLeftView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding, height: 36))
         let anotherView = UIView(frame: CGRect(x:15, y:3, width: size+6, height: 30))
-        let leftIconView  = UIImageView(frame: CGRect(x: 3, y: 5, width: size, height: 17))
+        leftIconView  = UIImageView(frame: CGRect(x: 3, y: 5, width: size, height: 17))
         anotherView.layer.borderWidth = 0.5
         anotherView.layer.borderColor = UIColor.lightGray.cgColor
         anotherView.layer.cornerRadius = 3.5
@@ -70,11 +73,30 @@ class PreferencesViewController: UIViewController {
         let rightImage = UIImage(named: "arrowG")
         rightIconView.contentMode = .center
         rightIconView.image = rightImage
+        rightIconView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.arrowTapped(_:)))
+        tap.numberOfTapsRequired = 1
+        rightIconView.addGestureRecognizer(tap)
         outerRightView.addSubview(rightIconView)
         textField.rightView = outerRightView
         textField.rightViewMode = .always
         textField.layer.cornerRadius = 25.0
         textField.clipsToBounds = true
+    }
+    
+    // MARK: Opening SelectCountryViewController on arrow pressed
+    @objc
+    func arrowTapped(_ tap: UITapGestureRecognizer) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectCountryViewController") as! SelectCountryViewController
+        vc.delegate = self
+        vc.comeFrom = .Preferences
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // MARK: Setting choosen name and image
+    func setCountry(cName: String) {
+        leftIconView.image = UIImage(named: cName)
+        textField.text = cName
     }
     
     // MARK: Custom Navigation Bar

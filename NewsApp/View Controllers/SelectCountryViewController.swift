@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum ComeFrom: String {
+    case SelectCategory
+    case Preferences
+}
+
 class SelectCountryViewController: UIViewController {
 
     // MARK: Outlets
@@ -14,6 +19,8 @@ class SelectCountryViewController: UIViewController {
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var countrytableview: UITableView!
     @IBOutlet weak var toolbar: UIToolbar!
+    var delegate: SelectCountry?
+    var comeFrom:ComeFrom = .SelectCategory
     private let countries = CountryList.getCountries()
     var filteredData: [country] = []
     let defaults = UserDefaults.standard
@@ -215,9 +222,16 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCountry = filteredData[indexPath.row].c_code
+        let selectedCountry = filteredData[indexPath.row].name
+        delegate?.setCountry(cName: selectedCountry)
         defaults.set(selectedCountry, forKey: "selectedCountry")
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectCategoryViewController") as! SelectCategoryViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if comeFrom == .SelectCategory {
+            let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectCategoryViewController") as! SelectCategoryViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
