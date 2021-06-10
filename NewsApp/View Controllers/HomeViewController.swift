@@ -29,9 +29,11 @@ class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
         self.setupTableView()
-        NewsVM.shared.newsData.articles.removeAll()
-        let selectedCategory = self.defaults.string(forKey: "selectedCategory") ?? ""
-        self.getArticles(selectedCategory: selectedCategory)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+//        NewsVM.shared.newsData.articles.removeAll()
+//        let selectedCategory = self.defaults.string(forKey: "selectedCategory") ?? ""
+//        self.getArticles(selectedCategory: selectedCategory)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,13 +90,14 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if NewsVM.shared.newsData.articles.count == 0 {
-            self.tableView.setEmptyView(message: "News Not Available.")
-        }
-        else {
-            self.tableView.restore()
-        }
-        return NewsVM.shared.newsData.articles.count
+//        if NewsVM.shared.newsData.articles.count == 0 {
+//            self.tableView.setEmptyView(message: "News Not Available.")
+//        }
+//        else {
+//            self.tableView.restore()
+//        }
+//        return NewsVM.shared.newsData.articles.count
+        return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,13 +106,14 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         tap.numberOfTapsRequired = 1
         cell.moreLabel.isUserInteractionEnabled = true
         cell.moreLabel.addGestureRecognizer(tap)
-        let items = NewsVM.shared.newsData.articles[indexPath.row]
-        cell.titleLabel?.text = items.title ?? ""
-        cell.contentLabel?.text = items.description
-        cell.dateLabel?.text = items.publishedAt
-        cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
-        cell.sourceLabel?.text = items.sourceName
-        self.url = URL(string: items.url ?? "")
+//        let items = NewsVM.shared.newsData.articles[indexPath.row]
+//        cell.titleLabel?.text = items.title ?? ""
+//        cell.contentLabel?.text = items.description
+//        cell.dateLabel?.text = items.publishedAt
+//        cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
+//        cell.sourceLabel?.text = items.sourceName
+//        self.url = URL(string: items.url ?? "")
+        self.url = URL(string: "https://www.google.com")
         return cell
     }
 

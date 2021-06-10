@@ -42,8 +42,10 @@
 		8EADD4292669D8E900E88249 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EADD4042669D8E900E88249 /* Poppins-SemiBold.ttf */; };
 		8EADD42A2669D8E900E88249 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EADD4062669D8E900E88249 /* LaunchScreen.storyboard */; };
 		8EADD42B2669D8E900E88249 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EADD4082669D8E900E88249 /* Main.storyboard */; };
-		8EDBF0C7266F33A5008F9E61 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBF0C6266F33A5008F9E61 /* Extensions.swift */; };
 		8EDBF0CD266F5201008F9E61 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBF0CC266F5201008F9E61 /* LoadingViewController.swift */; };
+		8EDCE6022671C93200102931 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE6012671C93200102931 /* UIColor.swift */; };
+		8EDCE6052671C96C00102931 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE6042671C96C00102931 /* UIView.swift */; };
+		8EDCE6082671C99000102931 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE6072671C99000102931 /* UITableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,8 +90,10 @@
 		8EADD4072669D8E900E88249 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EADD4082669D8E900E88249 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8EADD4092669D8E900E88249 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8EDBF0C6266F33A5008F9E61 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8EDBF0CC266F5201008F9E61 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		8EDCE6012671C93200102931 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		8EDCE6042671C96C00102931 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		8EDCE6072671C99000102931 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		D88ADE371A1DA52AD93E9339 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -227,7 +231,9 @@
 		8EDBF0C5266F336F008F9E61 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8EDBF0C6266F33A5008F9E61 /* Extensions.swift */,
+				8EDCE6012671C93200102931 /* UIColor.swift */,
+				8EDCE6042671C96C00102931 /* UIView.swift */,
+				8EDCE6072671C99000102931 /* UITableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -409,8 +415,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EADD4172669D8E900E88249 /* TableViewCell.swift in Sources */,
-				8EDBF0C7266F33A5008F9E61 /* Extensions.swift in Sources */,
+				8EDCE6022671C93200102931 /* UIColor.swift in Sources */,
 				8EADD40F2669D8E900E88249 /* country.swift in Sources */,
+				8EDCE6052671C96C00102931 /* UIView.swift in Sources */,
 				8EADD4202669D8E900E88249 /* SettingsViewController.swift in Sources */,
 				8EADD41D2669D8E900E88249 /* LogInViewController.swift in Sources */,
 				8EADD4132669D8E900E88249 /* SearchTableViewController.swift in Sources */,
@@ -423,6 +430,7 @@
 				8EADD4162669D8E900E88249 /* SelectCategoryViewController.swift in Sources */,
 				8EADD4102669D8E900E88249 /* Settings.swift in Sources */,
 				8EADD4252669D8E900E88249 /* AppDelegate.swift in Sources */,
+				8EDCE6082671C99000102931 /* UITableView.swift in Sources */,
 				8EADD40D2669D8E900E88249 /* SettingsList.swift in Sources */,
 				8EADD41A2669D8E900E88249 /* PreferencesViewController.swift in Sources */,
 				8EADD41E2669D8E900E88249 /* TabBarViewController.swift in Sources */,

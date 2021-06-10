@@ -28,7 +28,7 @@
                                         <rect key="frame" x="-15" y="-18" width="406" height="238"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="758-9C-dV9">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeImage" translatesAutoresizingMaskIntoConstraints="NO" id="758-9C-dV9">
                                                 <rect key="frame" x="0.0" y="0.0" width="406" height="238"/>
                                             </imageView>
                                         </subviews>
@@ -51,14 +51,14 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="391" height="435"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFO-lJ-k0H">
-                                                                <rect key="frame" x="20" y="240.5" width="39.5" height="1.5"/>
+                                                                <rect key="frame" x="20" y="159" width="39.5" height="1.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1.5" id="kYu-KW-fEx"/>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBq-7Y-BLu">
-                                                                <rect key="frame" x="20" y="219.5" width="39.5" height="20.5"/>
+                                                                <rect key="frame" x="20" y="138" width="39.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -70,8 +70,8 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbx-mQ-Irj">
-                                                                <rect key="frame" x="20" y="28.5" width="351" height="183"/>
-                                                                <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
+                                                                <rect key="frame" x="20" y="28.5" width="351" height="101.5"/>
+                                                                <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.  It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -237,6 +237,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="HomeImage" width="621" height="377.5"/>
         <image name="bookmark" width="46" height="46"/>
         <image name="popUp" width="59" height="59"/>
         <image name="share" width="46" height="46"/>
