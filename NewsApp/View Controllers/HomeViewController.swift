@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //MARK: Add loader
+        // MARK: Add loader
         loadingVC = LoadingViewController()
         loadingVC.modalPresentationStyle = .overCurrentContext
         loadingVC.modalTransitionStyle = .crossDissolve

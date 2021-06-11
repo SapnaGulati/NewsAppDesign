@@ -43,6 +43,29 @@ class SelectCountryViewController: UIViewController {
         topView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(SelectCountryViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SelectCountryViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+            print("Notification: Keyboard will show")
+            self.countrytableview.setBottomInset(to: keyboardHeight)
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        print("Notification: Keyboard will hide")
+        self.countrytableview.setBottomInset(to: 0.0)
+    }
+    
     @IBAction func doneButton(_ sender: Any) {
         self.view.endEditing(true)
     }
