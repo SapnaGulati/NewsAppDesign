@@ -19,6 +19,7 @@ class SelectCountryViewController: UIViewController {
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var countrytableview: UITableView!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var topView: UIView!
     var delegate: SelectCountry?
     var comeFrom:ComeFrom = .SelectCategory
     private let countries = CountryList.getCountries()
@@ -38,6 +39,8 @@ class SelectCountryViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
+        self.view.endEditing(true)
+        topView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
     }
     
     @IBAction func doneButton(_ sender: Any) {
@@ -144,7 +147,8 @@ class CountryCell: UITableViewCell {
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-        cellView.addShadow(shadowColor: UIColor.black.cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 1, shadowRadius: 2.5)
+        cellView.backgroundColor = UIColor(hexString: "#616163")
+        cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1.5), shadowOpacity: 1, shadowRadius: 3.5)
         
         countryImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor, constant: 6).isActive = true
         countryImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant: 20).isActive = true
@@ -162,10 +166,10 @@ class CountryCell: UITableViewCell {
          super.setSelected(selected, animated: animated)
          if selected {
             cellView.backgroundColor = UIColor(hexString: "#b80d00")
-            cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 0.7, shadowRadius: 2.5)
+            cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1.5), shadowOpacity: 1, shadowRadius: 3.5)
          } else {
             cellView.backgroundColor = UIColor(hexString: "#616163")
-            cellView.addShadow(shadowColor: UIColor.black.cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 1, shadowRadius: 2.5)
+            cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1.5), shadowOpacity: 1, shadowRadius: 3.5)
          }
      }
 }
@@ -174,7 +178,6 @@ class CountryCell: UITableViewCell {
 extension SelectCountryViewController: UISearchBarDelegate{
     // MARK: Search Bar Data Update
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredData = []
             
         if searchText == "" {
             filteredData = countries
@@ -227,6 +230,7 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         defaults.set(selectedCountry, forKey: "selectedCountry")
         
         if comeFrom == .SelectCategory {
+            self.view.endEditing(true)
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectCategoryViewController") as! SelectCategoryViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }

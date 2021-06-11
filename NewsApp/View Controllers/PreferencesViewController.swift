@@ -35,7 +35,10 @@ class PreferencesViewController: UIViewController, SelectCountry {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .white
         textField.layer.borderWidth = 2
-        textField.tintColor = UIColor(hexString: "#b80d00")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.arrowTapped(_:)))
+        tap.numberOfTapsRequired = 1
+        textField.addGestureRecognizer(tap)
+        textField.isUserInteractionEnabled = true
         if #available(iOS 13.0, *) {
             textField.layer.borderColor = UIColor.systemGray6.cgColor
         } else {
@@ -181,7 +184,6 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
         defaults.set(selectedCategory, forKey: "selectedCategory")
         defaults.set(indexPath.row, forKey: "cID")
         defaults.synchronize()
-        textField.tintColor = UIColor.clear
         self.collectionView.reloadData()
     }
     

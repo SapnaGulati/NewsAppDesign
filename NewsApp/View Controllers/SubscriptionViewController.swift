@@ -47,7 +47,7 @@ class SubscriptionViewController: UIViewController {
         buttonY.titleLabel?.textColor = UIColor(hexString: "#fefefe")
     }
     
-    //MARK: Custom Navigation Bar
+    // MARK: Custom Navigation Bar
     private func setupNavigationBarItems() {
         if #available(iOS 13.0, *) {
             self.navigationController?.navigationBar.backgroundColor = .systemBackground

@@ -109,10 +109,6 @@ extension SearchTableViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        return true
-    }
-    
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.inputAccessoryView = toolbar
         return true
     }

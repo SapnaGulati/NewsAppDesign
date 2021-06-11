@@ -51,7 +51,8 @@ class SelectCategoryViewController: UIViewController {
     }
     
     @objc func gotoSettings() {
-        self.navigationController?.popViewController(animated: true)
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectCountryViewController") as! SelectCountryViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -61,7 +62,7 @@ class CategoryCell: UICollectionViewCell {
     @IBOutlet weak var cellImage: UIImageView!
 }
 
-// Collection View Delegate, Data Source and Delegate Flow Layout
+// MARK: Collection View Delegate, Data Source and Delegate Flow Layout
 extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: Collection View Functions

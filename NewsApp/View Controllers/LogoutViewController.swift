@@ -19,7 +19,7 @@ class LogoutViewController: UIViewController {
     @IBOutlet weak var outerView: UIView!
     let defaults = UserDefaults.standard
 
-    // View Cycle
+    // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
