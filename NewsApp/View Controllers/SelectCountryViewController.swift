@@ -201,7 +201,8 @@ class CountryCell: UITableViewCell {
 extension SelectCountryViewController: UISearchBarDelegate{
     // MARK: Search Bar Data Update
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            
+        filteredData = []
+        
         if searchText == "" {
             filteredData = countries
         }

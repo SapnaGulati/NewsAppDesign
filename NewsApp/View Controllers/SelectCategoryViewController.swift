@@ -52,7 +52,7 @@ class SelectCategoryViewController: UIViewController {
     
     @objc func gotoSettings() {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectCountryViewController") as! SelectCountryViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: false)
     }
 }
 
