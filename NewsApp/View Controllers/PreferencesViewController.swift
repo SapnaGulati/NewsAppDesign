@@ -72,8 +72,8 @@ class PreferencesViewController: UIViewController, SelectCountry {
         anotherView.addSubview(leftIconView)
         textField.leftView = outerLeftView
         textField.leftViewMode = .always
-        let outerRightView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding+12, height: 10))
-        let rightIconView  = UIImageView(frame: CGRect(x: padding, y: 0, width: size+12, height: 8))
+        let outerRightView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding+16, height: 10))
+        let rightIconView  = UIImageView(frame: CGRect(x: padding, y: 0, width: size+16, height: 8))
         let rightImage = UIImage(named: "arrowG")
         rightIconView.contentMode = .center
         rightIconView.image = rightImage

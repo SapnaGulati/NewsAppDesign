@@ -81,10 +81,10 @@ class SourcesCell: UITableViewCell {
         NSLayoutConstraint.activate([
             cellView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             cellView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12.5),
+            cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 14),
             cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12.5)
+            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -14)
         ])
         cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 0.7, shadowRadius: 2.5)
         
@@ -114,6 +114,6 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 75
     }
 }

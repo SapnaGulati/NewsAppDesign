@@ -30,7 +30,7 @@ class TabBarViewController: UIViewController {
         customTabStackView.layer.cornerRadius = 20
         customTabStackView.clipsToBounds = true
         customTabStackView.layer.borderWidth = 2
-        customTabStackView.layer.borderColor = UIColor(hexString: "#e0e0e0").cgColor
+        customTabStackView.layer.borderColor = UIColor(hexString: "#e8e8e8").cgColor
         homeButton.layer.borderWidth = 1
         homeButton.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
         settingsButton.layer.borderWidth = 1
