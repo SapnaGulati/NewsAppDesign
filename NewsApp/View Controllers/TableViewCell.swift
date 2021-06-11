@@ -25,8 +25,10 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var underlineView: UIView!
     @IBOutlet weak var homeImageView: UIImageView!
     
+    // MARK: Variables
     var popupclicked = false
     
+    // MARK: Nib Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         setupFonts()
@@ -37,6 +39,7 @@ class TableViewCell: UITableViewCell {
         scrollView.isScrollEnabled = false
     }
 
+    // MARK: Cell Selected Function
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

@@ -16,6 +16,8 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
     // MARK: Outlet
     @IBOutlet weak var underlineView: UIView!
     @IBOutlet weak var continueLabel: UILabel!
+    
+    // MARK: Variables
     let defaults = UserDefaults.standard
     var googleLogIn: Bool?
     var facebookLogIn: Bool?

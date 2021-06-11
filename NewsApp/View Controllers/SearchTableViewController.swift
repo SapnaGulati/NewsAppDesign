@@ -15,9 +15,9 @@ class SearchTableViewController: UIViewController {
     
     // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tvHeight: NSLayoutConstraint!
-    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var searchTableView: UITableView!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var doneToolbar: UIToolbar!
     @IBOutlet weak var searchView: UIView!
     
     // View Cycle
@@ -30,7 +30,7 @@ class SearchTableViewController: UIViewController {
         searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
         searchView.layer.cornerRadius = 22
         searchView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        tvHeight.constant = CGFloat((self.filteredData.count) * 40)
+        tableViewHeight.constant = CGFloat((self.filteredData.count) * 40)
     }
     
     @IBAction func doneButton(_ sender: Any) {
@@ -104,12 +104,12 @@ extension SearchTableViewController: UISearchBarDelegate {
                 }
             }
         }
-        self.tvHeight.constant = CGFloat((self.filteredData.count) * 40)
-        self.tableView.reloadData()
+        self.tableViewHeight.constant = CGFloat((self.filteredData.count) * 40)
+        self.searchTableView.reloadData()
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.inputAccessoryView = toolbar
+        searchBar.inputAccessoryView = doneToolbar
         return true
     }
 }
@@ -118,18 +118,18 @@ extension SearchTableViewController: UISearchBarDelegate {
 extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func setupTableView() {
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.layer.borderColor = UIColor.lightGray.cgColor
-        self.tableView.layer.borderWidth = 0
-        self.tableView.layer.cornerRadius = 12
-        self.tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        self.tableView.backgroundColor = UIColor(hexString: "#d6d4d3")
-        self.tableView.layer.shadowColor = UIColor.black.cgColor
-        self.tableView.layer.shadowRadius = 5
-        self.tableView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        self.tableView.layer.shadowOpacity = 0.8
-        self.tableView.layer.masksToBounds = true
+        self.searchTableView.delegate = self
+        self.searchTableView.dataSource = self
+        self.searchTableView.layer.borderColor = UIColor.lightGray.cgColor
+        self.searchTableView.layer.borderWidth = 0
+        self.searchTableView.layer.cornerRadius = 12
+        self.searchTableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        self.searchTableView.backgroundColor = UIColor(hexString: "#d6d4d3")
+        self.searchTableView.layer.shadowColor = UIColor.black.cgColor
+        self.searchTableView.layer.shadowRadius = 5
+        self.searchTableView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.searchTableView.layer.shadowOpacity = 0.8
+        self.searchTableView.layer.masksToBounds = true
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -151,7 +151,7 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        let cell = searchTableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         cell.textLabel?.text = filteredData[indexPath.row]
         cell.textLabel?.font = UIFont(name: "Poppins-Medium", size: 15)
         cell.textLabel?.highlightedTextColor = UIColor(hexString: "#d9d3cc")
@@ -171,7 +171,7 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
+        let cell = searchTableView.cellForRow(at: indexPath)
         cell?.isSelected = true
         cell?.isHighlighted = true
         let bgColorView = UIView()
@@ -180,7 +180,7 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
+        let cell = searchTableView.cellForRow(at: indexPath)
         cell?.isSelected = false
         cell?.isHighlighted = false
         cell?.backgroundColor = UIColor(hexString: "#d6d4d3")

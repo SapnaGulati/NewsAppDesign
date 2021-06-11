@@ -12,6 +12,7 @@ class SettingsViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var settingsTable: UITableView!
     
+    // MARK: Variables
     let settings = SettingsList.getSettings()
     var vc = [String]()
     

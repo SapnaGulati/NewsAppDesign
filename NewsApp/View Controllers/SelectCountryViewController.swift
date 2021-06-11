@@ -15,10 +15,12 @@ enum ComeFrom: String {
 class SelectCountryViewController: UIViewController {
 
     // MARK: Outlets
-    @IBOutlet weak var search: UISearchBar!
-    @IBOutlet weak var label2: UILabel!
-    @IBOutlet weak var countrytableview: UITableView!
-    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var countryTableView: UITableView!
+    @IBOutlet weak var doneToolbar: UIToolbar!
+    
+    // MARK: Variables
     var delegate: SelectCountry?
     var comeFrom:ComeFrom = .SelectCategory
     private let countries = CountryList.getCountries()
@@ -51,26 +53,28 @@ class SelectCountryViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    // MARK: Keyboard Functions
     @objc func keyboardWillShow(notification: Notification) {
         if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
             print("Notification: Keyboard will show")
-            self.countrytableview.setBottomInset(to: keyboardHeight)
+            self.countryTableView.setBottomInset(to: keyboardHeight)
         }
     }
 
     @objc func keyboardWillHide(notification: Notification) {
         print("Notification: Keyboard will hide")
-        self.countrytableview.setBottomInset(to: 0.0)
+        self.countryTableView.setBottomInset(to: 0.0)
     }
     
+    // MARK: Button Actions
     @IBAction func doneButton(_ sender: Any) {
         self.view.endEditing(true)
     }
     
     // MARK: Set Up Fonts
     private func setupFonts() {
-        label2.font = UIFont(name: "Poppins-Regular", size: 16)
-        label2.textColor = UIColor(hexString: "#626262")
+        titleLabel.font = UIFont(name: "Poppins-Regular", size: 16)
+        titleLabel.textColor = UIColor(hexString: "#626262")
     }
     
     // MARK: Set Up Search Bar
@@ -80,18 +84,18 @@ class SelectCountryViewController: UIViewController {
         NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 13)!
         ]
         if #available(iOS 13.0, *) {
-            search.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes:attributes)
-            search.backgroundColor = .white
-            search.clipsToBounds = true
-            search.layer.borderWidth = 2
-            search.layer.borderColor = UIColor.systemGray6.cgColor
-            search.layer.cornerRadius = 25
-            search.layer.frame.size.height = 60
-            search.searchTextField.backgroundColor = .white
+            searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes:attributes)
+            searchBar.backgroundColor = .white
+            searchBar.clipsToBounds = true
+            searchBar.layer.borderWidth = 2
+            searchBar.layer.borderColor = UIColor.systemGray6.cgColor
+            searchBar.layer.cornerRadius = 25
+            searchBar.layer.frame.size.height = 60
+            searchBar.searchTextField.backgroundColor = .white
         }
-        search.tintColor = UIColor(hexString: "#b80d00")
-        search.backgroundImage = UIImage()
-        search.delegate = self
+        searchBar.tintColor = UIColor(hexString: "#b80d00")
+        searchBar.backgroundImage = UIImage()
+        searchBar.delegate = self
     }
     
     // MARK: Custom Navigation Bar
@@ -155,6 +159,7 @@ class CountryCell: UITableViewCell {
         return label
     }()
     
+    // MARK: Setting-up View
     func setupView() {
         addSubview(cellView)
         cellView.addSubview(countryImageView)
@@ -196,6 +201,7 @@ class CountryCell: UITableViewCell {
 
 // MARK: Search Bar Delegate
 extension SelectCountryViewController: UISearchBarDelegate{
+    
     // MARK: Search Bar Data Update
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData = []
@@ -210,11 +216,11 @@ extension SelectCountryViewController: UISearchBarDelegate{
                 }
             }
         }
-        self.countrytableview.reloadData()
+        self.countryTableView.reloadData()
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.inputAccessoryView = toolbar
+        searchBar.inputAccessoryView = doneToolbar
         return true
     }
 }
@@ -224,10 +230,10 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     
     // MARK: Table View Functions
     func setupTableView() {
-        countrytableview.register(CountryCell.self, forCellReuseIdentifier: "cellId")
-        view.addSubview(countrytableview)
-        countrytableview.delegate = self
-        countrytableview.dataSource = self
+        countryTableView.register(CountryCell.self, forCellReuseIdentifier: "cellId")
+        view.addSubview(countryTableView)
+        countryTableView.delegate = self
+        countryTableView.dataSource = self
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -235,7 +241,7 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = countrytableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CountryCell
+        let cell = countryTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CountryCell
         cell.countryNameLabel.text = filteredData[indexPath.row].name
         cell.countryImageView.image = UIImage(named: filteredData[indexPath.row].name)
         return cell

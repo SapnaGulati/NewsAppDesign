@@ -9,6 +9,7 @@ import UIKit
 
 class LoadingViewController: UIViewController {
     
+    // MARK: Variables
     var loadingActivityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         
@@ -38,6 +39,7 @@ class LoadingViewController: UIViewController {
         return blurEffectView
     }()
 
+    // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)

@@ -12,9 +12,9 @@ class SubscriptionViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var restoreLabel: UILabel!
-    @IBOutlet weak var buttonW: UIButton!
-    @IBOutlet weak var buttonM: UIButton!
-    @IBOutlet weak var buttonY: UIButton!
+    @IBOutlet weak var weekButton: UIButton!
+    @IBOutlet weak var monthButton: UIButton!
+    @IBOutlet weak var yearButton: UIButton!
     @IBOutlet weak var underlineView: UIView!
 
     // MARK: View Cycle
@@ -32,19 +32,19 @@ class SubscriptionViewController: UIViewController {
         restoreLabel.font = UIFont(name: "Poppins-Medium", size: 15)
         restoreLabel.textColor = UIColor(hexString: "#b80d00")
         underlineView.backgroundColor = UIColor(hexString: "#c4272b")
-        buttonW.layer.cornerRadius = 10
-        buttonM.layer.cornerRadius = 10
-        buttonY.layer.cornerRadius = 10
-        buttonW.backgroundColor = UIColor(hexString: "#c01103")
-        buttonM.backgroundColor = UIColor(hexString: "#ffbf07")
-        buttonY.backgroundColor = UIColor(hexString: "#1dcf09")
+        weekButton.layer.cornerRadius = 10
+        monthButton.layer.cornerRadius = 10
+        yearButton.layer.cornerRadius = 10
+        weekButton.backgroundColor = UIColor(hexString: "#c01103")
+        monthButton.backgroundColor = UIColor(hexString: "#ffbf07")
+        yearButton.backgroundColor = UIColor(hexString: "#1dcf09")
         
-        buttonW.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 18)
-        buttonW.titleLabel?.textColor = UIColor(hexString: "#fefefe")
-        buttonM.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 18)
-        buttonM.titleLabel?.textColor = UIColor(hexString: "#fefefe")
-        buttonY.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 18)
-        buttonY.titleLabel?.textColor = UIColor(hexString: "#fefefe")
+        weekButton.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 18)
+        weekButton.titleLabel?.textColor = UIColor(hexString: "#fefefe")
+        monthButton.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 18)
+        monthButton.titleLabel?.textColor = UIColor(hexString: "#fefefe")
+        yearButton.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 18)
+        yearButton.titleLabel?.textColor = UIColor(hexString: "#fefefe")
     }
     
     // MARK: Custom Navigation Bar

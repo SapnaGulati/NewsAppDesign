@@ -13,10 +13,12 @@ import FBSDKCoreKit
 class LogoutViewController: UIViewController {
     
     // MARK: Outlets
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var outerView: UIView!
+    
+    // MARK: Variables
     let defaults = UserDefaults.standard
 
     // MARK: View Cycle
@@ -37,8 +39,8 @@ class LogoutViewController: UIViewController {
         outerView.layer.borderWidth = 2
         outerView.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
         outerView.layer.cornerRadius = 20
-        label.font = UIFont(name: "Poppins-Medium", size: 15)
-        label.textColor = UIColor(hexString: "#333131")
+        messageLabel.font = UIFont(name: "Poppins-Medium", size: 15)
+        messageLabel.textColor = UIColor(hexString: "#333131")
         yesButton.titleLabel?.font = UIFont(name: "Poppins-Medium", size: 15)
         yesButton.titleLabel?.textColor = UIColor(hexString: "#ffffff")
         yesButton.backgroundColor = UIColor(hexString: "#bd1002")

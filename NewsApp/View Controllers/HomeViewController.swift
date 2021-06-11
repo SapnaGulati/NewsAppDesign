@@ -12,11 +12,14 @@ import SDWebImage
 class HomeViewController: UIViewController {
     
     // MARK: Outlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var homeTableView: UITableView!
+    
+    // MARK: Variables
     var url: URL!
     var loadingVC: UIViewController!
     private var newsData : NewsDataModel!
     let defaults = UserDefaults.standard
+    
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +32,8 @@ class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
         self.setupTableView()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        self.homeTableView.delegate = self
+        self.homeTableView.dataSource = self
 //        NewsVM.shared.newsData.articles.removeAll()
 //        let selectedCategory = self.defaults.string(forKey: "selectedCategory") ?? ""
 //        self.getArticles(selectedCategory: selectedCategory)
@@ -80,28 +83,28 @@ class HomeViewController: UIViewController {
 extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     func setupTableView() {
-        self.tableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        self.homeTableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
     // MARK: Table View Delegate Function
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.tableView.bounds.height
+        return self.homeTableView.bounds.height
     }
     
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        if NewsVM.shared.newsData.articles.count == 0 {
-//            self.tableView.setEmptyView(message: "News Not Available.")
+//            self.homeTableView.setEmptyView(message: "News Not Available.")
 //        }
 //        else {
-//            self.tableView.restore()
+//            self.homeTableView.restore()
 //        }
 //        return NewsVM.shared.newsData.articles.count
         return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        let cell = homeTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped(_:)))
         tap.numberOfTapsRequired = 1
         cell.moreLabel.isUserInteractionEnabled = true
@@ -129,9 +132,9 @@ extension HomeViewController {
         self.present(self.loadingVC, animated: true, completion: nil)
         NewsVM.shared.getArticles(selectedCategory: selectedCategory) { (newsData) in
             self.newsData = newsData
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
-            self.tableView.reloadData()
+            self.homeTableView.delegate = self
+            self.homeTableView.dataSource = self
+            self.homeTableView.reloadData()
             self.dismiss(animated: true, completion: nil)
         }
     }

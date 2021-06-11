@@ -10,12 +10,14 @@ import UIKit
 class PreferencesViewController: UIViewController, SelectCountry {
     
     // MARK: Outlets
-    private let categories = CategoryList.getCategories()
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var textField: UITextField!
+    
+    // MARK: Variables
     let defaults = UserDefaults.standard
     var leftIconView: UIImageView!
+    private let categories = CategoryList.getCategories()
 
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -129,16 +131,16 @@ class PreferencesViewController: UIViewController, SelectCountry {
 // MARK: Collection View Delegate and Data Source and Flow Layout
 extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func setupCollectionView() {
-        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "cellId")
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "cellId")
+        view.addSubview(categoryCollectionView)
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
     }
     
     // MARK: Flow Layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+        if let flowLayout = self.categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumInteritemSpacing = 0
             flowLayout.minimumLineSpacing = 0
             flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 48)/2, height: 145)
@@ -184,7 +186,7 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
         defaults.set(selectedCategory, forKey: "selectedCategory")
         defaults.set(indexPath.row, forKey: "cID")
         defaults.synchronize()
-        self.collectionView.reloadData()
+        self.categoryCollectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

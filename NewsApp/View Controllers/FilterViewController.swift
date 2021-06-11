@@ -10,12 +10,14 @@ import UIKit
 class FilterViewController: UIViewController {
     
     // MARK: Outlets
-    private let categories = CategoryList.getCategories()
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var filterCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var searchLabel: UILabel!
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton!
+    
+    // MARK: Variables
+    private let categories = CategoryList.getCategories()
     let defaults = UserDefaults.standard
     var selectedCategory: String!
 
@@ -84,16 +86,16 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     // MARK: Collection View Functions
     func setupCollectionView() {
-        collectionView.register(FilterCell.self, forCellWithReuseIdentifier: "cellId")
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        filterCategoriesCollectionView.register(FilterCell.self, forCellWithReuseIdentifier: "cellId")
+        view.addSubview(filterCategoriesCollectionView)
+        filterCategoriesCollectionView.delegate = self
+        filterCategoriesCollectionView.dataSource = self
     }
     
     // MARK: Flow Layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+        if let flowLayout = self.filterCategoriesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumInteritemSpacing = 0
             flowLayout.minimumLineSpacing = 0
             flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 32)/2, height: 145)
@@ -139,6 +141,6 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         selectedCategory = categories[indexPath.row].name
         print(selectedCategory as Any)
         defaults.synchronize()
-        self.collectionView.reloadData()
+        self.filterCategoriesCollectionView.reloadData()
     }
 }

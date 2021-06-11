@@ -10,16 +10,15 @@ import UIKit
 class TabBarViewController: UIViewController {
     
     // MARK: Outlets
-    @IBOutlet weak var homeIcon: UIImageView!
-    @IBOutlet weak var settingsIcon: UIImageView!
-    @IBOutlet weak var customTab: UIStackView!
+    @IBOutlet weak var homeImageIcon: UIImageView!
+    @IBOutlet weak var settingsImageIcon: UIImageView!
+    @IBOutlet weak var customTabStackView: UIStackView!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var home: UIButton!
-    @IBOutlet weak var settings: UIButton!
+    @IBOutlet weak var homeButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     
-    // MARK: Declare Variables
-    private var first: UIViewController?
-    private var sec: UIViewController?
+    // MARK: Variables
+    private var firstVC: UIViewController?
     private var openHome: Bool = false
     private var openSettings: Bool = false
     
@@ -28,23 +27,23 @@ class TabBarViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         setupNavigationBarItems()
-        customTab.layer.cornerRadius = 20
-        customTab.clipsToBounds = true
-        customTab.layer.borderWidth = 2
-        customTab.layer.borderColor = UIColor(hexString: "#e0e0e0").cgColor
-        home.layer.borderWidth = 1
-        home.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
-        settings.layer.borderWidth = 1
-        settings.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
+        customTabStackView.layer.cornerRadius = 20
+        customTabStackView.clipsToBounds = true
+        customTabStackView.layer.borderWidth = 2
+        customTabStackView.layer.borderColor = UIColor(hexString: "#e0e0e0").cgColor
+        homeButton.layer.borderWidth = 1
+        homeButton.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
+        settingsButton.layer.borderWidth = 1
+        settingsButton.layer.borderColor = UIColor(hexString: "#b80d00").cgColor
     }
     
     // MARK: Button Actions
     @IBAction func homeButton(_ sender: Any)
     {
-        homeIcon.isHighlighted = true
-        settingsIcon.isHighlighted = false
-        home.isEnabled = false
-        settings.isEnabled = true
+        homeImageIcon.isHighlighted = true
+        settingsImageIcon.isHighlighted = false
+        homeButton.isEnabled = false
+        settingsButton.isEnabled = true
         
         if(openSettings){
             let oldVC = self.storyboard!.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
@@ -64,10 +63,10 @@ class TabBarViewController: UIViewController {
     }
 
     @IBAction func settingsButton(_ sender: UIButton) {
-        settings.isEnabled = false
-        home.isEnabled = true
-        settingsIcon.isHighlighted = true
-        homeIcon.isHighlighted = false
+        settingsButton.isEnabled = false
+        homeButton.isEnabled = true
+        settingsImageIcon.isHighlighted = true
+        homeImageIcon.isHighlighted = false
         
         if(openHome){
             let oldVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
@@ -115,12 +114,12 @@ class TabBarViewController: UIViewController {
     // MARK: Initial Segue Handling
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoHome" {
-            first = segue.destination as! HomeViewController
-            self.addChild(first!)
-            self.view.addSubview(first!.view)
+            firstVC = segue.destination as! HomeViewController
+            self.addChild(firstVC!)
+            self.view.addSubview(firstVC!.view)
             self.didMove(toParent: self)
-            homeIcon.isHighlighted = true
-            settingsIcon.isHighlighted = false
+            homeImageIcon.isHighlighted = true
+            settingsImageIcon.isHighlighted = false
         }
     }
     

@@ -22,6 +22,7 @@ class BookMarksViewController: UIViewController {
     @IBOutlet weak var imageBGView: UIView!
     @IBOutlet weak var underlineView: UIView!
     
+    // MARK: Variables
     var popupclicked = false
     
     // MARK: View Cycle

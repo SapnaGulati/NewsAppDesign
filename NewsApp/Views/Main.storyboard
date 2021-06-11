@@ -231,10 +231,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="q3E-ZZ-3ia"/>
                     <connections>
-                        <outlet property="countrytableview" destination="wxs-zk-hZY" id="dW8-yW-bXw"/>
-                        <outlet property="label2" destination="paY-Vx-0nu" id="KJm-JO-KAb"/>
-                        <outlet property="search" destination="b69-ny-yYu" id="qJe-yw-KNA"/>
-                        <outlet property="toolbar" destination="CNO-ua-EkV" id="nUY-83-jdY"/>
+                        <outlet property="countryTableView" destination="wxs-zk-hZY" id="7qD-rb-poA"/>
+                        <outlet property="doneToolbar" destination="CNO-ua-EkV" id="eFJ-Kl-3zO"/>
+                        <outlet property="searchBar" destination="b69-ny-yYu" id="2ri-0u-w2x"/>
+                        <outlet property="titleLabel" destination="paY-Vx-0nu" id="YeA-AR-hPy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQL-W1-D81" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -349,7 +349,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="Smz-Lm-8Va" id="7iO-B0-Aan"/>
+                        <outlet property="categoryCollectionView" destination="Smz-Lm-8Va" id="7q9-lF-Fpy"/>
                         <outlet property="titleLabel" destination="LBJ-0M-JEL" id="FA5-nQ-bwm"/>
                     </connections>
                 </viewController>
@@ -382,7 +382,7 @@
                     <tabBarItem key="tabBarItem" title="" id="qcH-8c-2xt"/>
                     <navigationItem key="navigationItem" id="CEj-yi-DN5"/>
                     <connections>
-                        <outlet property="tableView" destination="qPg-aP-wFR" id="rp0-dA-NDB"/>
+                        <outlet property="homeTableView" destination="qPg-aP-wFR" id="k5i-d2-M0F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vd6-Ow-OeH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -536,7 +536,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="iHo-v5-T8Y" id="wab-3T-3kr"/>
+                        <outlet property="categoryCollectionView" destination="iHo-v5-T8Y" id="5Cn-hI-bz3"/>
                         <outlet property="textField" destination="4ni-Ik-YKC" id="yNA-vl-lOf"/>
                         <outlet property="titleLabel" destination="6PF-Ta-Dj7" id="0sc-PU-48i"/>
                     </connections>
@@ -706,8 +706,8 @@
                     </view>
                     <connections>
                         <outlet property="categoriesLabel" destination="j66-I1-ta4" id="eva-9l-ZCh"/>
-                        <outlet property="collectionView" destination="l4R-pG-PL6" id="Hmw-AT-5Jf"/>
                         <outlet property="dataLabel" destination="72j-61-Rag" id="ZJD-y2-hCr"/>
+                        <outlet property="filterCategoriesCollectionView" destination="l4R-pG-PL6" id="w8a-Os-5xe"/>
                         <outlet property="resetButton" destination="wEf-7G-swp" id="Hln-nK-Sd4"/>
                         <outlet property="searchLabel" destination="NIx-RO-UoT" id="nLK-Dp-Y3T"/>
                     </connections>
@@ -855,12 +855,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buttonM" destination="YYR-OU-Ged" id="lcf-YI-E5T"/>
-                        <outlet property="buttonW" destination="dnf-PF-izM" id="nxw-66-rfE"/>
-                        <outlet property="buttonY" destination="eFN-6v-Xam" id="JlO-3P-hwk"/>
                         <outlet property="contentLabel" destination="j9x-Dh-qN5" id="3Yv-HV-Buj"/>
+                        <outlet property="monthButton" destination="YYR-OU-Ged" id="uTh-xh-VCy"/>
                         <outlet property="restoreLabel" destination="yhU-Ds-hcW" id="fG4-Sq-DZP"/>
                         <outlet property="underlineView" destination="f41-0U-XMb" id="OoH-GH-Y4N"/>
+                        <outlet property="weekButton" destination="dnf-PF-izM" id="ar7-3w-xgf"/>
+                        <outlet property="yearButton" destination="eFN-6v-Xam" id="RRw-xv-kkb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRk-Tc-Tht" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -944,7 +944,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="label" destination="KTQ-Qv-76b" id="0IS-wH-Zwv"/>
+                        <outlet property="messageLabel" destination="KTQ-Qv-76b" id="1tB-E6-f3M"/>
                         <outlet property="noButton" destination="kIc-Bu-ME4" id="qtm-Zj-ZCL"/>
                         <outlet property="outerView" destination="vMQ-he-jf5" id="tB4-JT-REg"/>
                         <outlet property="yesButton" destination="5vX-iA-nfR" id="Be7-5h-1Xk"/>
@@ -1089,11 +1089,11 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="Iid-9A-6U1" id="wL8-H4-SbC"/>
-                        <outlet property="customTab" destination="MFv-xz-Ukj" id="BTY-ti-cfa"/>
-                        <outlet property="home" destination="dv8-Se-MIG" id="4Bd-hn-DMU"/>
-                        <outlet property="homeIcon" destination="Mu0-1C-zmm" id="XsI-4B-RIq"/>
-                        <outlet property="settings" destination="aZM-to-IGO" id="Yfh-CN-fOi"/>
-                        <outlet property="settingsIcon" destination="FHe-9R-2Ef" id="akp-eX-agY"/>
+                        <outlet property="customTabStackView" destination="MFv-xz-Ukj" id="5db-BS-ZJg"/>
+                        <outlet property="homeButton" destination="dv8-Se-MIG" id="Sp0-gE-Pp5"/>
+                        <outlet property="homeImageIcon" destination="Mu0-1C-zmm" id="mmB-TO-uTf"/>
+                        <outlet property="settingsButton" destination="aZM-to-IGO" id="wTU-qG-XiW"/>
+                        <outlet property="settingsImageIcon" destination="FHe-9R-2Ef" id="qtN-8Y-6FF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vbb-q2-kxB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1184,11 +1184,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="doneToolbar" destination="m5V-Kp-Muv" id="iOT-4G-yJw"/>
                         <outlet property="searchBar" destination="ooQ-I1-dZW" id="tTg-5Q-tq1"/>
+                        <outlet property="searchTableView" destination="v3k-CI-vD4" id="L3e-b6-xCL"/>
                         <outlet property="searchView" destination="JeJ-9K-YTl" id="f3l-Le-mJW"/>
-                        <outlet property="tableView" destination="v3k-CI-vD4" id="df8-X3-4ki"/>
-                        <outlet property="toolbar" destination="m5V-Kp-Muv" id="Qhf-YV-Lrm"/>
-                        <outlet property="tvHeight" destination="JTY-rC-FqN" id="rNZ-cF-yAW"/>
+                        <outlet property="tableViewHeight" destination="JTY-rC-FqN" id="Kfp-eb-iEn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vra-C9-1xD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

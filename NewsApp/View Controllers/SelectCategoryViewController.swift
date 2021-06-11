@@ -10,10 +10,12 @@ import UIKit
 class SelectCategoryViewController: UIViewController {
     
     // MARK: Outlets
-    private let categories = CategoryList.getCategories()
     @IBOutlet weak var titleLabel: UILabel!
-     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
+    
+    // MARK: Variables
     let defaults = UserDefaults.standard
+    private let categories = CategoryList.getCategories()
     
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -67,10 +69,10 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
     
     // MARK: Collection View Functions
     func setupCollectionView() {
-        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "cellId")
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "cellId")
+        view.addSubview(categoryCollectionView)
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -82,7 +84,7 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
         }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
+        let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
         var image: UIImage!
         if(cell.isSelected) {
             image = UIImage(named: "borderR")
@@ -102,7 +104,7 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
+        let cell = categoryCollectionView.cellForItem(at: indexPath)
         cell?.isSelected = true
         let selectedCategory = categories[indexPath.row].name
         defaults.set(selectedCategory, forKey: "selectedCategory")
@@ -113,14 +115,14 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
+        let cell = categoryCollectionView.cellForItem(at: indexPath)
         cell?.isSelected = false
     }
     
     // MARK: View Layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+        if let flowLayout = self.categoryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumInteritemSpacing = 0
             flowLayout.minimumLineSpacing = 0
             flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 32)/2, height: 145)

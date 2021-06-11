@@ -11,13 +11,15 @@ class SourcesViewController: UIViewController{
 
     // MARK: Outlets
     @IBOutlet weak var sourcesTable: UITableView!
+    
+    // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItems()
         setupTableView()
     }
     
-    // MARK: Csutom Navigation Bar
+    // MARK: Custom Navigation Bar
     private func setupNavigationBarItems() {
         if #available(iOS 13.0, *) {
             self.navigationController?.navigationBar.backgroundColor = .systemBackground
