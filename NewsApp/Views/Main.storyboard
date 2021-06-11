@@ -366,14 +366,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qPg-aP-wFR">
-                                <rect key="frame" x="0.0" y="62" width="414" height="717"/>
+                                <rect key="frame" x="0.0" y="70" width="414" height="709"/>
                                 <sections/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2uT-dS-gDI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="qPg-aP-wFR" firstAttribute="top" secondItem="Uka-ac-HCf" secondAttribute="top" constant="62" id="CFw-zg-1te"/>
+                            <constraint firstItem="qPg-aP-wFR" firstAttribute="top" secondItem="2uT-dS-gDI" secondAttribute="top" constant="26" id="CFw-zg-1te"/>
                             <constraint firstAttribute="trailing" secondItem="qPg-aP-wFR" secondAttribute="trailing" id="MIc-hP-kTE"/>
                             <constraint firstItem="qPg-aP-wFR" firstAttribute="leading" secondItem="Uka-ac-HCf" secondAttribute="leading" id="iBA-qL-fSl"/>
                             <constraint firstAttribute="bottom" secondItem="qPg-aP-wFR" secondAttribute="bottom" id="whU-0d-jri"/>
@@ -554,7 +554,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l4R-pG-PL6">
-                                <rect key="frame" x="16" y="251.5" width="382" height="496.5"/>
+                                <rect key="frame" x="16" y="251.5" width="382" height="538.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xhh-th-2Ht">
                                     <size key="itemSize" width="150" height="150"/>
@@ -616,10 +616,10 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKK-cC-7Kh" userLabel="Button View">
-                                <rect key="frame" x="16" y="756" width="382" height="140"/>
+                                <rect key="frame" x="16" y="798" width="382" height="98"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEf-7G-swp">
-                                        <rect key="frame" x="131" y="50" width="120" height="40"/>
+                                        <rect key="frame" x="131" y="29" width="120" height="40"/>
                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="C8e-Kb-YLR"/>
@@ -637,7 +637,6 @@
                                 <constraints>
                                     <constraint firstItem="wEf-7G-swp" firstAttribute="centerX" secondItem="bKK-cC-7Kh" secondAttribute="centerX" id="CgE-3A-BWx"/>
                                     <constraint firstItem="wEf-7G-swp" firstAttribute="centerY" secondItem="bKK-cC-7Kh" secondAttribute="centerY" id="lMU-0f-H0q"/>
-                                    <constraint firstItem="wEf-7G-swp" firstAttribute="bottom" secondItem="bKK-cC-7Kh" secondAttribute="bottom" constant="-50" id="uel-6Q-9cN"/>
                                 </constraints>
                             </view>
                             <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgj-Lf-hPw" userLabel="Middle View">
@@ -697,6 +696,7 @@
                             <constraint firstAttribute="bottom" secondItem="bKK-cC-7Kh" secondAttribute="bottom" id="QQe-oB-e77"/>
                             <constraint firstItem="l4R-pG-PL6" firstAttribute="top" secondItem="bgj-Lf-hPw" secondAttribute="bottom" constant="8" id="aIR-RB-tUu"/>
                             <constraint firstItem="l4R-pG-PL6" firstAttribute="leading" secondItem="ML5-9r-TmT" secondAttribute="leading" constant="16" id="ao7-Ls-q8h"/>
+                            <constraint firstItem="bKK-cC-7Kh" firstAttribute="height" secondItem="ML5-9r-TmT" secondAttribute="height" multiplier="0.12" id="ck6-r0-H4e"/>
                             <constraint firstItem="l4R-pG-PL6" firstAttribute="centerX" secondItem="9qR-F7-OA5" secondAttribute="centerX" id="q6F-BH-8kd"/>
                             <constraint firstItem="bgj-Lf-hPw" firstAttribute="height" secondItem="9qR-F7-OA5" secondAttribute="height" multiplier="0.1" id="qNy-hL-iFp"/>
                             <constraint firstItem="bKK-cC-7Kh" firstAttribute="top" secondItem="l4R-pG-PL6" secondAttribute="bottom" constant="8" id="rk9-KI-4oo"/>
@@ -1289,14 +1289,14 @@
                                 <rect key="frame" x="8" y="300" width="398" height="407"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGA-jq-88b">
-                                        <rect key="frame" x="16" y="236" width="39.5" height="1.5"/>
+                                        <rect key="frame" x="16" y="195.5" width="39.5" height="1.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1.5" id="kpa-fc-CXs"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5l-fz-l50">
-                                        <rect key="frame" x="16" y="215" width="39.5" height="20.5"/>
+                                        <rect key="frame" x="16" y="174.5" width="39.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1308,8 +1308,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5B-a7-q3j">
-                                        <rect key="frame" x="16" y="44.5" width="366" height="162.5"/>
-                                        <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
+                                        <rect key="frame" x="16" y="44.5" width="366" height="122"/>
+                                        <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum since the 1500s, it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

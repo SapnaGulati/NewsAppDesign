@@ -215,12 +215,15 @@ extension SelectCountryViewController: UISearchBarDelegate{
                 }
             }
         }
-        self.countryTableView.reloadData()
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.inputAccessoryView = doneToolbar
         return true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.countryTableView.reloadData()
     }
 }
 
