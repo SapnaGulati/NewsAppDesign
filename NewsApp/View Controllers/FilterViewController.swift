@@ -18,7 +18,6 @@ class FilterViewController: UIViewController {
     
     // MARK: Variables
     private let categories = CategoryList.getCategories()
-    let defaults = UserDefaults.standard
     var selectedCategory: String!
 
     // MARK: View Cycle
@@ -46,8 +45,7 @@ class FilterViewController: UIViewController {
     
     // MARK: Reset Button Click Handling
     @IBAction func ResetButton(_ sender: UIButton) {
-        defaults.set(selectedCategory, forKey: "selectedCategory")
-        defaults.synchronize()
+        Selection.instance.selectedCategory = selectedCategory
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -112,8 +110,7 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCell", for: indexPath) as! FilterCell
-        let cID = defaults.integer(forKey: "cID")
-        if indexPath.row == cID {
+        if indexPath.row == Selection.instance.selectedCategoryCell {
             cell.isSelected = true
         }
         else {
@@ -137,10 +134,8 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        defaults.set(indexPath.row, forKey: "cID")
+        Selection.instance.selectedCategoryCell = indexPath.row
         selectedCategory = categories[indexPath.row].name
-        print(selectedCategory as Any)
-        defaults.synchronize()
         self.filterCategoriesCollectionView.reloadData()
     }
 }

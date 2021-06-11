@@ -14,7 +14,6 @@ class SelectCategoryViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     // MARK: Variables
-    let defaults = UserDefaults.standard
     private let categories = CategoryList.getCategories()
     
     // MARK: View Cycle
@@ -106,10 +105,8 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = categoryCollectionView.cellForItem(at: indexPath)
         cell?.isSelected = true
-        let selectedCategory = categories[indexPath.row].name
-        defaults.set(selectedCategory, forKey: "selectedCategory")
-        let cID = indexPath.row
-        defaults.set(cID, forKey: "cID")
+        Selection.instance.selectedCategory = categories[indexPath.row].name!
+        Selection.instance.selectedCategoryCell = indexPath.row
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }

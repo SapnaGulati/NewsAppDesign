@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
     var url: URL!
     var loadingVC: UIViewController!
     private var newsData : NewsDataModel!
-    let defaults = UserDefaults.standard
     
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -35,7 +34,8 @@ class HomeViewController: UIViewController {
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
 //        NewsVM.shared.newsData.articles.removeAll()
-//        let selectedCategory = self.defaults.string(forKey: "selectedCategory") ?? ""
+//        let selectedCategory = Selection.instance.selectedCategory
+//        let selectedCountry = Selection.instance.selectedCountryCode
 //        self.getArticles(selectedCategory: selectedCategory)
     }
     

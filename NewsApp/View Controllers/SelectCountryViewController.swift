@@ -25,7 +25,6 @@ class SelectCountryViewController: UIViewController {
     var comeFrom:ComeFrom = .SelectCategory
     private let countries = CountryList.getCountries()
     var filteredData: [country] = []
-    let defaults = UserDefaults.standard
 
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -252,9 +251,9 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCountry = filteredData[indexPath.row].name
-        delegate?.setCountry(cName: selectedCountry)
-        defaults.set(selectedCountry, forKey: "selectedCountry")
+        Selection.instance.selectedCountry = filteredData[indexPath.row].name
+        Selection.instance.selectedCountryCode = filteredData[indexPath.row].c_code
+        delegate?.setCountry(cName: Selection.instance.selectedCountry)
         
         if comeFrom == .SelectCategory {
             self.view.endEditing(true)

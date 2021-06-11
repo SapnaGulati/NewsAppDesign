@@ -15,7 +15,6 @@ class PreferencesViewController: UIViewController, SelectCountry {
     @IBOutlet weak var textField: UITextField!
     
     // MARK: Variables
-    let defaults = UserDefaults.standard
     var leftIconView: UIImageView!
     private let categories = CategoryList.getCategories()
 
@@ -52,7 +51,7 @@ class PreferencesViewController: UIViewController, SelectCountry {
     private func setupTextField() {
         let padding = 28
         let size = 25
-        let selectedCountry = self.defaults.string(forKey: "selectedCountry") ?? ""
+        let selectedCountry = Selection.instance.selectedCountry
         self.textField.text = selectedCountry
         let leftImage = UIImage(named: selectedCountry)
         let outerLeftView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding, height: 36))
@@ -157,8 +156,7 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
-        let cID = defaults.integer(forKey: "cID")
-        if indexPath.row == cID {
+        if indexPath.row == Selection.instance.selectedCategoryCell {
             cell.isSelected = true
         }
         else {
@@ -182,10 +180,8 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedCategory = categories[indexPath.row].name
-        defaults.set(selectedCategory, forKey: "selectedCategory")
-        defaults.set(indexPath.row, forKey: "cID")
-        defaults.synchronize()
+        Selection.instance.selectedCategory = categories[indexPath.row].name!
+        Selection.instance.selectedCategoryCell = indexPath.row
         self.categoryCollectionView.reloadData()
     }
     
