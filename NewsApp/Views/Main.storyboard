@@ -235,7 +235,6 @@
                         <outlet property="label2" destination="paY-Vx-0nu" id="KJm-JO-KAb"/>
                         <outlet property="search" destination="b69-ny-yYu" id="qJe-yw-KNA"/>
                         <outlet property="toolbar" destination="CNO-ua-EkV" id="nUY-83-jdY"/>
-                        <outlet property="topView" destination="iJT-zq-mtE" id="xuT-wP-72V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQL-W1-D81" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

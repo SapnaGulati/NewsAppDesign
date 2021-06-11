@@ -19,7 +19,6 @@ class SelectCountryViewController: UIViewController {
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var countrytableview: UITableView!
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var topView: UIView!
     var delegate: SelectCountry?
     var comeFrom:ComeFrom = .SelectCategory
     private let countries = CountryList.getCountries()
@@ -39,8 +38,6 @@ class SelectCountryViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
-        self.view.endEditing(true)
-        topView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
