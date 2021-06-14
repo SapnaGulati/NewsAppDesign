@@ -88,6 +88,7 @@ class SelectCountryViewController: UIViewController {
             searchBar.clipsToBounds = true
             searchBar.layer.borderWidth = 2
             searchBar.layer.borderColor = UIColor.systemGray6.cgColor
+            searchBar.searchTextField.textColor = .black
             searchBar.layer.cornerRadius = 25
             searchBar.layer.frame.size.height = 60
             searchBar.searchTextField.backgroundColor = .white
@@ -215,6 +216,7 @@ extension SelectCountryViewController: UISearchBarDelegate{
                 }
             }
         }
+        self.countryTableView.reloadData()
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {

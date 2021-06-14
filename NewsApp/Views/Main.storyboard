@@ -179,7 +179,7 @@
                                             <constraint firstAttribute="height" constant="50" id="qGz-Cz-fCK"/>
                                         </constraints>
                                         <color key="tintColor" red="0.2042620778" green="0.20368760820000001" blue="0.1959866881" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a country you are interested in, to get news updates." textAlignment="center" lineBreakMode="characterWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paY-Vx-0nu">
                                         <rect key="frame" x="16" y="66" width="340.5" height="41"/>
@@ -1132,7 +1132,7 @@
                                                     <constraint firstAttribute="height" constant="42" id="ql0-Fy-fuH"/>
                                                 </constraints>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                             </searchBar>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
