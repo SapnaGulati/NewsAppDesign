@@ -8,12 +8,12 @@
 import Foundation
 
 struct CountryDM {
-    var id: Int?
+    var id: String?
     var name: String?
     var flag: String?
         
     init(dict: JSONDictionary) {
-        id = dict["id"] as? Int
+        id = dict["id"] as? String
         name = dict["name"] as? String
         flag = dict["flag"] as? String
         }
