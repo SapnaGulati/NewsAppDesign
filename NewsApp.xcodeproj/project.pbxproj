@@ -28,7 +28,6 @@
 		8EADD4192669D8E900E88249 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3F02669D8E900E88249 /* HomeViewController.swift */; };
 		8EADD41A2669D8E900E88249 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3F12669D8E900E88249 /* PreferencesViewController.swift */; };
 		8EADD41B2669D8E900E88249 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EADD3F22669D8E900E88249 /* TableViewCell.xib */; };
-		8EADD41C2669D8E900E88249 /* loginScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3F32669D8E900E88249 /* loginScreenVC.swift */; };
 		8EADD41D2669D8E900E88249 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3F42669D8E900E88249 /* LogInViewController.swift */; };
 		8EADD41E2669D8E900E88249 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3F52669D8E900E88249 /* TabBarViewController.swift */; };
 		8EADD41F2669D8E900E88249 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3F62669D8E900E88249 /* LogoutViewController.swift */; };
@@ -80,7 +79,6 @@
 		8EADD3F02669D8E900E88249 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8EADD3F12669D8E900E88249 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		8EADD3F22669D8E900E88249 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		8EADD3F32669D8E900E88249 /* loginScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginScreenVC.swift; sourceTree = "<group>"; };
 		8EADD3F42669D8E900E88249 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		8EADD3F52669D8E900E88249 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		8EADD3F62669D8E900E88249 /* LogoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 				8EADD3F02669D8E900E88249 /* HomeViewController.swift */,
 				8EADD3F12669D8E900E88249 /* PreferencesViewController.swift */,
 				8EADD3F22669D8E900E88249 /* TableViewCell.xib */,
-				8EADD3F32669D8E900E88249 /* loginScreenVC.swift */,
 				8EADD3F42669D8E900E88249 /* LogInViewController.swift */,
 				8EADD3F52669D8E900E88249 /* TabBarViewController.swift */,
 				8EADD3F62669D8E900E88249 /* LogoutViewController.swift */,
@@ -485,7 +482,6 @@
 				8EADD4112669D8E900E88249 /* Category.swift in Sources */,
 				8EADD4182669D8E900E88249 /* SelectCountryViewController.swift in Sources */,
 				8EADD41F2669D8E900E88249 /* LogoutViewController.swift in Sources */,
-				8EADD41C2669D8E900E88249 /* loginScreenVC.swift in Sources */,
 				8EDCE60C2671E4BA00102931 /* UIStatusBarStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

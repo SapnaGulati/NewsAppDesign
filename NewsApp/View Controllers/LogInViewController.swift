@@ -42,9 +42,6 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
             let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
             statusBar?.backgroundColor = .none
         }
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(LogInViewController.tapFunction))
-//        continueLabel.isUserInteractionEnabled = true
-//        continueLabel.addGestureRecognizer(tap)
     }
     
     // MARK: Set up Fonts
@@ -52,12 +49,6 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
         continueLabel.font = UIFont(name: "Poppins-SemiBold", size: 20)
         continueLabel.textColor = UIColor(hexString: "#c4272b")
         underlineView.backgroundColor = UIColor(hexString: "#c4272b")
-    }
-    
-    @objc func tapFunction(sender:UITapGestureRecognizer) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "loginScreenVC") as! loginScreenVC
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: Button Action
