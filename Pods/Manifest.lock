@@ -15,6 +15,7 @@ PODS:
     - FBSDKLoginKit/Login (= 9.1.0)
   - FBSDKLoginKit/Login (9.1.0):
     - FBSDKCoreKit (~> 9.1.0)
+  - FloatRatingView (4.0)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - Alamofire
   - FBSDKCoreKit
   - FBSDKLoginKit
+  - FloatRatingView
   - GoogleSignIn
   - SDWebImage
 
@@ -40,6 +42,7 @@ SPEC REPOS:
     - AppAuth
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - FloatRatingView
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
@@ -50,11 +53,12 @@ SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FBSDKCoreKit: a00fe2efd780c195a5e09201bf51c56106245b40
   FBSDKLoginKit: d98498c598ec09de657385a9349a1f21119b7f86
+  FloatRatingView: bb6bdddfbeec51b1d387b4bd50abc27b4dfccd48
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
 
-PODFILE CHECKSUM: ca2714bcf963dc6ec860878b0bc94d1f7c8f880a
+PODFILE CHECKSUM: 486c3bdd15b64fc1b102e9b28bb719e54050ad41
 
 COCOAPODS: 1.10.0

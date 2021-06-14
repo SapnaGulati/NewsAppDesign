@@ -11,5 +11,6 @@ target 'NewsApp' do
   pod 'FBSDKLoginKit'
   pod 'Alamofire'
   pod 'SDWebImage'
+  pod 'FloatRatingView'
 
 end
