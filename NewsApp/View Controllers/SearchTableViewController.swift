@@ -10,7 +10,7 @@ import UIKit
 class SearchTableViewController: UIViewController {
     
     // MARK: Data Initialization
-    let data = ["Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "No data"]
+    let data = ["Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data"]
     var filteredData: [String]!
     
     // MARK: Outlets
