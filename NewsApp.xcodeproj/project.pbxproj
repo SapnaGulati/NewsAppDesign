@@ -11,8 +11,10 @@
 		8E1973732677170D004C276E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973722677170C004C276E /* NetworkManager.swift */; };
 		8E19737626771731004C276E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19737526771731004C276E /* DataManager.swift */; };
 		8E1973B726776C23004C276E /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973B626776C23004C276E /* BaseVC.swift */; };
-		8E1973C626777DF7004C276E /* CountryDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973C526777DF6004C276E /* CountryDataModel.swift */; };
-		8E1973CA26777E1D004C276E /* SourcesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973C926777E1C004C276E /* SourcesDataModel.swift */; };
+		8E1973C626777DF7004C276E /* CountryDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973C526777DF6004C276E /* CountryDM.swift */; };
+		8E1973CA26777E1D004C276E /* SourcesDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973C926777E1C004C276E /* SourcesDM.swift */; };
+		8E1973CD26778329004C276E /* SourcesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973CC26778329004C276E /* SourcesVM.swift */; };
+		8E1973D2267783EB004C276E /* CountryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973D1267783EB004C276E /* CountryVM.swift */; };
 		8E1F31FA2670A44800E58A86 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1F31F92670A44800E58A86 /* SDWebImage.framework */; };
 		8EADD40B2669D8E900E88249 /* NewsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E02669D8E900E88249 /* NewsDataModel.swift */; };
 		8EADD40C2669D8E900E88249 /* CountryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E12669D8E900E88249 /* CountryList.swift */; };
@@ -61,8 +63,10 @@
 		8E1973722677170C004C276E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8E19737526771731004C276E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		8E1973B626776C23004C276E /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
-		8E1973C526777DF6004C276E /* CountryDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDataModel.swift; sourceTree = "<group>"; };
-		8E1973C926777E1C004C276E /* SourcesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesDataModel.swift; sourceTree = "<group>"; };
+		8E1973C526777DF6004C276E /* CountryDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDM.swift; sourceTree = "<group>"; };
+		8E1973C926777E1C004C276E /* SourcesDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesDM.swift; sourceTree = "<group>"; };
+		8E1973CC26778329004C276E /* SourcesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesVM.swift; sourceTree = "<group>"; };
+		8E1973D1267783EB004C276E /* CountryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryVM.swift; sourceTree = "<group>"; };
 		8E1F31EB2670A3E900E58A86 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1F31F92670A44800E58A86 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E5566302670A0FC007399FB /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,8 +193,8 @@
 				8EADD3E42669D8E900E88249 /* country.swift */,
 				8EADD3E52669D8E900E88249 /* Settings.swift */,
 				8EADD3E62669D8E900E88249 /* Category.swift */,
-				8E1973C526777DF6004C276E /* CountryDataModel.swift */,
-				8E1973C926777E1C004C276E /* SourcesDataModel.swift */,
+				8E1973C526777DF6004C276E /* CountryDM.swift */,
+				8E1973C926777E1C004C276E /* SourcesDM.swift */,
 			);
 			path = "News Data Models";
 			sourceTree = "<group>";
@@ -230,6 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				8EADD3FD2669D8E900E88249 /* NewsVM.swift */,
+				8E1973CC26778329004C276E /* SourcesVM.swift */,
+				8E1973D1267783EB004C276E /* CountryVM.swift */,
 			);
 			path = "News View Model";
 			sourceTree = "<group>";
@@ -471,7 +477,7 @@
 				8E1973B726776C23004C276E /* BaseVC.swift in Sources */,
 				8EDCE6022671C93200102931 /* UIColor.swift in Sources */,
 				8EADD40F2669D8E900E88249 /* country.swift in Sources */,
-				8E1973CA26777E1D004C276E /* SourcesDataModel.swift in Sources */,
+				8E1973CA26777E1D004C276E /* SourcesDM.swift in Sources */,
 				8EDCE6052671C96C00102931 /* UIView.swift in Sources */,
 				8EADD4202669D8E900E88249 /* SettingsViewController.swift in Sources */,
 				8EADD41D2669D8E900E88249 /* LogInViewController.swift in Sources */,
@@ -482,6 +488,7 @@
 				8EADD4222669D8E900E88249 /* FilterViewController.swift in Sources */,
 				8EADD4192669D8E900E88249 /* HomeViewController.swift in Sources */,
 				8EADD4152669D8E900E88249 /* SourcesViewController.swift in Sources */,
+				8E1973D2267783EB004C276E /* CountryVM.swift in Sources */,
 				8EADD40E2669D8E900E88249 /* CategoryList.swift in Sources */,
 				8EADD4162669D8E900E88249 /* SelectCategoryViewController.swift in Sources */,
 				8EADD4102669D8E900E88249 /* Settings.swift in Sources */,
@@ -492,8 +499,9 @@
 				8EADD40D2669D8E900E88249 /* SettingsList.swift in Sources */,
 				8EADD41A2669D8E900E88249 /* PreferencesViewController.swift in Sources */,
 				8EADD41E2669D8E900E88249 /* TabBarViewController.swift in Sources */,
+				8E1973CD26778329004C276E /* SourcesVM.swift in Sources */,
 				8EADD40C2669D8E900E88249 /* CountryList.swift in Sources */,
-				8E1973C626777DF7004C276E /* CountryDataModel.swift in Sources */,
+				8E1973C626777DF7004C276E /* CountryDM.swift in Sources */,
 				8EADD4212669D8E900E88249 /* SubscriptionViewController.swift in Sources */,
 				8EADD4242669D8E900E88249 /* NewsVM.swift in Sources */,
 				8EADD4142669D8E900E88249 /* BookMarksViewController.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  NewsResponse.swift
+//  NewsDM.swift
 //  NewsApp
 //
 //  Created by ios4 on 25/05/21.
