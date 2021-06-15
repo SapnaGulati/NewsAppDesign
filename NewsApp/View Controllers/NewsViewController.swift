@@ -42,6 +42,7 @@ class NewsViewController: UIViewController {
         titleText.font = UIFont(name: "Poppins-Medium", size: 21)
         titleText.textColor = UIColor(hexString: "#b80d00")
         titleText.frame = CGRect(x:0, y: 0, width: 100, height: 34)
+        titleText.textAlignment = .center
         navigationItem.titleView = titleText
         
         let backButton = UIButton(type: .system)
