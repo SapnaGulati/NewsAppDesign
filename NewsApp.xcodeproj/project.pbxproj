@@ -58,6 +58,7 @@
 		8EDCE60C2671E4BA00102931 /* UIStatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */; };
 		8EDCE6102672207900102931 /* SelectCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE60F2672207900102931 /* SelectCountry.swift */; };
 		8EE3129926734B1A00185DE1 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3129826734B1A00185DE1 /* Selection.swift */; };
+		8EEE3CA3267870F0006CFC10 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CA2267870F0006CFC10 /* NewsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +119,7 @@
 		8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStatusBarStyle.swift; sourceTree = "<group>"; };
 		8EDCE60F2672207900102931 /* SelectCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountry.swift; sourceTree = "<group>"; };
 		8EE3129826734B1A00185DE1 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
+		8EEE3CA2267870F0006CFC10 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		D88ADE371A1DA52AD93E9339 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -227,6 +229,7 @@
 				8EADD3F82669D8E900E88249 /* SubscriptionViewController.swift */,
 				8EADD3F92669D8E900E88249 /* FilterViewController.swift */,
 				8EDBF0CC266F5201008F9E61 /* LoadingViewController.swift */,
+				8EEE3CA2267870F0006CFC10 /* NewsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				8EDCE6102672207900102931 /* SelectCountry.swift in Sources */,
 				8EADD4112669D8E900E88249 /* Category.swift in Sources */,
 				8EADD4182669D8E900E88249 /* SelectCountryViewController.swift in Sources */,
+				8EEE3CA3267870F0006CFC10 /* NewsViewController.swift in Sources */,
 				8EADD41F2669D8E900E88249 /* LogoutViewController.swift in Sources */,
 				8EDCE60C2671E4BA00102931 /* UIStatusBarStyle.swift in Sources */,
 			);

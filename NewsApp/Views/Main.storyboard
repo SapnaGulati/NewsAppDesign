@@ -373,7 +373,7 @@
                         <viewLayoutGuide key="safeArea" id="2uT-dS-gDI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="qPg-aP-wFR" firstAttribute="top" secondItem="2uT-dS-gDI" secondAttribute="top" constant="26" id="CFw-zg-1te"/>
+                            <constraint firstItem="qPg-aP-wFR" firstAttribute="top" secondItem="Uka-ac-HCf" secondAttribute="top" constant="70" id="CFw-zg-1te"/>
                             <constraint firstAttribute="trailing" secondItem="qPg-aP-wFR" secondAttribute="trailing" id="MIc-hP-kTE"/>
                             <constraint firstItem="qPg-aP-wFR" firstAttribute="leading" secondItem="Uka-ac-HCf" secondAttribute="leading" id="iBA-qL-fSl"/>
                             <constraint firstAttribute="bottom" secondItem="qPg-aP-wFR" secondAttribute="bottom" id="whU-0d-jri"/>
@@ -1362,6 +1362,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Vz-At-PZC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="9032" y="-860"/>
+        </scene>
+        <!--News View Controller-->
+        <scene sceneID="Phg-4l-9u4">
+            <objects>
+                <viewController storyboardIdentifier="NewsViewController" id="YRt-QG-gIb" customClass="NewsViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MZu-8C-Ddf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ybw-0u-Bvc">
+                                <rect key="frame" x="0.0" y="70" width="414" height="792"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vfS-kX-7lx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ybw-0u-Bvc" firstAttribute="leading" secondItem="MZu-8C-Ddf" secondAttribute="leading" id="9eK-U8-fSP"/>
+                            <constraint firstAttribute="trailing" secondItem="Ybw-0u-Bvc" secondAttribute="trailing" id="KxR-ZJ-7Gt"/>
+                            <constraint firstItem="Ybw-0u-Bvc" firstAttribute="top" secondItem="vfS-kX-7lx" secondAttribute="top" constant="26" id="anM-3z-w24"/>
+                            <constraint firstAttribute="bottom" secondItem="Ybw-0u-Bvc" secondAttribute="bottom" constant="34" id="lVt-el-RIK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="newsTableView" destination="Ybw-0u-Bvc" id="dzl-JW-IWs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q1b-Ux-OVz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9701" y="-860"/>
         </scene>
     </scenes>
     <resources>

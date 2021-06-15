@@ -15,4 +15,6 @@ class Selection {
     var selectedCategory = ""
     var selectedCountryCode = ""
     var selectedCategoryCell = 0
+    var selectedSourceName = ""
+    var selectedSourceId = ""
 }

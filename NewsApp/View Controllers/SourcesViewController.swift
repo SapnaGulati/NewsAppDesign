@@ -133,6 +133,14 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sources = SourcesVM.shared.newsSources.sources[indexPath.row]
+        Selection.instance.selectedSourceId = sources.id ?? ""
+        Selection.instance.selectedSourceName = sources.name ?? ""
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "NewsViewController") as! NewsViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension SourcesViewController {

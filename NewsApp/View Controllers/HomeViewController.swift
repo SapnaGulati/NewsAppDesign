@@ -31,8 +31,6 @@ class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
         self.setupTableView()
-        self.homeTableView.delegate = self
-        self.homeTableView.dataSource = self
         let selectedCategory = Selection.instance.selectedCategory
         let selectedCountry = Selection.instance.selectedCountryCode
         self.getArticles(selectedCategory: selectedCategory, selectedCountry: selectedCountry)
@@ -83,6 +81,8 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     func setupTableView() {
         self.homeTableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        self.homeTableView.delegate = self
+        self.homeTableView.dataSource = self
     }
     
     // MARK: Table View Delegate Function
