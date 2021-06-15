@@ -33,10 +33,10 @@ class HomeViewController: UIViewController {
         self.setupTableView()
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
-//        NewsVM.shared.newsData.articles.removeAll()
-//        let selectedCategory = Selection.instance.selectedCategory
-//        let selectedCountry = Selection.instance.selectedCountryCode
-//        self.getArticles(selectedCategory: selectedCategory)
+        NewsVM.shared.newsData.articles.removeAll()
+        let selectedCategory = Selection.instance.selectedCategory
+        let selectedCountry = Selection.instance.selectedCountryCode
+        self.getArticles(selectedCategory: selectedCategory, selectedCountry: selectedCountry)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -93,14 +93,13 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if NewsVM.shared.newsData.articles.count == 0 {
-//            self.homeTableView.setEmptyView(message: "News Not Available.")
-//        }
-//        else {
-//            self.homeTableView.restore()
-//        }
-//        return NewsVM.shared.newsData.articles.count
-        return 20
+        if NewsVM.shared.newsData.articles.count == 0 {
+            self.homeTableView.setEmptyView(message: "News Not Available.")
+        }
+        else {
+            self.homeTableView.restore()
+        }
+        return NewsVM.shared.newsData.articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,13 +108,13 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         tap.numberOfTapsRequired = 1
         cell.moreLabel.isUserInteractionEnabled = true
         cell.moreLabel.addGestureRecognizer(tap)
-//        let items = NewsVM.shared.newsData.articles[indexPath.row]
-//        cell.titleLabel?.text = items.title ?? ""
-//        cell.contentLabel?.text = items.description
-//        cell.dateLabel?.text = items.publishedAt
-//        cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
-//        cell.sourceLabel?.text = items.sourceName
-//        self.url = URL(string: items.url ?? "")
+        let items = NewsVM.shared.newsData.articles[indexPath.row]
+        cell.titleLabel?.text = items.title ?? ""
+        cell.contentLabel?.text = items.description
+        cell.dateLabel?.text = items.publishedAt
+        cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
+        cell.sourceLabel?.text = items.sourceName
+        self.url = URL(string: items.url ?? "")
         self.url = URL(string: "https://www.google.com")
         return cell
     }
@@ -128,9 +127,9 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
 }
 
 extension HomeViewController {
-    func getArticles(selectedCategory: String) {
+    func getArticles(selectedCategory: String, selectedCountry: String) {
         self.present(self.loadingVC, animated: true, completion: nil)
-        NewsVM.shared.getArticles(selectedCategory: selectedCategory) { (newsData) in
+        NewsVM.shared.getArticles(selectedCategory: selectedCategory, selectedCountry: selectedCountry) { (newsData) in
             self.newsData = newsData
             self.homeTableView.delegate = self
             self.homeTableView.dataSource = self

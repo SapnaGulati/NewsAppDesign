@@ -53,49 +53,49 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
     
     // MARK: Button Action
     @IBAction func facebookButton(_ sender: UIButton) {
-//        facebookLogIn = defaults.bool(forKey: "facebookLogIn")
-//        if (GIDSignIn.sharedInstance().hasPreviousSignIn() || facebookLogIn!) {
+        facebookLogIn = defaults.bool(forKey: "facebookLogIn")
+        if (GIDSignIn.sharedInstance().hasPreviousSignIn() || facebookLogIn!) {
             gotoCountryVC()
-//        }
-//        else {
-//            facebookLogin()
-//        }
+        }
+        else {
+            facebookLogin()
+        }
     }
     
     @IBAction func googleButton(_ sender: UIButton) {
-//        googleLogIn = defaults.bool(forKey: "googleLogIn")
-//        facebookLogIn = defaults.bool(forKey: "facebookLogIn")
-//        GIDSignIn.sharedInstance()?.presentingViewController = self
-//        if (facebookLogIn!) {
+        googleLogIn = defaults.bool(forKey: "googleLogIn")
+        facebookLogIn = defaults.bool(forKey: "facebookLogIn")
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        if (facebookLogIn!) {
             gotoCountryVC()
-//        }
-//        else {
-//            if GIDSignIn.sharedInstance().hasPreviousSignIn(){
-//                GIDSignIn.sharedInstance()?.restorePreviousSignIn()
-//            }
-//            else {
-//                GIDSignIn.sharedInstance()?.signIn()
-//            }
-//        }
+        }
+        else {
+            if GIDSignIn.sharedInstance().hasPreviousSignIn(){
+                GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+            }
+            else {
+                GIDSignIn.sharedInstance()?.signIn()
+            }
+        }
     }
     
     @IBAction func appleButton(_ sender: UIButton) {
-//        googleLogIn = defaults.bool(forKey: "googleLogIn")
-//        facebookLogIn = defaults.bool(forKey: "facebookLogIn")
-//        if (GIDSignIn.sharedInstance().hasPreviousSignIn() || facebookLogIn!) {
+        googleLogIn = defaults.bool(forKey: "googleLogIn")
+        facebookLogIn = defaults.bool(forKey: "facebookLogIn")
+        if (GIDSignIn.sharedInstance().hasPreviousSignIn() || facebookLogIn!) {
             gotoCountryVC()
-//        }
-//        else {
-//            if #available(iOS 13.0, *) {
-//                let appleIDProvider = ASAuthorizationAppleIDProvider()
-//                let request = appleIDProvider.createRequest()
-//                request.requestedScopes = [.fullName, .email]
-//                let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-//                authorizationController.delegate = self
-//                authorizationController.presentationContextProvider = self
-//                authorizationController.performRequests()
-//            }
-//        }
+        }
+        else {
+            if #available(iOS 13.0, *) {
+                let appleIDProvider = ASAuthorizationAppleIDProvider()
+                let request = appleIDProvider.createRequest()
+                request.requestedScopes = [.fullName, .email]
+                let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+                authorizationController.delegate = self
+                authorizationController.presentationContextProvider = self
+                authorizationController.performRequests()
+            }
+        }
     }
   
     // MARK: Google Sign In Delegate

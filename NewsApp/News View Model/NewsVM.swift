@@ -17,7 +17,7 @@ class NewsVM {
     var artDataArray = [Articles]()
     var artData = Articles(detail: JSONDictionary())
     
-    func getArticles(selectedCategory: String, completion: @escaping (NewsDataModel) ->()) {
+    func getArticles(selectedCategory: String, selectedCountry: String, completion: @escaping (NewsDataModel) ->()) {
         let url = "https://newsapi.org/v2/top-headlines?country=us&category=\(selectedCategory)&apiKey=4d3e1ce2523f46418ff4a356b80f556d"
         
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
