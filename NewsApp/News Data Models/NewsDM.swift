@@ -14,10 +14,9 @@ struct NewsDM {
     var articles: [Articles] = []
     
     init(detail:JSONDictionary) {
-        self.status = detail["status"] as? String
-        self.totalResults = detail["totalresults"] as? Int
-        
-        for article in detail["articles"] as? JSONArray ?? []
+        self.status = detail[APIKeys.kStatus] as? String
+        self.totalResults = detail[APIKeys.kTotalResults] as? Int
+        for article in detail[APIKeys.kArticles] as? JSONArray ?? []
         {
             let post = Articles(detail: article)
             self.articles.append(post)
@@ -35,14 +34,14 @@ struct Articles {
     var sourceName: String?
     
     init(detail: JSONDictionary) {
-        self.author = detail["author"] as? String
-        self.title = detail["title"] as? String
-        self.description = detail["description"] as? String
-        self.publishedAt = detail["publishedAt"] as? String
-        self.urlToImage = detail["urlToImage"] as? String
-        self.url = detail["url"] as? String
-        if let source =  detail["source"] as? JSONDictionary{
-            self.sourceName = source["name"] as? String
+        self.author = detail[APIKeys.kAuthor] as? String
+        self.title = detail[APIKeys.kTitle] as? String
+        self.description = detail[APIKeys.kDescription] as? String
+        self.publishedAt = detail[APIKeys.kPublishedAt] as? String
+        self.urlToImage = detail[APIKeys.kURLToImage] as? String
+        self.url = detail[APIKeys.kURL] as? String
+        if let source =  detail[APIKeys.kSource] as? JSONDictionary{
+            self.sourceName = source[APIKeys.kSourceName] as? String
         }
     }
 }

@@ -12,9 +12,9 @@ struct SourcesDM {
     var sources: [Sources] = []
     
     init(detail:JSONDictionary) {
-        self.status = detail["status"] as? String
+        self.status = detail[APIKeys.kStatus] as? String
         
-        for source in detail["sources"] as? JSONArray ?? []
+        for source in detail[APIKeys.kSources] as? JSONArray ?? []
         {
             let post = Sources(dict: source)
             self.sources.append(post)
@@ -32,12 +32,12 @@ struct Sources {
     var country: String?
     
     init(dict: JSONDictionary) {
-        self.id = dict["id"] as? String
-        self.name = dict["name"] as? String
-        self.description = dict["description"] as? String
-        self.url = dict["url"] as? String
-        self.category = dict["category"] as? String
-        self.language = dict["language"] as? String
-        self.country = dict["country"] as? String
+        self.id = dict[APIKeys.kId] as? String
+        self.name = dict[APIKeys.kName] as? String
+        self.description = dict[APIKeys.kDescription] as? String
+        self.url = dict[APIKeys.kURL] as? String
+        self.category = dict[APIKeys.kCategory] as? String
+        self.language = dict[APIKeys.kLanguage] as? String
+        self.country = dict[APIKeys.kCountry] as? String
     }
 }

@@ -35,7 +35,7 @@ class NewsVM {
                 {
                     print(dict)
                     self.artDataArray.removeAll()
-                    let arts = dict["articles"] as? JSONArray ?? []
+                    let arts = dict[APIKeys.kArticles] as? JSONArray ?? []
                     for art in arts {
                         let model = Articles(detail: art)
                         self.artDataArray.append(model)
@@ -59,7 +59,31 @@ class NewsVM {
                 {
                     print(dict)
                     self.artDataArray.removeAll()
-                    let arts = dict["articles"] as? JSONArray ?? []
+                    let arts = dict[APIKeys.kArticles] as? JSONArray ?? []
+                    for art in arts {
+                        let model = Articles(detail: art)
+                        self.artDataArray.append(model)
+                    }
+                    self.newsData.articles = self.artDataArray
+                    completion(self.newsData)
+                }
+            }
+        }
+    }
+    
+    func getArticles(searchParams: String, completion: @escaping (NewsDM) ->()) {
+        let url =  "https://newsapi.org/v2/top-headlines?q=\(searchParams)&apiKey=4d3e1ce2523f46418ff4a356b80f556d"
+        
+        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+            
+            if let error = response.error {
+                print(error.localizedDescription)
+            } else if response.data != nil {
+                if let dict = response.value as? JSONDictionary
+                {
+                    print(dict)
+                    self.artDataArray.removeAll()
+                    let arts = dict[APIKeys.kArticles] as? JSONArray ?? []
                     for art in arts {
                         let model = Articles(detail: art)
                         self.artDataArray.append(model)

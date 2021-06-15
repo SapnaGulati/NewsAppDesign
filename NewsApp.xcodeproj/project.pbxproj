@@ -62,6 +62,7 @@
 		8EEE3CA7267883E5006CFC10 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CA6267883E4006CFC10 /* APIKeys.swift */; };
 		8EEE3CAE2678A65D006CFC10 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CAD2678A65D006CFC10 /* CountryCode.swift */; };
 		8EEE3CB12678A74E006CFC10 /* UIString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CB02678A74E006CFC10 /* UIString.swift */; };
+		8EEE3CB72678CEE3006CFC10 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CB62678CEE3006CFC10 /* AppConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,10 +125,10 @@
 		8EE3129826734B1A00185DE1 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		8EEE3CA2267870F0006CFC10 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		8EEE3CA6267883E4006CFC10 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
-		8EEE3CAA26788743006CFC10 /* CountryCodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
-		8EEE3CAB2678879B006CFC10 /* flag-emojis.pretty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "flag-emojis.pretty.json"; sourceTree = "<group>"; };
+		8EEE3CAB2678879B006CFC10 /* CountryCodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
 		8EEE3CAD2678A65D006CFC10 /* CountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
 		8EEE3CB02678A74E006CFC10 /* UIString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIString.swift; sourceTree = "<group>"; };
+		8EEE3CB62678CEE3006CFC10 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		D88ADE371A1DA52AD93E9339 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -184,7 +185,6 @@
 		8EADD3DC2669D8E900E88249 /* NewsApp */ = {
 			isa = PBXGroup;
 			children = (
-				8EEE3CA5267883C6006CFC10 /* New Group */,
 				8EADD3E72669D8E900E88249 /* NewsApp.entitlements */,
 				8EADD3DF2669D8E900E88249 /* News Data Models */,
 				8EADD3FC2669D8E900E88249 /* News View Model */,
@@ -298,8 +298,7 @@
 				8EDCE6042671C96C00102931 /* UIView.swift */,
 				8EDCE6072671C99000102931 /* UITableView.swift */,
 				8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */,
-				8EEE3CAA26788743006CFC10 /* CountryCodes.json */,
-				8EEE3CAB2678879B006CFC10 /* flag-emojis.pretty.json */,
+				8EEE3CAB2678879B006CFC10 /* CountryCodes.json */,
 				8EEE3CAD2678A65D006CFC10 /* CountryCode.swift */,
 				8EEE3CB02678A74E006CFC10 /* UIString.swift */,
 			);
@@ -317,17 +316,11 @@
 		8EE3129726734AFE00185DE1 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				8EEE3CA6267883E4006CFC10 /* APIKeys.swift */,
 				8EE3129826734B1A00185DE1 /* Selection.swift */,
+				8EEE3CB62678CEE3006CFC10 /* AppConstants.swift */,
 			);
 			path = Constants;
-			sourceTree = "<group>";
-		};
-		8EEE3CA5267883C6006CFC10 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				8EEE3CA6267883E4006CFC10 /* APIKeys.swift */,
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		9F96F8BAE5884B1BD2AFFC3C /* Frameworks */ = {
@@ -533,6 +526,7 @@
 				8EE3129926734B1A00185DE1 /* Selection.swift in Sources */,
 				8E1973D5267785D8004C276E /* NewsAPIService.swift in Sources */,
 				8EDCE6082671C99000102931 /* UITableView.swift in Sources */,
+				8EEE3CB72678CEE3006CFC10 /* AppConstants.swift in Sources */,
 				8EADD40D2669D8E900E88249 /* SettingsList.swift in Sources */,
 				8EADD41A2669D8E900E88249 /* PreferencesViewController.swift in Sources */,
 				8EADD41E2669D8E900E88249 /* TabBarViewController.swift in Sources */,

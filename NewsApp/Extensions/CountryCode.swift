@@ -92,7 +92,7 @@ class CountryCode {
     
     func getFlag(country:String) -> String{
         var flag = String()
-        if let path = Bundle.main.path(forResource: "flag-emojis.pretty", ofType: "json") {
+        if let path = Bundle.main.path(forResource: "CountryCodes", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)

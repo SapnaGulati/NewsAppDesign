@@ -208,11 +208,13 @@ extension SelectCountryViewController: UISearchBarDelegate{
         
         if searchText == "" {
             filteredData = countries
+            print(filteredData)
         }
         else {
             for character in countries {
                 if ((character.name?.lowercased().contains(searchText.lowercased())) != nil) {
                     filteredData.append(character)
+                    print(filteredData)
                 }
             }
         }
@@ -241,20 +243,20 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredData.count
-//        return countries.count
+//        return filteredData.count
+        return countries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = countryTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CountryCell
-        cell.countryNameLabel.text = filteredData[indexPath.row].name
+//        cell.countryNameLabel.text = filteredData[indexPath.row].name
         let flagString: String?
         flagString = CountryCode.shared.getFlag(country: countries[indexPath.row].name!)
 //        print(flagString as Any)
 //        print(countries[indexPath.row].name!)
         cell.countryImageView.image = flagString?.image()
 //        cell.countryImageView.image = UIImage(named: flagString ?? "")
-//        cell.countryNameLabel.text = countries[indexPath.row].name
+        cell.countryNameLabel.text = countries[indexPath.row].name
 //        cell.countryImageView.image = UIImage(named: countries[indexPath.row].name ?? "")
         return cell
     }

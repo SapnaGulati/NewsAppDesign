@@ -71,134 +71,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "35F04F1A-E3EA-4D74-A172-50702D45207B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewsApp/News View Model/NewsVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "getArticles(selectedSource:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "88DD4AF8-D2B1-48D8-A5D4-4946194FCBB3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewsApp/News View Model/NewsVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "getArticles(selectedSource:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "915829FC-F673-49AA-A844-1F1E4FDCB472"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewsApp/News View Model/NewsVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "getArticles(selectedSource:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "096CDDBC-2073-4A59-A540-6D6D22148C8E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewsApp/News View Model/NewsVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "getArticles(selectedSource:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2CBE8192-165E-48F4-8A13-7BC0A05F6923"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewsApp/News View Model/NewsVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "getArticles(selectedSource:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FAD21A47-F948-47E6-AFE2-77B9E348D521"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewsApp/News View Model/NewsVM.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "getArticles(selectedSource:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FAD21A47-F948-47E6-AFE2-77B9E348D521 - ab1de4f75ea9f84a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in NewsApp.NewsVM.getArticles(selectedSource: Swift.String, completion: (NewsApp.NewsDM) -&gt; ()) -&gt; ()"
-                  moduleName = "NewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ios4/Documents/Sapna/NewsAppi-main/NewsApp/News%20View%20Model/NewsVM.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "529">
-               </Location>
-               <Location
-                  uuid = "FAD21A47-F948-47E6-AFE2-77B9E348D521 - ab1de4f75ea9f84a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in NewsApp.NewsVM.getArticles(selectedSource: Swift.String, completion: (NewsApp.NewsDM) -&gt; ()) -&gt; ()"
-                  moduleName = "NewsApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ios4/Documents/Sapna/NewsAppi-main/NewsApp/News%20View%20Model/NewsVM.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "933">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EAF0F15C-9812-47D2-911A-20870225F75E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -206,8 +78,8 @@
             filePath = "NewsApp/View Controllers/SelectCountryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +94,8 @@
             filePath = "NewsApp/View Controllers/SelectCountryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>

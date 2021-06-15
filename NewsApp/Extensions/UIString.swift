@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
     func image() -> UIImage? {
-        let size = CGSize(width: 40, height: 40)
+        let size = CGSize(width: 30, height: 30)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         UIColor.white.set()
         let rect = CGRect(origin: .zero, size: size)
