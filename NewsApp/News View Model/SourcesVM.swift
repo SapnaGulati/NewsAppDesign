@@ -29,9 +29,9 @@ class SourcesVM {
                 {
                     print(dict)
                     self.sourcesDataArray.removeAll()
-                    let arts = dict["sources"] as? JSONArray ?? []
-                    for art in arts {
-                        let model = Sources(dict: art)
+                    let srcs = dict["sources"] as? JSONArray ?? []
+                    for src in srcs {
+                        let model = Sources(dict: src)
                         self.sourcesDataArray.append(model)
                     }
                     self.newsSources.sources = self.sourcesDataArray

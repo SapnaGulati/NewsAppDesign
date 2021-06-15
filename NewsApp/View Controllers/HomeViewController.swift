@@ -103,10 +103,18 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = homeTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped(_:)))
-        tap.numberOfTapsRequired = 1
+        
+        // MARK: Label Taps
+        let moreTap = UITapGestureRecognizer(target: self, action: #selector(self.moreLabelTapped(_:)))
+        moreTap.numberOfTapsRequired = 1
         cell.moreLabel.isUserInteractionEnabled = true
-        cell.moreLabel.addGestureRecognizer(tap)
+        cell.moreLabel.addGestureRecognizer(moreTap)
+        let sourceTap = UITapGestureRecognizer(target: self, action: #selector(self.sourceLabelTapped(_:)))
+        sourceTap.numberOfTapsRequired = 1
+        cell.sourceLabel.isUserInteractionEnabled = true
+        cell.sourceLabel.addGestureRecognizer(sourceTap)
+        
+        // MARK: Fill Data in Table View Cell
         let items = NewsVM.shared.newsData.articles[indexPath.row]
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
@@ -119,9 +127,14 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     }
 
     @objc
-    func labelTapped(_ tap: UITapGestureRecognizer) {
+    func moreLabelTapped(_ tap: UITapGestureRecognizer) {
         let safariViewController = SFSafariViewController(url: self.url)
         present(safariViewController, animated: true)
+    }
+    
+    @objc func sourceLabelTapped(_ tap: UITapGestureRecognizer) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "SourcesViewController") as! SourcesViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
