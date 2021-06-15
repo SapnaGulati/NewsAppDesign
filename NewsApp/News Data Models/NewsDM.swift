@@ -8,9 +8,6 @@
 import UIKit
 import Foundation
 
-typealias JSONDictionary = [String:Any]
-typealias JSONArray = [JSONDictionary]
-
 struct NewsDM {
     var status: String?
     var totalResults: Int?
