@@ -22,17 +22,17 @@ class SelectCountryViewController: UIViewController {
     
     // MARK: Variables
     var delegate: SelectCountry?
-    var comeFrom:ComeFrom = .SelectCategory
-    private let countries = CountryList.getCountries()
-    var filteredData: [country] = []
+    var comeFrom: ComeFrom = .SelectCategory
+    private var countries = [CountryDM]()
+    var filteredData = [CountryDM]()
 
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         preferredStatusBarStyle.setupStatusBar(string: "#b80d00")
         setupNavigationBarItems()
+        callApiForCountry()
         setupSearchBar()
-        filteredData = countries
         setupTableView()
         setupFonts()
     }
@@ -204,14 +204,14 @@ extension SelectCountryViewController: UISearchBarDelegate{
     
     // MARK: Search Bar Data Update
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredData = []
+        filteredData = [CountryDM]()
         
         if searchText == "" {
             filteredData = countries
         }
         else {
             for character in countries {
-                if (character.name.lowercased().contains(searchText.lowercased())) {
+                if ((character.name?.lowercased().contains(searchText.lowercased())) != nil) {
                     filteredData.append(character)
                 }
             }
@@ -242,12 +242,20 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
+//        return countries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = countryTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CountryCell
         cell.countryNameLabel.text = filteredData[indexPath.row].name
-        cell.countryImageView.image = UIImage(named: filteredData[indexPath.row].name)
+        let flagString: String?
+        flagString = CountryCode.shared.getFlag(country: countries[indexPath.row].name!)
+//        print(flagString as Any)
+//        print(countries[indexPath.row].name!)
+        cell.countryImageView.image = flagString?.image()
+//        cell.countryImageView.image = UIImage(named: flagString ?? "")
+//        cell.countryNameLabel.text = countries[indexPath.row].name
+//        cell.countryImageView.image = UIImage(named: countries[indexPath.row].name ?? "")
         return cell
     }
 
@@ -256,8 +264,8 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Selection.instance.selectedCountry = filteredData[indexPath.row].name
-        Selection.instance.selectedCountryCode = filteredData[indexPath.row].c_code
+        Selection.instance.selectedCountry = filteredData[indexPath.row].name ?? ""
+        Selection.instance.selectedCountryCode = filteredData[indexPath.row].id ?? ""
         delegate?.setCountry(cName: Selection.instance.selectedCountry)
         
         if comeFrom == .SelectCategory {
@@ -271,6 +279,22 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
 }
 
+extension SelectCountryViewController {
+    func callApiForCountry(){
+        countries.removeAll()
+        CountryVM.shared.callApiForCountry() { (message, error) in
+            if error != nil {
+                print(error?.localizedDescription as Any)
+                
+            }else {
+                self.countries = CountryVM.shared.country
+                self.filteredData = self.countries
+                self.countryTableView.reloadData()
+            }
+        }
+    }
+}
+
 extension CountryVM {
     func parsingCountryData(response: JSONArray)  {
         self.country.removeAll()
@@ -279,8 +303,8 @@ extension CountryVM {
             data[APIKeys.kId] = (response[APIKeys.kId] as? String) ?? ""
             data[APIKeys.kFlag] = response[APIKeys.kFlag] as? String ?? ""
             data[APIKeys.kName] = response[APIKeys.kName] as? String ?? ""
-            let countries = CountryDM(dict: data)
-            self.country.append(countries)
+            let countriesDetail = CountryDM(dict: data)
+            self.country.append(countriesDetail)
         }
     }
 }

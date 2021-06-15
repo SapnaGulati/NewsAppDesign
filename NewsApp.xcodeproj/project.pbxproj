@@ -60,6 +60,8 @@
 		8EE3129926734B1A00185DE1 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3129826734B1A00185DE1 /* Selection.swift */; };
 		8EEE3CA3267870F0006CFC10 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CA2267870F0006CFC10 /* NewsViewController.swift */; };
 		8EEE3CA7267883E5006CFC10 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CA6267883E4006CFC10 /* APIKeys.swift */; };
+		8EEE3CAE2678A65D006CFC10 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CAD2678A65D006CFC10 /* CountryCode.swift */; };
+		8EEE3CB12678A74E006CFC10 /* UIString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CB02678A74E006CFC10 /* UIString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +126,8 @@
 		8EEE3CA6267883E4006CFC10 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		8EEE3CAA26788743006CFC10 /* CountryCodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
 		8EEE3CAB2678879B006CFC10 /* flag-emojis.pretty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "flag-emojis.pretty.json"; sourceTree = "<group>"; };
+		8EEE3CAD2678A65D006CFC10 /* CountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
+		8EEE3CB02678A74E006CFC10 /* UIString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIString.swift; sourceTree = "<group>"; };
 		D88ADE371A1DA52AD93E9339 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -296,6 +300,8 @@
 				8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */,
 				8EEE3CAA26788743006CFC10 /* CountryCodes.json */,
 				8EEE3CAB2678879B006CFC10 /* flag-emojis.pretty.json */,
+				8EEE3CAD2678A65D006CFC10 /* CountryCode.swift */,
+				8EEE3CB02678A74E006CFC10 /* UIString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -511,6 +517,7 @@
 				8EADD4132669D8E900E88249 /* SearchTableViewController.swift in Sources */,
 				8EDBF0CD266F5201008F9E61 /* LoadingViewController.swift in Sources */,
 				8EADD40B2669D8E900E88249 /* NewsDM.swift in Sources */,
+				8EEE3CAE2678A65D006CFC10 /* CountryCode.swift in Sources */,
 				8E19737626771731004C276E /* DataManager.swift in Sources */,
 				8EADD4222669D8E900E88249 /* FilterViewController.swift in Sources */,
 				8EADD4192669D8E900E88249 /* HomeViewController.swift in Sources */,
@@ -529,6 +536,7 @@
 				8EADD40D2669D8E900E88249 /* SettingsList.swift in Sources */,
 				8EADD41A2669D8E900E88249 /* PreferencesViewController.swift in Sources */,
 				8EADD41E2669D8E900E88249 /* TabBarViewController.swift in Sources */,
+				8EEE3CB12678A74E006CFC10 /* UIString.swift in Sources */,
 				8E1973CD26778329004C276E /* SourcesVM.swift in Sources */,
 				8EADD40C2669D8E900E88249 /* CountryList.swift in Sources */,
 				8E1973C626777DF7004C276E /* CountryDM.swift in Sources */,
