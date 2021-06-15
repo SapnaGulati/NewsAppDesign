@@ -6,3 +6,24 @@
 //
 
 import Foundation
+
+class CountryVM {
+
+static var shared = CountryVM()
+private init() {}
+var country = [CountryDM]()
+var selectedCountry = [CountryDM]()
+    
+    func callApiForCountry( response: @escaping responseCallBack){
+           APIManager.callApiForCountry( successCallback: { (responseDict) in
+               let message = responseDict[APIKeys.kMessage] as? String ?? "Something Wrong"
+            if let data = responseDict[APIKeys.kData] as? JSONArray {
+               
+                self.parsingCountryData(response: data)
+               }
+               response(message, nil)
+           }) { (errorReason, error) in
+               response(nil, APIManager.errorForNetworkErrorReason(errorReason: errorReason!))
+           }
+       }
+}

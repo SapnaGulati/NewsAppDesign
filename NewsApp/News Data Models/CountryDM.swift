@@ -13,8 +13,8 @@ struct CountryDM {
     var flag: String?
         
     init(dict: JSONDictionary) {
-        id = dict["id"] as? String
-        name = dict["name"] as? String
-        flag = dict["flag"] as? String
+        id = dict[APIKeys.kId] as? String
+        name = dict[APIKeys.kName] as? String
+        flag = dict[APIKeys.kFlag] as? String
         }
 }

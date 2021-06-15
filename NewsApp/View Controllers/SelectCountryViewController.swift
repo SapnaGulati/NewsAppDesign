@@ -270,3 +270,17 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         }
     }
 }
+
+extension CountryVM {
+    func parsingCountryData(response: JSONArray)  {
+        self.country.removeAll()
+        var data = JSONDictionary()
+        for response in response {
+            data[APIKeys.kId] = (response[APIKeys.kId] as? String) ?? ""
+            data[APIKeys.kFlag] = response[APIKeys.kFlag] as? String ?? ""
+            data[APIKeys.kName] = response[APIKeys.kName] as? String ?? ""
+            let countries = CountryDM(dict: data)
+            self.country.append(countries)
+        }
+    }
+}

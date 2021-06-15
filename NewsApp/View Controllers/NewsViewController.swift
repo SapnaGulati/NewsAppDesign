@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 import SDWebImage
 
 class NewsViewController: UIViewController {
@@ -82,6 +83,14 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = newsTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        
+        // MARK: Label Taps
+        let moreTap = UITapGestureRecognizer(target: self, action: #selector(self.moreLabelTapped(_:)))
+        moreTap.numberOfTapsRequired = 1
+        cell.moreLabel.isUserInteractionEnabled = true
+        cell.moreLabel.addGestureRecognizer(moreTap)
+        
+        // MARK: Fill data in Table View Cell
         let items = NewsVM.shared.newsData.articles[indexPath.row]
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
@@ -91,6 +100,12 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
         self.url = URL(string: items.url ?? "")
         self.url = URL(string: "https://www.google.com")
         return cell
+    }
+    
+    @objc
+    func moreLabelTapped(_ tap: UITapGestureRecognizer) {
+        let safariViewController = SFSafariViewController(url: self.url)
+        present(safariViewController, animated: true)
     }
 }
 

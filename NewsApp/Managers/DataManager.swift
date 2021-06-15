@@ -5,66 +5,66 @@
 ////  Created by IOS3 on 01/10/19.
 ////  Copyright © 2019 Deftsoft. All rights reserved.
 ////
-//
-//import Foundation
-//
-//class DataManager {
-//
-//    static var loginStatus: Bool? {
-//           set {
-//               UserDefaults.standard.setValue(newValue, forKey: APIKeys.kStatus)
-//               UserDefaults.standard.synchronize()
-//           }
-//
-//           get {
-//            return UserDefaults.standard.bool(forKey: APIKeys.kStatus)
-//           }
-//       }
-//
-//    static var accessToken: String? {
-//        set {
-//            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kAccessToken)
-//            UserDefaults.standard.synchronize()
-//        }
-//
-//        get {
-//            return UserDefaults.standard.string(forKey: APIKeys.kAccessToken)
-//        }
-//    }
-//    //
-//    //    static var savedTokens: Int? {
-//    //        set {
-//    //            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kSavedToken)
-//    //            UserDefaults.standard.synchronize()
-//    //        }
-//    //
-//    //        get {
-//    //            return UserDefaults.standard.integer(forKey: APIKeys.kSavedToken)
-//    //        }
-//    //    }
-//    //
-//    //    static var individualPurchaseStatus: Int? {
-//    //        set {
-//    //            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kIndividualPurchaseStatus)
-//    //            UserDefaults.standard.synchronize()
-//    //        }
-//    //
-//    //        get {
-//    //            return UserDefaults.standard.integer(forKey: APIKeys.kIndividualPurchaseStatus)
-//    //        }
-//    //    }
-//    //
-//    //    static var userType: String? {
-//    //           set {
-//    //               UserDefaults.standard.setValue(newValue, forKey: APIKeys.kUserType)
-//    //               UserDefaults.standard.synchronize()
-//    //           }
-//    //
-//    //           get {
-//    //               return UserDefaults.standard.string(forKey: APIKeys.kUserType)
-//    //           }
-//    //       }
-//    //
+
+import Foundation
+
+class DataManager {
+
+    static var loginStatus: Bool? {
+           set {
+               UserDefaults.standard.setValue(newValue, forKey: APIKeys.kStatus)
+               UserDefaults.standard.synchronize()
+           }
+
+           get {
+            return UserDefaults.standard.bool(forKey: APIKeys.kStatus)
+           }
+       }
+
+    static var accessToken: String? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kAccessToken)
+            UserDefaults.standard.synchronize()
+        }
+
+        get {
+            return UserDefaults.standard.string(forKey: APIKeys.kAccessToken)
+        }
+    }
+    //
+    //    static var savedTokens: Int? {
+    //        set {
+    //            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kSavedToken)
+    //            UserDefaults.standard.synchronize()
+    //        }
+    //
+    //        get {
+    //            return UserDefaults.standard.integer(forKey: APIKeys.kSavedToken)
+    //        }
+    //    }
+    //
+    //    static var individualPurchaseStatus: Int? {
+    //        set {
+    //            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kIndividualPurchaseStatus)
+    //            UserDefaults.standard.synchronize()
+    //        }
+    //
+    //        get {
+    //            return UserDefaults.standard.integer(forKey: APIKeys.kIndividualPurchaseStatus)
+    //        }
+    //    }
+    //
+    //    static var userType: String? {
+    //           set {
+    //               UserDefaults.standard.setValue(newValue, forKey: APIKeys.kUserType)
+    //               UserDefaults.standard.synchronize()
+    //           }
+    //
+    //           get {
+    //               return UserDefaults.standard.string(forKey: APIKeys.kUserType)
+    //           }
+    //       }
+    //
 //    static var phoneNumber: String? {
 //        set {
 //            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kPhone)
@@ -162,6 +162,6 @@
 //            return UserDefaults.standard.string(forKey: APIKeys.kDOB)
 //        }
 //    }
-//
-//}
-//
+
+}
+
