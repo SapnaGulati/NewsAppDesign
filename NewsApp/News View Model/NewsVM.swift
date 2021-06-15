@@ -13,11 +13,11 @@ class NewsVM {
     
     static var shared = NewsVM()
     
-    var newsData = NewsDataModel(detail: JSONDictionary())
+    var newsData = NewsDM(detail: JSONDictionary())
     var artDataArray = [Articles]()
     var artData = Articles(detail: JSONDictionary())
     
-    func getArticles(selectedCategory: String, selectedCountry: String, completion: @escaping (NewsDataModel) ->()) {
+    func getArticles(selectedCategory: String, selectedCountry: String, completion: @escaping (NewsDM) ->()) {
         let url: String!
         if (selectedCategory == "All") {
             url = "https://newsapi.org/v2/top-headlines?country=\(selectedCountry)&apiKey=4d3e1ce2523f46418ff4a356b80f556d"

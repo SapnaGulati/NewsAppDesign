@@ -11,7 +11,7 @@ import Foundation
 typealias JSONDictionary = [String:Any]
 typealias JSONArray = [JSONDictionary]
 
-struct NewsDataModel {
+struct NewsDM {
     var status: String?
     var totalResults: Int?
     var articles: [Articles] = []

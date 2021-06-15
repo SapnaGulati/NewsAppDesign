@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     // MARK: Variables
     var url: URL!
     var loadingVC: UIViewController!
-    private var newsData : NewsDataModel!
+    private var newsData : NewsDM!
     
     // MARK: View Cycle
     override func viewDidLoad() {

@@ -16,7 +16,7 @@ struct SourcesDM {
         
         for source in detail["sources"] as? JSONArray ?? []
         {
-            let post = Sources(detail: source)
+            let post = Sources(dict: source)
             self.sources.append(post)
         }
     }
@@ -31,13 +31,13 @@ struct Sources {
     var language: String?
     var country: String?
     
-    init(detail: JSONDictionary) {
-        self.id = detail["id"] as? String
-        self.name = detail["name"] as? String
-        self.description = detail["description"] as? String
-        self.url = detail["url"] as? String
-        self.category = detail["category"] as? String
-        self.language = detail["language"] as? String
-        self.country = detail["country"] as? String
+    init(dict: JSONDictionary) {
+        self.id = dict["id"] as? String
+        self.name = dict["name"] as? String
+        self.description = dict["description"] as? String
+        self.url = dict["url"] as? String
+        self.category = dict["category"] as? String
+        self.language = dict["language"] as? String
+        self.country = dict["country"] as? String
     }
 }

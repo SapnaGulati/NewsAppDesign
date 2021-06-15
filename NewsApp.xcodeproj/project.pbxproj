@@ -19,7 +19,7 @@
 		8E1973D8267785F6004C276E /* SourcesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973D7267785F6004C276E /* SourcesAPIService.swift */; };
 		8E1973DB26778609004C276E /* CountryAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973DA26778609004C276E /* CountryAPIService.swift */; };
 		8E1F31FA2670A44800E58A86 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1F31F92670A44800E58A86 /* SDWebImage.framework */; };
-		8EADD40B2669D8E900E88249 /* NewsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E02669D8E900E88249 /* NewsDataModel.swift */; };
+		8EADD40B2669D8E900E88249 /* NewsDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E02669D8E900E88249 /* NewsDM.swift */; };
 		8EADD40C2669D8E900E88249 /* CountryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E12669D8E900E88249 /* CountryList.swift */; };
 		8EADD40D2669D8E900E88249 /* SettingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E22669D8E900E88249 /* SettingsList.swift */; };
 		8EADD40E2669D8E900E88249 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E32669D8E900E88249 /* CategoryList.swift */; };
@@ -77,7 +77,7 @@
 		8E1F31F92670A44800E58A86 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E5566302670A0FC007399FB /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E708DE0264CEB140055F518 /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EADD3E02669D8E900E88249 /* NewsDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDataModel.swift; sourceTree = "<group>"; };
+		8EADD3E02669D8E900E88249 /* NewsDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDM.swift; sourceTree = "<group>"; };
 		8EADD3E12669D8E900E88249 /* CountryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryList.swift; sourceTree = "<group>"; };
 		8EADD3E22669D8E900E88249 /* SettingsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsList.swift; sourceTree = "<group>"; };
 		8EADD3E32669D8E900E88249 /* CategoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 		8EADD3DF2669D8E900E88249 /* News Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				8EADD3E02669D8E900E88249 /* NewsDataModel.swift */,
+				8EADD3E02669D8E900E88249 /* NewsDM.swift */,
 				8EADD3E12669D8E900E88249 /* CountryList.swift */,
 				8EADD3E22669D8E900E88249 /* SettingsList.swift */,
 				8EADD3E32669D8E900E88249 /* CategoryList.swift */,
@@ -492,7 +492,7 @@
 				8EADD41D2669D8E900E88249 /* LogInViewController.swift in Sources */,
 				8EADD4132669D8E900E88249 /* SearchTableViewController.swift in Sources */,
 				8EDBF0CD266F5201008F9E61 /* LoadingViewController.swift in Sources */,
-				8EADD40B2669D8E900E88249 /* NewsDataModel.swift in Sources */,
+				8EADD40B2669D8E900E88249 /* NewsDM.swift in Sources */,
 				8E19737626771731004C276E /* DataManager.swift in Sources */,
 				8EADD4222669D8E900E88249 /* FilterViewController.swift in Sources */,
 				8EADD4192669D8E900E88249 /* HomeViewController.swift in Sources */,
