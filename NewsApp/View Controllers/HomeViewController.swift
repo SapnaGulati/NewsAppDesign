@@ -33,7 +33,6 @@ class HomeViewController: UIViewController {
         self.setupTableView()
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
-        NewsVM.shared.newsData.articles.removeAll()
         let selectedCategory = Selection.instance.selectedCategory
         let selectedCountry = Selection.instance.selectedCountryCode
         self.getArticles(selectedCategory: selectedCategory, selectedCountry: selectedCountry)

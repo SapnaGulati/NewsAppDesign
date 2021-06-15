@@ -12,9 +12,17 @@ class SourcesViewController: UIViewController{
     // MARK: Outlets
     @IBOutlet weak var sourcesTable: UITableView!
     
+    // MARK: Variables
+    private var newsSources : SourcesDM!
+    var loadingVC: UIViewController!
+    
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        // MARK: Add loader
+        loadingVC = LoadingViewController()
+        loadingVC.modalPresentationStyle = .overCurrentContext
+        loadingVC.modalTransitionStyle = .crossDissolve
         setupNavigationBarItems()
         setupTableView()
     }
@@ -63,19 +71,19 @@ class SourcesCell: UITableViewCell {
         return view
     }()
         
-    let label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "Poppins-SemiBold", size: 15)
-        label.textColor = UIColor(hexString: "#fefefe")
-        label.textAlignment = .center
-        label.text = "Source Name"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    let sourceLabel: UILabel = {
+        let sourceLabel = UILabel()
+        sourceLabel.font = UIFont(name: "Poppins-SemiBold", size: 15)
+        sourceLabel.textColor = UIColor(hexString: "#fefefe")
+        sourceLabel.textAlignment = .center
+        sourceLabel.text = "Source Name"
+        sourceLabel.translatesAutoresizingMaskIntoConstraints = false
+        return sourceLabel
     }()
     
     private func setupView() {
         addSubview(cellView)
-        cellView.addSubview(label)
+        cellView.addSubview(sourceLabel)
         self.selectionStyle = .none
         
         NSLayoutConstraint.activate([
@@ -88,8 +96,8 @@ class SourcesCell: UITableViewCell {
         ])
         cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1), shadowOpacity: 0.7, shadowRadius: 2.5)
         
-        label.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
-        label.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+        sourceLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        sourceLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
     }
 }
 
@@ -102,18 +110,40 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
         view.addSubview(sourcesTable)
         sourcesTable.delegate = self
         sourcesTable.dataSource = self
+        self.getSources()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if SourcesVM.shared.newsSources.sources.count == 0 {
+            self.sourcesTable.setEmptyView(message: "Sources Not Available.")
+        }
+        else {
+            self.sourcesTable.restore()
+        }
+        return SourcesVM.shared.newsSources.sources.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sourcesTable.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! SourcesCell
+        let sources = SourcesVM.shared.newsSources.sources[indexPath.row]
+        cell.sourceLabel.text = sources.name
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
+    }
+}
+
+extension SourcesViewController {
+    func getSources() {
+        self.present(self.loadingVC, animated: true, completion: nil)
+        SourcesVM.shared.getSources() { (newsSources) in
+            self.newsSources = newsSources
+            self.sourcesTable.delegate = self
+            self.sourcesTable.dataSource = self
+            self.sourcesTable.reloadData()
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
