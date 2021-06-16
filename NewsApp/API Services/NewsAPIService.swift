@@ -16,7 +16,12 @@ enum NewsAPIService: APIService {
         var path = ""
         switch self {
             case let .callApiToGetArticlesByCounAndCat(selectedCountry, selectedCategory):
-                path = BASEURL.appending("top-headlines?country=\(selectedCountry)&category=\(selectedCategory)")
+                if(selectedCategory == "All") {
+                    path = BASEURL.appending("top-headlines?country=\(selectedCountry)")
+                }
+                else {
+                    path = BASEURL.appending("top-headlines?country=\(selectedCountry)&category=\(selectedCategory)")
+                }
             
             case let .callApiToGetArticlesBySource(selectedSource):
                 path = BASEURL.appending("top-headlines?sources=\(selectedSource)")
