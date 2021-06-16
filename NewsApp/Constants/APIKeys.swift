@@ -14,6 +14,7 @@ class APIKeys {
     static let kStatus = "status"
     static let kData = "data"
     static let kId = "id"
+    static let kCode = "code"
     static let kName = "name"
     static let kFlag = "flag"
     static let kTotalResults = "totalresults"

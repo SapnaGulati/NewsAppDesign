@@ -243,20 +243,18 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return filteredData.count
-        return countries.count
+        return filteredData.count
+//        return countries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = countryTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CountryCell
-//        cell.countryNameLabel.text = filteredData[indexPath.row].name
+        cell.countryNameLabel.text = filteredData[indexPath.row].name
         let flagString: String?
         flagString = CountryCode.shared.getFlag(country: countries[indexPath.row].name!)
 //        print(flagString as Any)
-//        print(countries[indexPath.row].name!)
         cell.countryImageView.image = flagString?.image()
 //        cell.countryImageView.image = UIImage(named: flagString ?? "")
-        cell.countryNameLabel.text = countries[indexPath.row].name
 //        cell.countryImageView.image = UIImage(named: countries[indexPath.row].name ?? "")
         return cell
     }
@@ -267,7 +265,7 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Selection.instance.selectedCountry = filteredData[indexPath.row].name ?? ""
-        Selection.instance.selectedCountryCode = filteredData[indexPath.row].id ?? ""
+        Selection.instance.selectedCountryCode = filteredData[indexPath.row].code ?? ""
         delegate?.setCountry(cName: Selection.instance.selectedCountry)
         
         if comeFrom == .SelectCategory {
@@ -302,7 +300,7 @@ extension CountryVM {
         self.country.removeAll()
         var data = JSONDictionary()
         for response in response {
-            data[APIKeys.kId] = (response[APIKeys.kId] as? String) ?? ""
+            data[APIKeys.kCode] = response[APIKeys.kCode] as? String ?? ""
             data[APIKeys.kFlag] = response[APIKeys.kFlag] as? String ?? ""
             data[APIKeys.kName] = response[APIKeys.kName] as? String ?? ""
             let countriesDetail = CountryDM(dict: data)

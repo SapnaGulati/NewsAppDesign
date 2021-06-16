@@ -11,6 +11,7 @@ enum NewsAPIService: APIService {
     
     case callApiToGetArticlesByCounAndCat(selectedCountry: String, selectedCategory: String)
     case callApiToGetArticlesBySource(selectedSource: String)
+    case callApiToGetArticlesBySearch(searchParams: String)
     
     var path: String{
         var path = ""
@@ -25,6 +26,9 @@ enum NewsAPIService: APIService {
             
             case let .callApiToGetArticlesBySource(selectedSource):
                 path = BASEURL.appending("top-headlines?sources=\(selectedSource)")
+                
+            case let .callApiToGetArticlesBySearch(searchParams):
+                path = BASEURL.appending("top-headlines?q=\(searchParams)")
         }
         return path
     }
@@ -36,8 +40,11 @@ enum NewsAPIService: APIService {
             case .callApiToGetArticlesByCounAndCat:
                 resource = Resource(method: .get, parameters: nil, headers: header)
             
-        case .callApiToGetArticlesBySource:
-            resource = Resource(method: .get, parameters: nil, headers: header)
+            case .callApiToGetArticlesBySource:
+                resource = Resource(method: .get, parameters: nil, headers: header)
+                
+            case .callApiToGetArticlesBySearch:
+                resource = Resource(method: .get, parameters: nil, headers: header)
         }
         return resource
     }
@@ -45,7 +52,7 @@ enum NewsAPIService: APIService {
 
 extension APIManager{
     
-    class func callApiToGetArticlesByCounAndCat(selectedCountry: String, selectedCategory: String, successCallback:@escaping JSONDictionaryResponseCallback,failureCallBack:@escaping APIServiceFailureCallback){
+    class func callApiToGetArticlesByCounAndCat(selectedCountry: String, selectedCategory: String, successCallback:@escaping JSONDictionaryResponseCallback, failureCallBack:@escaping APIServiceFailureCallback){
         NewsAPIService.callApiToGetArticlesByCounAndCat(selectedCountry: selectedCountry, selectedCategory: selectedCategory).request( success: { (response) in
             if let responseDict = response as? JSONDictionary {
                 successCallback(responseDict)
@@ -55,8 +62,18 @@ extension APIManager{
         }, failure: failureCallBack)
     }
     
-    class func callApiToGetArticlesBySource(selectedSource: String, successCallback:@escaping JSONDictionaryResponseCallback,failureCallBack:@escaping APIServiceFailureCallback){
+    class func callApiToGetArticlesBySource(selectedSource: String, successCallback:@escaping JSONDictionaryResponseCallback, failureCallBack:@escaping APIServiceFailureCallback){
         NewsAPIService.callApiToGetArticlesBySource(selectedSource: selectedSource).request( success: { (response) in
+            if let responseDict = response as? JSONDictionary {
+                successCallback(responseDict)
+            }else{
+                successCallback([:])
+            }
+        }, failure: failureCallBack)
+    }
+    
+    class func callApiToGetArticlesBySearch(searchParams: String, successCallback:@escaping JSONArrayResponseCallback, failureCallBack:@escaping APIServiceFailureCallback){
+        NewsAPIService.callApiToGetArticlesBySearch(searchParams: searchParams).request( success: { (response) in
             if let responseDict = response as? JSONDictionary {
                 successCallback(responseDict)
             }else{

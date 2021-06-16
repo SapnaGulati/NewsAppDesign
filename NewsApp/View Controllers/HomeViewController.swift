@@ -144,7 +144,6 @@ extension HomeViewController {
                 print(error as Any)
             }else {
                 self.homeTableView.reloadData()
-              
             }
         }
     }

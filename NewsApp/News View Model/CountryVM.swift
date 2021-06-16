@@ -10,8 +10,8 @@ import Foundation
 class CountryVM {
 
     static var shared = CountryVM()
+    
     var country = [CountryDM]()
-    var selectedCountry = [CountryDM]()
     
     private init() {}
     

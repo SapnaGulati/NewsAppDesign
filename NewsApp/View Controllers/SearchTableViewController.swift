@@ -11,7 +11,9 @@ class SearchTableViewController: UIViewController {
     
     // MARK: Data Initialization
     let data = ["Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data"]
+    var searchParams: String!
     var filteredData: [String]!
+    private var newsData : NewsDM!
     
     // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -99,6 +101,7 @@ extension SearchTableViewController: UISearchBarDelegate {
             filteredData = data
         }
         else {
+            searchParams = searchText
             for search in data {
                 if search.lowercased().contains(searchText.lowercased()) {
                     filteredData.append(search)
@@ -121,6 +124,7 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     func setupTableView() {
         self.searchTableView.delegate = self
         self.searchTableView.dataSource = self
+        self.callApiToGetArticles()
         self.searchTableView.layer.borderColor = UIColor.lightGray.cgColor
         self.searchTableView.layer.borderWidth = 0
         self.searchTableView.layer.cornerRadius = 12
@@ -153,7 +157,9 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchTableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        cell.textLabel?.text = filteredData[indexPath.row]
+        
+        cell.textLabel?.text = NewsVM.shared.newsData.articles[indexPath.row].title ?? ""
+//        cell.textLabel?.text = filteredData[indexPath.row]
         cell.textLabel?.font = UIFont(name: "Poppins-Medium", size: 15)
         cell.textLabel?.highlightedTextColor = UIColor(hexString: "#d9d3cc")
         let bgColorView = UIView()
@@ -186,5 +192,17 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         cell?.isHighlighted = false
         cell?.backgroundColor = UIColor(hexString: "#d6d4d3")
         cell?.textLabel?.textColor = UIColor(hexString: "#918e8c")
+    }
+}
+
+extension SearchTableViewController {
+    func callApiToGetArticles() {
+        NewsVM.shared.callApiToGetArticlesBySearch(searchParams: searchParams) { (message, error) in
+            if error != nil {
+                print(error as Any)
+            }else {
+                self.searchTableView.reloadData()
+            }
+        }
     }
 }

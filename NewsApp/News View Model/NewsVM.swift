@@ -21,12 +21,12 @@ class NewsVM {
     
     func callApiToGetArticlesByCounAndCat(selectedCountry: String, selectedCategory: String, response:@escaping responseCallBack){
         APIManager.callApiToGetArticlesByCounAndCat(selectedCountry: selectedCountry, selectedCategory: selectedCategory, successCallback: { (responseDict) in
-        let message = responseDict[APIKeys.kMessage] as? String ?? kSomethingWentWrong
-        if self.parseGetArticles(response: responseDict){
-            response(message, nil)
-        } else {
-            response(nil, nil)
-        }
+            let message = responseDict[APIKeys.kMessage] as? String ?? kSomethingWentWrong
+            if self.parseGetArticles(response: responseDict){
+                response(message, nil)
+            } else {
+                response(nil, nil)
+            }
     }) { (errorReason, error) in
             response(nil, APIManager.errorForNetworkErrorReason(errorReason: errorReason!))
         }
@@ -34,16 +34,29 @@ class NewsVM {
     
     func callApiToGetArticlesBySource(selectedSource: String, response:@escaping responseCallBack){
         APIManager.callApiToGetArticlesBySource(selectedSource: selectedSource, successCallback: { (responseDict) in
-        let message = responseDict[APIKeys.kMessage] as? String ?? kSomethingWentWrong
-        if self.parseGetArticles(response: responseDict){
-            response(message, nil)
-        } else {
-            response(nil, nil)
-        }
+            let message = responseDict[APIKeys.kMessage] as? String ?? kSomethingWentWrong
+            if self.parseGetArticles(response: responseDict){
+                response(message, nil)
+            } else {
+                response(nil, nil)
+            }
     }) { (errorReason, error) in
             response(nil, APIManager.errorForNetworkErrorReason(errorReason: errorReason!))
         }
     }
+    
+    func callApiToGetArticlesBySearch(searchParams: String, response:@escaping responseCallBack){
+        APIManager.callApiToGetArticlesBySearch(searchParams: searchParams, successCallback: { (responseDict) in
+            let message = responseDict[APIKeys.kMessage] as? String ?? kSomethingWentWrong
+            if self.parseGetArticles(response: responseDict){
+                response(message, nil)
+            } else {
+                response(nil, nil)
+            }
+        }) { (errorReason, error) in
+                response(nil, APIManager.errorForNetworkErrorReason(errorReason: errorReason!))
+            }
+        }
 }
 
 extension NewsVM{
