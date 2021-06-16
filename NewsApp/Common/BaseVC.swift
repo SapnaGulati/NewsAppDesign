@@ -1,748 +1,748 @@
-////
-////  BaseVC.swift
-////  DT MedNet
-////
-////  Created by IOS on 23/09/19.
-////  Copyright © 2019 Deftsoft. All rights reserved.
-////
 //
-//import UIKit
-//import AVKit
-//import Photos
-//import MobileCoreServices
-//import FloatRatingView
+//  BaseVC.swift
+//  DT MedNet
 //
-//@objc protocol PickerDelegate {
-//    @objc optional func didSelectItem(at index: Int, item: String)
-//    @objc optional func didSelectDate(date: Date)
-//    @objc optional func didPickDocument(url: URL)
-//}
+//  Created by IOS on 23/09/19.
+//  Copyright © 2019 Deftsoft. All rights reserved.
 //
-//class BaseVC: UIViewController {
+
+import UIKit
+import AVFoundation
+import CoreLocation
+import MapKit
+var skipNotificationAlert = false
+var skipLocationPermission = false
+ var enableMonitoring: Bool!
+class BaseVC: UIViewController{
+    
+    //MARK:- Variables
+   // static var user: User!
+    static var shared = BaseVC()
+    var locationManager = CLLocationManager()
+   
+    
+    var counter = 0
+    var appDelegate = UIApplication.shared.delegate as? AppDelegate
+    let EnteredRegionMessageNotificationId = "EnteredRegionNotification"
+    var latitude: Double?
+    var longitude: Double?
+    var counterState: Bool = false
+    
+    //MARK:- Class Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        debugPrint("********** MEMORY WARNING **********")
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared.memoryCapacity = 0
+        URLCache.shared.diskCapacity = 0
+    }
+}
+
+//MARK:- Navigation Methods
+extension BaseVC {
+    func hideNavigationBar() {
+//        UIApplication.shared.statusBarStyle = .lightContent
+        self.navigationController?.isNavigationBarHidden = true
+//        UIApplication.shared.statusBarView?.backgroundColor = UIColor.clear
+        
+    }
+    
+    //MARK:- Navigation Title
+//    func set(title:String, showBack: Bool = true, showMenuButton:Bool = false) {
 //
-//    static var user: User!
-//    var appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    var pickerView = UIPickerView()
-//    var datePickerView = UIDatePicker()
-//    var pickerTextfield : UITextField!
-//    var pickerDelegate: PickerDelegate?
-//    var pickerArray = [String]()
-//    var imageDict: [String: Data]?
-//    var videoDict: [String: Data]?
-//    var imageDictCreatePost: [[String: Data]]?
-//    var isChosenGallery: Bool = false
-//    // To get current region
-//    var currentCountry: String?
-//    var toolBar = UIToolbar()
-//    let searchTF = UITextField()
-//
-//    @IBInspectable var imageForEmptyScreen:UIImage = #imageLiteral(resourceName: "splash") {
-//        didSet {
-//            emptyview.imageView.image = imageForEmptyScreen
-//        }
-//    }
-//    @IBInspectable var titleForEmptyScreen:String = "" {
-//        didSet {
-//            emptyview.titleLabel.text = titleForEmptyScreen
-//        }
-//    }
-//    @IBInspectable var descriptionForEmptyScreen:String = "" {
-//        didSet {
-//            emptyview.descriptionLabel.text = descriptionForEmptyScreen
-//        }
-//    }
-//
-//
-//    lazy var emptyview:EmptyScreenView = EmptyScreenView(image: self.imageForEmptyScreen, title: self.titleForEmptyScreen, description: self.descriptionForEmptyScreen)
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        navigationController?.navigationBar.barStyle = .black
-//        getCurrentCountry()
-//    }
-//}
-//
-////MARK: Navigation Bar Methods
-//extension BaseVC {
-//
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
-//
-//    func setTitle(title: String, showBack: Bool = true, isLight: Bool = false, showGradient: Bool = false) {
 //        self.navigationController?.isNavigationBarHidden = false
 //        self.navigationController?.navigationBar.isHidden = false
-//        if showGradient{
-//            let image = self.navigationController?.navigationBar.setGradient(with: UIColor.CustomColor.darkBlue.color(), color2: UIColor.CustomColor.lightBlue.color())
-//            self.navigationController?.navigationBar.setBackgroundImage(image, for: .default)
-//        }else{
-//            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
-//        }
-//
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//       // self.navigationController?.navigationBar.isTranslucent = true
-//        self.navigationController?.navigationBar.layoutIfNeeded()
-//       // self.navigationController?.navigationBar.transparentNavigationBar()
-//        self.navigationController?.view.backgroundColor = .clear
-//        if UIDevice.current.userInterfaceIdiom == .pad{
-//            self.navigationController?.navigationBar.titleTextAttributes =
-//                [NSAttributedString.Key.foregroundColor: isLight ? UIColor.black: UIColor.white,
-//                 NSAttributedString.Key.font: UIFont.CustomFont.bold.font(size: 22.0)]
-//        }else{
-//            self.navigationController?.navigationBar.titleTextAttributes =
-//                [NSAttributedString.Key.foregroundColor: isLight ? UIColor.black: UIColor.white,
-//                 NSAttributedString.Key.font: UIFont.CustomFont.bold.font(size: 17.0)]
-//        }
-//        if let parent = self.parent, parent.isKind(of: UITabBarController.self) {
-//            self.parent?.title = title
-//        }
-//        else {
-//            self.title = title
-//        }
+//        self.navigationController?.navigationBar.barTintColor = UIColor.AppColor.navBarColor.color()
+//        self.navigationController?.navigationBar.isTranslucent = false
+//        self.navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
+//        self.navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .any, barMetrics: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
+//        let titleButton = UIButton(frame: CGRect(x: 50, y:0, width:110, height:30))
+//        titleButton.titleLabel?.textAlignment = .center
+//        titleButton.setTitle(title, for: .normal)
+//        titleButton.isUserInteractionEnabled = false
+//        titleButton.titleEdgeInsets = UIEdgeInsets(top: 3, left: 0, bottom: 7, right: 0)
+//        titleButton.setTitleColor(UIColor.AppColor.titleColor.color(), for: .normal)
+//        titleButton.titleLabel?.font = UIFont.CustomFont.bold.fontWithSize(size: 20.0)
+//        self.navigationItem.titleView = titleButton
 //        if showBack {
 //            self.setBackButton()
 //        }
 //        else {
-//            if self.parent!.isKind(of: UITabBarController.self) {
-//                self.parent!.navigationItem.leftBarButtonItem = nil
-//                self.parent!.navigationItem.leftBarButtonItems = nil
-//                self.parent!.navigationItem.hidesBackButton = true
-//            }
-//            else {
-//                self.navigationItem.leftBarButtonItem = nil
-//                self.navigationItem.leftBarButtonItems = nil
-//                self.navigationItem.hidesBackButton = true
-//            }
+//            self.navigationItem.hidesBackButton = true
+//        }
+//        if showMenuButton {
+//            self.setMenuButton()
 //        }
 //    }
 //
-//    func hideNavigationBar() {
-//        self.navigationController?.isNavigationBarHidden = true
-//    }
-//
-//    func hideRightButton() {
-//        if self.parent!.isKind(of: UITabBarController.self) {
-//            self.parent!.navigationItem.rightBarButtonItem = nil
-//            self.parent!.navigationItem.rightBarButtonItems = nil
-//        }
-//        else {
-//            self.navigationItem.rightBarButtonItem = nil
-//            self.navigationItem.rightBarButtonItems = nil
-//        }
-//    }
-//
-//    //MARK: Back Button
-//    func setBackButton(image: UIImage =  #imageLiteral(resourceName: "white_arrow")){
-//        let backButton = UIButton() //Custom back Button
-//        backButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-//        backButton.setImage(image, for: .normal)
-//        backButton.addTarget(self, action: #selector(self.backButtonAction), for: .touchUpInside)
+//    //MARK:- Back Button
+//    func setBackButton(){
+//        let backButton = UIButton()
+//        backButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+//        backButton.setImage(#imageLiteral(resourceName: "BackArrow"), for: UIControl.State.normal)
+//        backButton.addTarget(self, action: #selector(self.backButtonAction), for: UIControl.Event.touchUpInside)
+//        backButton.contentEdgeInsets = UIEdgeInsets(top: -10, left: -20, bottom: 0, right: 0)
 //        let leftBarButton = UIBarButtonItem()
 //        leftBarButton.customView = backButton
 //        self.navigationItem.leftBarButtonItem = leftBarButton
-//        if let parent = self.parent, parent.isKind(of: UITabBarController.self) {
-//            self.parent!.navigationItem.setLeftBarButtonItems([leftBarButton], animated: false)
-//        }
-//        else {
-//            self.navigationItem.setLeftBarButtonItems([leftBarButton], animated: false)
-//        }
-//    }
-//
-//    func setSearchBar(){
-//        let rightView = UIView() //Custom Right View
-//
-//         var imageView = UIImageView()
-//        imageView = UIImageView(frame: CGRect(x:8, y: 5, width: 60, height: 34))
-//        imageView.image = #imageLiteral(resourceName: "white-logo")
-//        imageView.contentMode = .scaleAspectFit
-//        rightView.addSubview(imageView)
-//
-//        rightView.frame = CGRect(x: 68, y: 0, width: 260, height: 35)
-//        rightView.backgroundColor = UIColor.white
-//        rightView.set(radius: 8.0)
-//        self.searchTF.becomeFirstResponder()
-//        searchTF.text = ""
-//        searchTF.frame = CGRect(x: 5, y: 0, width: 250, height: 30)
-//        searchTF.center = rightView.center
-//        searchTF.textColor = UIColor.black
-//        searchTF.tintColor = UIColor.black
-//
-//        rightView.addSubview(searchTF)
-//
-//        let leftBarButton = UIBarButtonItem()
-//        rightView.clipsToBounds = false
-//        leftBarButton.customView = rightView
-//        self.navigationItem.leftBarButtonItem = leftBarButton
-//        if let parent = self.parent, parent.isKind(of: UITabBarController.self) {
-//            self.parent!.navigationItem.setLeftBarButtonItems([leftBarButton], animated: false)
-//        }
-//        else {
-//            self.navigationItem.setLeftBarButtonItems([leftBarButton], animated: false)
-//        }
-//    }
-//
-//    func setLeftView(image: URL?, name: String?, designation: String?){
-//        let rightView = UIView() //Custom Right View
-//        let width = (self.navigationController?.navigationBar.frame.size.width ?? 250)-105
-//        rightView.frame = CGRect(x: 0, y: 0, width: width, height: 64)
-//
-//        var imageView = UIImageView()
-//        var imageButton = UIButton()
-//        var nameLabel = UILabel()
-//        var designationLabel = UILabel()
-//
-//        if UIDevice.current.userInterfaceIdiom == .pad{
-//            imageView = UIImageView(frame: CGRect(x: 2, y: 5, width: 70, height: 40))
-//            imageButton = UIButton(frame: CGRect(x: 5, y: 5, width: 170, height: 40))
-//            nameLabel = UILabel(frame: CGRect(x: 55, y: 0, width: 200, height: 30))
-//            designationLabel = UILabel(frame: CGRect(x: 55, y: 20, width: 200, height: 30))
-//           // imageView.set(radius: 20.0)
-//            nameLabel.font = UIFont.CustomFont.regular.font(size: 20.0)
-//            designationLabel.font = UIFont.CustomFont.regular.font(size: 18.0)
-//        }else{
-//            imageView = UIImageView(frame: CGRect(x:2, y: 0, width: 75, height: 40))
-//            imageButton = UIButton(frame: CGRect(x: 10, y: 5, width: 170, height: 34))
-//            nameLabel = UILabel(frame: CGRect(x: 57, y: 6, width: 200, height: 20))
-//            designationLabel = UILabel(frame: CGRect(x: 57, y: 22, width: 300, height: 20))
-//            //imageView.set(radius: imageView.half)
-//            nameLabel.font = UIFont.CustomFont.regular.font(size: 15.0)
-//            designationLabel.font = UIFont.CustomFont.regular.font(size: 12.0)
-//        }
-//        imageView.image = #imageLiteral(resourceName: "white-logo")
-//       // imageButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
-//
-////        let placeHolderImage =  #imageLiteral(resourceName: "userWhitePlaceholder")
-////        imageView.sd_setImage(with: image, placeholderImage: placeHolderImage, options: .refreshCached, context: nil)
-//
-//        imageView.contentMode = .scaleAspectFit
-//
-//        rightView.addSubview(imageView)
-//       // rightView.addSubview(imageButton)
-//
-//        nameLabel.text = name
-//        nameLabel.textColor = UIColor.white
-//
-//       //rightView.addSubview(nameLabel)
-//
-//        designationLabel.text = designation
-//        designationLabel.textColor = UIColor.white
-//
-//      //  rightView.addSubview(designationLabel)
-//
-//        rightView.set(radius: 8.0)
-//
-//        let searchView = UIView()
-//        let searchWidth = width - (80)
-//        searchView.frame = CGRect(x: 85, y: 6, width: searchWidth, height: 28)
-//        searchView.set(radius: 6.0)
-//        searchView.backgroundColor = UIColor.white
-//        //        self.searchTF.becomeFirstResponder()
-//        //        searchTF.text = ""
-//        searchTF.frame = CGRect(x: 5, y: 2, width: 180, height: 28)
-//        searchTF.textAlignment = .left
-//        searchTF.textColor = UIColor.black
-//        searchTF.font = UIFont.init(name: "Helvetica Neue", size: 13)
-//        searchTF.tintColor = UIColor.black
-//
-//        searchTF.keyboardAppearance = .light
-//        searchView.addSubview(searchTF)
-//        rightView.addSubview(searchView)
-//
-//        let leftBarButton = UIBarButtonItem()
-//        rightView.clipsToBounds = false
-//        leftBarButton.customView = rightView
-//        self.navigationItem.leftBarButtonItem = leftBarButton
-//        if let parent = self.parent, parent.isKind(of: UITabBarController.self) {
-//            self.parent!.navigationItem.setLeftBarButtonItems([leftBarButton], animated: false)
-//        }
-//        else {
-//            self.navigationItem.setLeftBarButtonItems([leftBarButton], animated: false)
-//        }
 //    }
 //
 //    @objc func backButtonAction() {
-//        let navObj = self.navigationController?.popViewController(animated: true)
-//        if navObj == nil {
+//        self.view.endEditing(true)
+//        let backDone = self.navigationController?.popViewController(animated: true)
+//        if backDone == nil {
 //            self.navigationController?.dismiss(animated: true, completion: nil)
-//            self.dismiss(animated: true, completion: nil)
 //        }
 //    }
 //
-//    @objc func openProfile(){
-//      //  let storyboard = UIStoryboard.storyboard(storyboard: .Profile)
-//        //let profileVC = storyboard.instantiateViewController(withIdentifier: kNewProfilePage) as! NewProfilePageVC
-//       // profileVC.userId = DataManager.id
-//        //profileVC.comeFrom = DataManager.userType ?? ""
-//       // self.navigationController?.pushViewController(profileVC, animated: true)
+//    //MARK: Side Menu
+//     func setMenuButton() {
+//        let menuButton = UIButton()
+//        menuButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+//        menuButton.setImage(#imageLiteral(resourceName: "Menu"), for: UIControl.State.normal)
+//        menuButton.addTarget(self, action: #selector(self.menuButtonAction), for: UIControl.Event.touchUpInside)
+//        menuButton.contentEdgeInsets = UIEdgeInsets(top: -10, left: -10 , bottom: 0, right: 0)
+//        let leftBarButton = UIBarButtonItem()
+//        leftBarButton.customView = menuButton
+//        self.navigationItem.leftBarButtonItem = leftBarButton
+//
+//    }
+//    @objc  func menuButtonAction(){
+//       openSideMenu()
 //    }
 //
-//    //MARK: Right Buttton
-//    func setRightButton(image: UIImage? = nil, title: String? = nil){
 //
-//        let backButton = UIButton() //Custom back Button
-//        backButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-//        backButton.tintColor = UIColor.white
-//        if title != nil {
-//            backButton.setTitle(title, for: .normal)
-//            backButton.setTitleColor(UIColor.white, for: .normal)
-//            if UIDevice.current.userInterfaceIdiom == .pad{
-//                backButton.titleLabel?.font = UIFont.CustomFont.regular.font(size: 20.0)
-//            }else{
-//                backButton.titleLabel?.font = UIFont.CustomFont.regular.font()
+//     func verifyUrl (urlString: String?) -> Bool {
+//        //Check for nil
+//        if let urlString = urlString {
+//            // create NSURL instance
+//            if let url = URL(string: urlString) {
+//                // check if your application can open the NSURL instance
+//                return UIApplication.shared.canOpenURL(url)
 //            }
+//        }
+//        return false
+//    }
 //
-//        }
-//        else {
-//            backButton.setImage(image, for: .normal)
-//        }
-//        backButton.addTarget(self, action: #selector(self.rightButtonAction(sender:)), for: .touchUpInside)
-//        let rightBarButton = UIBarButtonItem()
-//        rightBarButton.customView = backButton
-//        self.navigationItem.rightBarButtonItem = rightBarButton
-//        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-//        negativeSpacer.width = -10;
+}
 //
-//        if let parent = self.parent, parent.isKind(of: UITabBarController.self) {
-//            self.parent!.navigationItem.setRightBarButtonItems([rightBarButton, negativeSpacer], animated: false)
-//        }
-//        else {
-//            self.navigationItem.setRightBarButtonItems([rightBarButton, negativeSpacer], animated: false)
+////MARK:- Other Functions
+//extension BaseVC {
+//    func openSideMenu(){
+//        appDelegate?.sideMenu?.revealMenu()
+//    }
+//    func loadLeftSideMenu(){
+//        appDelegate?.loadSideMenu()
+//    }
+//    func navigateToLoginPage(){
+//        appDelegate?.navigateToLogin()
+//}
+//    func logoutFromApp(){
+//        showCustomAlert(title: "Logout", message: "Are You Sure to Log Out ?", cancelButtonTitle: "Cancel", doneButtonTitle: "Yes", cancelCallback: {
+//            print("removed")
+//        }) {
+//            self.callApiToLogout()
 //        }
 //    }
 //
-//    func setRightBarButtons(first:UIImage,second:UIImage){
-//        let firstButton = UIButton() //Custom first Button
-//        firstButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-//        firstButton.setImage(first, for: .normal)
-//        firstButton.tintColor = UIColor.white
+//    func isLocationAccessEnabled() {
+//          if CLLocationManager.locationServicesEnabled() {
+//             switch CLLocationManager.authorizationStatus() {
+//                case .notDetermined, .restricted, .denied:
+//             showCustomAlert(title: "Location", message: "Please enable location permissions in settings.", cancelButtonTitle: "No thanks", doneButtonTitle: "Open Settings", cancelCallback: {
+//                        skipLocationPermission = true
+//                    }) {
+//                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+//                    }
 //
-//        let secondButton = UIButton() //Custom second Button
-//        secondButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-//        secondButton.setImage(second, for: .normal)
-//        secondButton.tintColor = UIColor.white
+//             case .authorizedAlways, .authorizedWhenInUse:
+//                 print("authorised")
 //
-//
-//        firstButton.addTarget(self, action: #selector(self.rightButtonAction(sender:)), for: .touchUpInside)
-//        secondButton.addTarget(self, action: #selector(self.rightSecondButtonAction(sender:)), for: .touchUpInside)
-//        let rightBarButton = UIBarButtonItem()
-//        rightBarButton.customView = firstButton
-//
-//        let rightSecondBarButton = UIBarButtonItem()
-//        rightSecondBarButton.customView = secondButton
-//
-//        self.navigationItem.rightBarButtonItems = [rightBarButton,rightSecondBarButton]
-//
-//        if let parent = self.parent, parent.isKind(of: UITabBarController.self) {
-//            self.parent!.navigationItem.setRightBarButtonItems([rightBarButton,rightSecondBarButton], animated: false)
-//        }
-//        else {
-//            self.navigationItem.setRightBarButtonItems([rightBarButton,rightSecondBarButton], animated: false)
-//        }
-//    }
-//
-//    func setRightHomeBarButtons(first:UIImage,second:UIImage){
-//        let firstButton = UIButton() //Custom first Button
-//        firstButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-//        firstButton.setImage(first, for: .normal)
-//        firstButton.tintColor = UIColor.white
-//
-//        let secondButton = UIButton() //Custom second Button
-//        secondButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-//        secondButton.setImage(second, for: .normal)
-//        secondButton.tintColor = UIColor.white
-//
-//
-//        firstButton.addTarget(self, action: #selector(self.rightButtonAction(sender:)), for: .touchUpInside)
-//        secondButton.addTarget(self, action: #selector(self.rightSecondButtonAction(sender:)), for: .touchUpInside)
-//        let stackview = UIStackView.init(arrangedSubviews: [secondButton,firstButton])
-//        stackview.distribution = .equalSpacing
-//        stackview.axis = .horizontal
-//        stackview.alignment = .center
-//        stackview.spacing = 12
-//
-//        let rightBarButton = UIBarButtonItem(customView: stackview)
-//        self.navigationItem.rightBarButtonItem = rightBarButton
-//
-//        if let parent = self.parent, parent.isKind(of: UITabBarController.self) {
-//            self.parent!.navigationItem.setRightBarButtonItems([rightBarButton], animated: false)
-//        }
-//        else {
-//            self.navigationItem.setRightBarButtonItems([rightBarButton], animated: false)
-//        }
-//    }
-//
-//    @objc func rightButtonAction(sender: UIButton) {
-//
-//    }
-//
-//    @objc func rightSecondButtonAction(sender: UIButton){
-//
-//    }
-//
-//     //MARK: Custom Date Picker
-//       func setDatePicker(textField: UITextField, datePickerMode: UIDatePicker.Mode = .dateAndTime, maximunDate: Date? = nil, minimumDate: Date? = nil) {
-//           textField.inputView = datePickerView
-//           pickerTextfield = textField
-//           datePickerView.datePickerMode = datePickerMode
-//           if #available(iOS 13.4, *) {
-//            datePickerView.preferredDatePickerStyle = .wheels
-//           } else {
-//            // Fallback on earlier versions
+//             }
+//          } else {
+//           showCustomAlert(title: "Location", message: "Please enable location permissions in settings.", cancelButtonTitle: "No thanks", doneButtonTitle: "Open Settings", cancelCallback: {
+//            //   skipLocationPermission = true
+//           }) {
+//               UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
 //           }
-//           datePickerView.timeZone = NSTimeZone.local
-//           datePickerView.backgroundColor = UIColor.lightGray
-//           datePickerView.maximumDate = maximunDate
-//           datePickerView.minimumDate = minimumDate
-//           textField.text = datePickerView.date.string(format: .dmyDate2, type: .local)
-//           datePickerView.addTarget(self, action: #selector(self.didDatePickerViewValueChanged(sender:)), for: .valueChanged)
+//          }
 //       }
 //
-//    @objc func didDatePickerViewValueChanged(sender: UIDatePicker) {
-//        pickerTextfield.text = sender.date.string(format: .dmyDate2, type: .local)
-//        NotificationCenter.default.post(name: NSNotification.Name("calculateDays"), object: nil)
-//        pickerDelegate?.didSelectDate?(date: sender.date)
-//    }
-//
-////    func logout() {
-////        OnboardingVM.shared.logout { (message, error) in
-////            if error != nil {
-////                DataManager.accessToken = nil
-////                let storyboard = UIStoryboard.storyboard(storyboard: .Main)
-////                let vc = storyboard.instantiateViewController(withIdentifier: kLoginVC) as! LoginVC
-////                let navigationController = UINavigationController(rootViewController: vc)
-////                UIApplication.shared.keyWindow?.rootViewController = navigationController
-////            }
-////            else {
-////                DataManager.accessToken = nil
-////                let storyboard = UIStoryboard.storyboard(storyboard: .Main)
-////                let vc = storyboard.instantiateViewController(withIdentifier: kLoginVC) as! LoginVC
-////                let navigationController = UINavigationController(rootViewController: vc)
-////                UIApplication.shared.keyWindow?.rootViewController = navigationController
-////            }
-////        }
-////    }
-//
-//    //MARK: Empty Screen Implementation
-//    func showEmptyScreen(belowSubview subview: UIView? = nil, superView:UIView? = nil) {
-//        let baseView: UIView = superView ?? self.view
-//        emptyview.frame = CGRect(x: 0, y: 0, width: baseView.frame.width, height: baseView.frame.height)
-//        if let subview = subview {
-//            baseView.insertSubview(emptyview, belowSubview: subview)
-//        }
-//        else {
-//            baseView.addSubview(emptyview)
-//        }
-//    }
-//
-//    func hideEmptyScreen() {
-//        emptyview.removeFromSuperview()
-//    }
 //}
+
+
+// MARK:- Custom Alert Methods
+extension BaseVC {
+    func showCustomAlert(title: String? = kSuccess, message: String?,cancelButtonTitle: String? = nil, doneButtonTitle: String? = kOkay,cancelCallback: (() ->())? = nil,  doneCallback: (() ->())? = nil) {
+        let customAlert = CustomAlert(title: title, message: message, cancelButtonTitle: cancelButtonTitle, doneButtonTitle: doneButtonTitle)
+
+        customAlert.doneButton.addTarget(for: .touchUpInside) {
+            if doneCallback != nil { doneCallback!()}
+            customAlert.remove()
+        }
+
+        customAlert.cancelButton.addTarget(for: .touchUpInside) {
+
+            if cancelCallback != nil { cancelCallback!()}
+            customAlert.remove()
+        }
+
+        customAlert.show()
+    }
+
+    func showErrorMessage(error: Error?) {
+        /*
+         STATUS CODES:
+         200: Success (If request sucessfully done and data is also come in response)
+         204: No Content (If request successfully done and no data is available for response)
+         401: Unauthorized (If token got expired)
+         402: Block (If User blocked by admin)
+         403: Delete (If User deleted by admin)
+         406: Not Acceptable (If user is registered with the application but not verified)
+         */
+        let message = (error! as NSError).userInfo[APIKeys.kMessage] as? String ?? kSomethingWentWrong
+        self.showCustomAlert(title: kError, message: message, cancelButtonTitle: nil) {
+            //ok button action
+            let code = (error! as NSError).code
+            if code == 401 || code == 402 || code == 403 || code == 406 {
+                enableMonitoring = false
+            }
+        }
+    }
+
+
+}
 //
-////MARK: Alert Methods
+//// To Display view in landscape mode when device rotates
 //extension BaseVC {
 //
-//    func showAlert(title:String? = nil, message: String?, cancelTitle: String? = nil,  cancelAction: ButtonAction? = nil, okayTitle: String = kOkay, _ okayAction: ButtonAction? = nil,showTF:Bool? = nil, showImage:Bool? = nil,image:UIImage = #imageLiteral(resourceName: "tick")) {
-//        let alert = CustomAlert(title: title, message: message, cancelButtonTitle: cancelTitle, doneButtonTitle: okayTitle,image: image,showImage: showImage ?? true,showTF: showTF ?? true)
-//        alert.cancelButton.addTarget {
-//            cancelAction?()
-//            alert.remove()
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        super.traitCollectionDidChange(previousTraitCollection)
+//        switch UIDevice.current.orientation{
+//        case .portrait:
+//            print("POTRAIT")
+//            dismiss(animated: true)
+//        case .landscapeLeft,.landscapeRight:
+//            print("LANDSCAPE")
+//            let vc = LandscapeVC.instance
+//            vc.modalTransitionStyle = .crossDissolve
+//            vc.modalPresentationStyle = .overCurrentContext
+//            navigationController?.present(vc, animated: true)
+//        default:
+//            break
 //        }
-//        alert.doneButton.addTarget {
-//            okayAction?()
-//            alert.remove()
-//        }
-//        alert.show()
 //    }
-//
-//    func showCustomAlert(message: String?){
-//        let alert = CustomAlert(title: "Success", message: message)
-//        alert.cancelButton.addTarget {
-//            alert.remove()
-//        }
-//        alert.doneButton.addTarget {
-//            alert.remove()
-//        }
-//        alert.show()
-//    }
-//
-//    func showFilter() {
-//        let alert = FilterAlert()
-//        alert.cancelButton.addTarget {
-//            alert.remove()
-//        }
-//        alert.doneButton.addTarget {
-//            alert.remove()
-//        }
-//        alert.show()
-//    }
+//}
 //
 //
-//    func showErrorMessage(error: Error?, okayAction: ButtonAction? = nil) {
-//        /*
-//         STATUS CODES:
-//         200: Success (If request sucessfully done and data is also come in response)
-//         204: No Content (If request successfully done and no data is available for response)
-//         401: Unautorized (If token got expired)
-//         402: Block (If User blocked by admin)
-//         403: Delete (If User deleted by admin)
-//         406: Not Acceptable (If user is registered with the application but not verified)
-//         */
-//        let message = (error as NSError?)?.userInfo[APIKeys.kMessage] as? String ?? kErrorAlert
-//        let alert = CustomAlert(title: kError, message: message, cancelButtonTitle: nil, doneButtonTitle: kOkay, image: #imageLiteral(resourceName: "error"))
-//        alert.doneButton.addTarget {
-//            alert.remove()
-//            okayAction?()
-//            let code = (error! as NSError).code
-//            if code == 402 || code == 403 || code == 401 {
-//                self.logout()
+////MARK:- API's
+//extension BaseVC{
+//    func callApiToLogout(){
+//        UserVM.shared.callApiForLogout{ (message, error) in
+//            if error != nil {
+//                self.showErrorMessage(error: error)
+//            }else {
+//                self.locationManager.stopUpdatingLocation()
+//                DataManager.accessToken = ""
+////                for region in self.locationManager.monitoredRegions {
+////                    print(region)
+////                    self.locationManager.stopMonitoring(for: region)
+////                }
+//                enableMonitoring = false
+//                DataManager.notificationStatus = nil
+//                NotificationVM.shared.notificationListing.removeAll()
+//                self.navigateToLoginPage()
+//
+//
 //            }
 //        }
-//        alert.show()
+//    }
+//}
+//
+//extension BaseVC: CLLocationManagerDelegate {
+//
+//    func zoomToUserLocation( mapView: MKMapView) {
+//        latitude = locationManager.location?.coordinate.latitude
+//        longitude = locationManager.location?.coordinate.longitude
+//        let userLocationCenter = CLLocationCoordinate2D(latitude: latitude ?? 0, longitude: longitude ?? 0)
+//        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+//        let mapRegion = MKCoordinateRegion(center: userLocationCenter, span: span)
+//        mapView.setRegion(mapRegion, animated: true)
 //    }
 //
-//    func logout(){
-//        DataManager.loginStatus = false
-//        let storyboard = UIStoryboard.storyboard(storyboard: .Main)
-//        let loginvc = storyboard.instantiateViewController(withIdentifier: kLoginVC) as! LoginVC
-//        let nav = UINavigationController(rootViewController: loginvc)
-//        UIApplication.shared.windows.first?.rootViewController = nav
-//        UIApplication.shared.windows.first?.makeKeyAndVisible()
-//    }
 //
-//    func openSettings() {
-//        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-//            return
+//    func setupLocationManager() {
+//        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.startUpdatingLocation()
+//            locationManager.allowsBackgroundLocationUpdates = true
 //        }
-//        if UIApplication.shared.canOpenURL(settingsUrl) {
-//            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-//                print("Settings opened: \(success)")
-//            })
-//        }
+//
+//
+//   //     locationManager.startUpdatingLocation()
 //    }
 //
-//    static func getTimerComponents(saleEndTime: String) -> (min: Int, second: Int) {
-//        var hours = 00
-//        var minute = 00
-//        var sec = 00
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "mm:ss"
-//        if let date = dateFormatter.date(from: saleEndTime) {
-//            let calendar = Calendar.current
-//            let comp = calendar.dateComponents([.minute, .second], from: date)
-//            hours = comp.hour ?? 00
-//            minute = comp.minute ?? 00
-//            sec = comp.second ?? 00
+//    func geoFencingForHomeVC() {
+//        self.latitude = self.locationManager.location?.coordinate.latitude
+//        self.longitude = self.locationManager.location?.coordinate.longitude
+//        print(self.latitude ?? 0)
+//        print(self.longitude ?? 0)
+//
+//
+//        let lati = SideMenuListVM.shared.geoFencingData?.latitude ?? ""
+//        let longi = SideMenuListVM.shared.geoFencingData?.longitude ?? ""
+//        let businessLat = (lati as NSString).doubleValue
+//        let businessLong = (longi as NSString).doubleValue
+//        let destination = CLLocation(latitude: businessLat, longitude: businessLong)
+//        let current = CLLocation(latitude: self.latitude ?? 0, longitude: self.longitude ?? 0)
+//        let radiusDistance = current.distance(from: destination)
+//        let distanceMeters = Measurement(value: radiusDistance, unit: UnitLength.meters)
+//        let miles = distanceMeters.converted(to: UnitLength.miles).value.roundValue
+//        print(miles)
+//        if miles <= 3 {
+//            let geofenceRegionCenter =  CLLocationCoordinate2DMake(businessLat ,businessLong)
+//            let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                       radius: SideMenuListVM.shared.geoFencingData?.geoFencingRadius ?? 0.0,
+//                                                       identifier: "Beaver Deals")
+//            circularRegion.notifyOnEntry = true
+//            circularRegion.notifyOnExit = false
+//            locationManager.startMonitoring(for: circularRegion)
+//
 //        }
 //        else {
-//            let durationArray = saleEndTime.split(separator: ".")
-//            if durationArray.count > 0 {
-//                let hour = Int(durationArray[0]) ?? 0
-//                var min = 0
-//                if durationArray.count > 1 {
-//                    min = Int(durationArray[1]) ?? 0
-//                    if min > 0 {
-//                        min = 30
-//                    }
-//                }
-//                return (min, 0)
+//            let geofenceRegionCenter =  CLLocationCoordinate2DMake(businessLat ,businessLong)
+//            let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                       radius: SideMenuListVM.shared.geoFencingData?.geoFencingRadius ?? 0.0,
+//                                                       identifier: "Beaver Deals")
+//            locationManager.stopMonitoring(for: circularRegion)
+//        }
+//    }
+//
+//
+//    func setUpGeofenceForAllScreens() {
+//
+//        // GeoFencing For HomeVC
+//        geoFencingForHomeVC()
+//
+//        for business in SideMenuListVM.shared.businessListing {
+//            self.latitude = self.locationManager.location?.coordinate.latitude
+//            self.longitude = self.locationManager.location?.coordinate.longitude
+//            print(self.latitude ?? 0)
+//            print(self.longitude ?? 0)
+//
+//
+//            let lati = business.latitude ?? ""
+//            let longi = business.longitude ?? ""
+//            let businessLat = (lati as NSString).doubleValue
+//            let businessLong = (longi as NSString).doubleValue
+//            let destination = CLLocation(latitude: businessLat, longitude: businessLong)
+//            let current = CLLocation(latitude: self.latitude ?? 0, longitude: self.longitude ?? 0)
+//            let radiusDistance = current.distance(from: destination)
+//            let distanceMeters = Measurement(value: radiusDistance, unit: UnitLength.meters)
+//            let miles = distanceMeters.converted(to: UnitLength.miles).value.roundValue
+//            print(miles)
+//            if miles <= 3 {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(businessLat ,businessLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: business.geoFencingRadius ?? 0.0,
+//                                                           identifier: business.name ?? "")
+//                circularRegion.notifyOnEntry = true
+//                circularRegion.notifyOnExit = false
+//                locationManager.startMonitoring(for: circularRegion)
+//
+//            }
+//            else {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(businessLat ,businessLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: business.geoFencingRadius ?? 0.0,
+//                                                           identifier: business.name ?? "")
+//                locationManager.stopMonitoring(for: circularRegion)
+//            }
+//
+//        }
+//
+//        for discount in SideMenuListVM.shared.discountListing {
+//            self.latitude = self.locationManager.location?.coordinate.latitude
+//            self.longitude = self.locationManager.location?.coordinate.longitude
+//            print(self.latitude ?? 0)
+//            print(self.longitude ?? 0)
+//
+//
+//            let lati = discount.latitude ?? ""
+//            let longi = discount.longitude ?? ""
+//            let discountLat = (lati as NSString).doubleValue
+//            let discountLong = (longi as NSString).doubleValue
+//            let destination = CLLocation(latitude: discountLat, longitude: discountLong)
+//            let current = CLLocation(latitude: self.latitude ?? 0, longitude: self.longitude ?? 0)
+//            let radiusDistance = current.distance(from: destination)
+//            let distanceMeters = Measurement(value: radiusDistance, unit: UnitLength.meters)
+//            let miles = distanceMeters.converted(to: UnitLength.miles).value.roundValue
+//            print(miles)
+//            if miles <= 3 {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(discountLat ,discountLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: discount.geoFencingRadius ?? 0.0,
+//                                                           identifier: discount.discount_business_name ?? "")
+//                circularRegion.notifyOnEntry = true
+//                circularRegion.notifyOnExit = false
+//                locationManager.startMonitoring(for: circularRegion)
+//
+//            }
+//            else {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(discountLat ,discountLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: discount.geoFencingRadius ?? 0.0,
+//                                                           identifier: discount.discount_business_name ?? "")
+//                locationManager.stopMonitoring(for: circularRegion)
 //            }
 //        }
-//        return (minute, sec)
-//    }
-//}
 //
-////MARK: Set Data Pickers DataSource and Delegate Methods
-//extension BaseVC: UIPickerViewDelegate , UIPickerViewDataSource {
+//        for historical in SideMenuListVM.shared.historical {
+//            self.latitude = self.locationManager.location?.coordinate.latitude
+//            self.longitude = self.locationManager.location?.coordinate.longitude
+//            print(self.latitude ?? 0)
+//            print(self.longitude ?? 0)
 //
-//    //MARK: Custom Picker Methods
-//    func setPickerView(textField: UITextField, array: [String],checkAcademic:Bool? = false) {
-//        pickerView.delegate = self
-//        pickerView.dataSource = self
-//        pickerArray = array
-//        pickerTextfield = textField
 //
-//        //Set Picker View to Textfield
+//            let lati = historical.latitude ?? ""
+//            let longi = historical.longitude ?? ""
+//            let historicalLat = (lati as NSString).doubleValue
+//            let historicalLong = (longi as NSString).doubleValue
+//            let destination = CLLocation(latitude: historicalLat, longitude: historicalLong)
+//            let current = CLLocation(latitude: self.latitude ?? 0, longitude: self.longitude ?? 0)
+//            let radiusDistance = current.distance(from: destination)
+//            let distanceMeters = Measurement(value: radiusDistance, unit: UnitLength.meters)
+//            let miles = distanceMeters.converted(to: UnitLength.miles).value.roundValue
+//            print(miles)
+//            if miles <= 3 {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(historicalLat ,historicalLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: historical.geoFencingRadius ?? 0.0,
+//                                                           identifier: historical.name ?? "")
+//                circularRegion.notifyOnEntry = true
+//                circularRegion.notifyOnExit = false
+//                locationManager.startMonitoring(for: circularRegion)
 //
-//        textField.inputView = pickerView
-//        if !checkAcademic!{
-//            textField.text = pickerArray.first
+//            }
+//            else {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(historicalLat ,historicalLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: historical.geoFencingRadius ?? 0.0,
+//                                                           identifier: historical.name ?? "")
+//                locationManager.stopMonitoring(for: circularRegion)
+//            }
 //        }
-//        pickerView.reloadAllComponents()
-//        pickerView.selectRow(0, inComponent: 0, animated: false)
-//    }
 //
-//    @objc func onDoneButtonTapped() {
-//        toolBar.removeFromSuperview()
-//        pickerView.removeFromSuperview()
-//    }
+//        for golden in SideMenuListVM.shared.goldenBeaverListing {
+//            self.latitude = self.locationManager.location?.coordinate.latitude
+//            self.longitude = self.locationManager.location?.coordinate.longitude
+//            print(self.latitude ?? 0)
+//            print(self.longitude ?? 0)
 //
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
+//            let lati = golden.latitude ?? ""
+//            let longi = golden.longitude ?? ""
+//            let goldenLat = (lati as NSString).doubleValue
+//            let goldenLong = (longi as NSString).doubleValue
+//            let destination = CLLocation(latitude: goldenLat, longitude: goldenLong)
+//            let current = CLLocation(latitude: self.latitude ?? 0, longitude: self.longitude ?? 0)
+//            let radiusDistance = current.distance(from: destination)
+//            let distanceMeters = Measurement(value: radiusDistance, unit: UnitLength.meters)
+//            let miles = distanceMeters.converted(to: UnitLength.miles).value.roundValue
+//            print(miles)
+//            if miles <= 3 {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(goldenLat ,goldenLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: golden.geoFencingRadius ?? 0.0,
+//                                                           identifier: golden.name ?? "")
+//                circularRegion.notifyOnEntry = true
+//                circularRegion.notifyOnExit = false
+//                locationManager.startMonitoring(for: circularRegion)
 //
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return pickerArray.count
-//    }
+//            }
+//            else {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(goldenLat ,goldenLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: golden.geoFencingRadius ?? 0.0,
+//                                                           identifier: golden.name ?? "")
+//                locationManager.stopMonitoring(for: circularRegion)
+//            }
+//        }
 //
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return pickerArray[row]
-//    }
+//        for recreation in SideMenuListVM.shared.recreationListing {
+//            self.latitude = self.locationManager.location?.coordinate.latitude
+//            self.longitude = self.locationManager.location?.coordinate.longitude
+//            print(self.latitude ?? 0)
+//            print(self.longitude ?? 0)
 //
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        pickerDelegate?.didSelectItem?(at: row, item: pickerArray[row])
-//        self.pickerTextfield.text = pickerArray[row]
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePin"), object: nil)
+//            let lati = recreation.latitude ?? ""
+//            let longi = recreation.longitude ?? ""
+//            let recreationLat = (lati as NSString).doubleValue
+//            let recreationLong = (longi as NSString).doubleValue
+//            let destination = CLLocation(latitude: recreationLat, longitude: recreationLong)
+//            let current = CLLocation(latitude: self.latitude ?? 0, longitude: self.longitude ?? 0)
+//            let radiusDistance = current.distance(from: destination)
+//            let distanceMeters = Measurement(value: radiusDistance, unit: UnitLength.meters)
+//            let miles = distanceMeters.converted(to: UnitLength.miles).value.roundValue
+//            print(miles)
+//            if miles <= 3 {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(recreationLat ,recreationLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: recreation.geoFencingRadius ?? 0.0,
+//                                                           identifier: recreation.name ?? "")
+//                circularRegion.notifyOnEntry = true
+//                circularRegion.notifyOnExit = false
+//                locationManager.startMonitoring(for: circularRegion)
+//
+//            }
+//            else {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(recreationLat ,recreationLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: recreation.geoFencingRadius ?? 0.0,
+//                                                           identifier: recreation.name ?? "")
+//                locationManager.stopMonitoring(for: circularRegion)
+//            }
+//        }
+//
+//
+//        for calendar in SideMenuListVM.shared.calendarData {
+//            self.latitude = self.locationManager.location?.coordinate.latitude
+//            self.longitude = self.locationManager.location?.coordinate.longitude
+//            print(self.latitude ?? 0)
+//            print(self.longitude ?? 0)
+//
+//            let lati = calendar.latitude ?? ""
+//            let longi = calendar.longitude ?? ""
+//            let recreationLat = (lati as NSString).doubleValue
+//            let recreationLong = (longi as NSString).doubleValue
+//            let destination = CLLocation(latitude: recreationLat, longitude: recreationLong)
+//            let current = CLLocation(latitude: self.latitude ?? 0, longitude: self.longitude ?? 0)
+//            let radiusDistance = current.distance(from: destination)
+//            let distanceMeters = Measurement(value: radiusDistance, unit: UnitLength.meters)
+//            let miles = distanceMeters.converted(to: UnitLength.miles).value.roundValue
+//            print(miles)
+//            if miles <= 3 {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(recreationLat ,recreationLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: calendar.geoFencingRadius ?? 0.0,
+//                                                           identifier: calendar.eventName ?? "")
+//                circularRegion.notifyOnEntry = true
+//                circularRegion.notifyOnExit = false
+//                locationManager.startMonitoring(for: circularRegion)
+//
+//            }
+//            else {
+//                let geofenceRegionCenter =  CLLocationCoordinate2DMake(recreationLat ,recreationLong)
+//                let circularRegion = CLCircularRegion.init(center: geofenceRegionCenter,
+//                                                           radius: calendar.geoFencingRadius ?? 0.0,
+//                                                           identifier:calendar.eventName ?? "")
+//                locationManager.stopMonitoring(for: circularRegion)
+//            }
+//        }
+//
+//        print(locationManager.monitoredRegions)
 //    }
 //}
 //
-////MARK: Show image picker
-//extension BaseVC : UIPopoverPresentationControllerDelegate{
+//extension BaseVC: MKMapViewDelegate {
 //
-//    func showImagePicker(showVideo: Bool = false, showDocument: Bool = false) {
-//        let alert  = UIAlertController(title: "SELECT MEDIA", message: nil, preferredStyle: .actionSheet)
-//        alert.addAction(UIAlertAction(title: "GALLERY", style: .default, handler: {action in
-//            let photos = PHPhotoLibrary.authorizationStatus()
-//            if photos == .notDetermined || photos == .denied || photos == .restricted {
-//                PHPhotoLibrary.requestAuthorization({status in
-//                    DispatchQueue.main.async {
-//                        if status == .authorized {
-//                            CustomImagePickerView.sharedInstace.pickImageUsing(target: self, mode: .gallery, showVideo: showVideo)
-//                        }
-//                        else {
-//                            self.showAlert(message: "Please enable the photo library permission from the settings.", {
-//                                 self.openSettings()
-//                            })
-//                            return
-//                        }
+//    func fireNotification(notificationText: String,title: String, didEnter: Bool) {
+//        let notificationCenter = UNUserNotificationCenter.current()
+//         notificationCenter.getNotificationSettings { (settings) in
+//            if settings.alertSetting == .enabled {
+//                let content = UNMutableNotificationContent()
+//                content.title = didEnter ? title : title
+//                content.body = notificationText
+//                content.sound = UNNotificationSound.default
+//                content.badge = 1
+//                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+//
+//                let request = UNNotificationRequest(identifier: self.EnteredRegionMessageNotificationId, content: content, trigger: trigger)
+//
+//                notificationCenter.add(request, withCompletionHandler: { (error) in
+//                    if error != nil {
+//                        // Handle the error
 //                    }
 //                })
 //            }
-//            else {
-//                CustomImagePickerView.sharedInstace.pickImageUsing(target: self, mode: .gallery, showVideo: showVideo)
-//            }
-//        }))
-//        alert.addAction(UIAlertAction(title: "CAMERA", style: .default, handler: {action in
-//            AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
-//                self.isChosenGallery = false
-//                DispatchQueue.main.async {
-//                    if response {
-//                        CustomImagePickerView.sharedInstace.pickImageUsing(target: self, mode: .camera, showVideo: showVideo)
-//                    } else {
-//                        self.showAlert(message: "Please enable the camera permission from the settings.", {
-//                            self.openSettings()
-//                        })
-//                        return
-//                    }
-//                }
-//            }
-//        }))
-//        if showDocument {
-//            alert.addAction(UIAlertAction(title: "DOCUMENT", style: .default, handler: {action in
-//                let types = [kUTTypePDF]
-//                let importMenu = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
-//                importMenu.allowsMultipleSelection = false
-//                importMenu.delegate = self as! UIDocumentPickerDelegate
-//                importMenu.modalPresentationStyle = .formSheet
-//                self.present(importMenu, animated: true, completion: nil)
-//            }))
 //        }
-//        alert.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: nil))
-//        if UIDevice.current.userInterfaceIdiom == .pad{
-//            alert.popoverPresentationController?.sourceView = self.view
-//            alert.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: 270, width: 1, height: 1)
-//            alert.popoverPresentationController?.permittedArrowDirections = []
-//        }
-//        self.present(alert, animated: true, completion: nil)
 //    }
 //
-//   @objc func openGallery() {
-//    isChosenGallery = true
-//        let photos = PHPhotoLibrary.authorizationStatus()
-//        if photos == .notDetermined || photos == .denied || photos == .restricted {
-//            PHPhotoLibrary.requestAuthorization({status in
-//                DispatchQueue.main.async {
-//                    if status == .authorized {
-//                        CustomImagePickerView.sharedInstace.pickImageUsing(target: self, mode: .gallery)
-//                    }
-//                    else {
-//                        self.showAlert(message: "Please enable the library permission from the settings.", {
-//                            self.openSettings()
-//                        })
-//                        return
-//                    }
-//                }
-//            })
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        //print("updating locations")
+//        //we will right back
+//        if enableMonitoring == true {
+//            if counterState == true {
+//                counter += 1
+//                print(counter)
+//       //         if counter == 10 {
+//                    self.setUpGeofenceForAllScreens()
+//                    counter = 0
+//       //         }
+//            }
 //        }
 //        else {
-//            CustomImagePickerView.sharedInstace.pickImageUsing(target: self, mode: .gallery)
+//             locationManager.stopUpdatingLocation()
 //        }
 //    }
 //
-//    func getThumbnailFromDispatch(path: URL, completion: @escaping ((_ image: UIImage?)->Void)) {
-//        DispatchQueue.global().async {
-//            do {
-//                let asset = AVURLAsset(url: path , options: nil)
-//                let imgGenerator = AVAssetImageGenerator(asset: asset)
-//                imgGenerator.appliesPreferredTrackTransform = true
-//                let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
-//                let thumbnail = UIImage(cgImage: cgImage)
-//                DispatchQueue.main.async {
-//                    completion(thumbnail)
+//
+//
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//        //we will right back
+//        if (status == CLAuthorizationStatus.authorizedAlways) {
+//                counterState = true
+//
+//            }
+//
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+//    //    showCustomAlert(title: region.identifier, message: "you are around \(region.identifier) Area.")
+//        let date = Date()
+//        let stringDate = date.stringFromDate(outputFormat: .dateTime, type: .utc)
+//        print(region.identifier)
+//
+//        if region.identifier == "Beaver Deals" {
+//            let notificationText = SideMenuListVM.shared.geoFencingData?.geofencingMessage ?? ""
+//            fireNotification(notificationText: notificationText, title: region.identifier, didEnter: true)
+//            if DataManager.notificationStatus == 1 {
+//                CoreDataManager.saveLocalGeoNotificationData(title: notificationText, body: stringDate)
+//            }
+//        }
+//
+//        for business in SideMenuListVM.shared.businessListing {
+//            if business.name == region.identifier && business.geofencingStatus == 1 {
+//                let notificationText = "\(region.identifier) \(business.geofencingMessage ?? "")"
+//                fireNotification(notificationText: notificationText, title: region.identifier, didEnter: true)
+//                if DataManager.notificationStatus == 1 {
+//                    CoreDataManager.saveLocalGeoNotificationData(title: notificationText, body: stringDate)
 //                }
-//            } catch let error {
-//                print("*** Error generating thumbnail: \(error.localizedDescription)")
-//                DispatchQueue.main.async {
-//                    completion(nil)
+////                CoreDataManager.saveLocalGeoNotificationData(title: "Notification", body: "This is new Notification")
+//            }
+//        }
+//
+//        for discount in SideMenuListVM.shared.discountListing {
+//            if discount.discount_business_name == region.identifier && discount.geofencingStatus == 1 {
+//                let notificationText = "\(region.identifier) \(discount.geofencingMessage ?? "")"
+//                fireNotification(notificationText: notificationText, title: region.identifier, didEnter: true)
+//                if DataManager.notificationStatus == 1 {
+//                    CoreDataManager.saveLocalGeoNotificationData(title: notificationText, body: stringDate)
 //                }
 //            }
 //        }
-//    }
 //
-//    func getThumbnailFrom(path: URL) -> UIImage? {
-//        do {
-//            let asset = AVURLAsset(url: path , options: nil)
-//            let imgGenerator = AVAssetImageGenerator(asset: asset)
-//            imgGenerator.appliesPreferredTrackTransform = true
-//            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
-//            let thumbnail = UIImage(cgImage: cgImage)
-//            return thumbnail
-//        } catch let error {
-//            print("*** Error generating thumbnail: \(error.localizedDescription)")
-//            return nil
+//        for historical in SideMenuListVM.shared.historical {
+//            if historical.name == region.identifier && historical.geofencingStatus == 1 {
+//                let notificationText = "\(region.identifier) \(historical.geofencingMessage ?? "")"
+//                fireNotification(notificationText: notificationText, title: region.identifier, didEnter: true)
+//                if DataManager.notificationStatus == 1 {
+//                    CoreDataManager.saveLocalGeoNotificationData(title: notificationText, body: stringDate)
+//                }
+//            }
 //        }
-//    }
-//
-//    @objc func shareText(message: String) {
-//        let activityViewController = UIActivityViewController(activityItems: [message], applicationActivities: nil)
-//        activityViewController.popoverPresentationController?.sourceView = self.view
-//        self.present(activityViewController, animated: true, completion: nil)
-//    }
-//
-//}
-//
-//extension BaseVC{
-//
-//    func getCurrentCountry(){
-//        let countryLocale = NSLocale.current
-//        let countryCode = countryLocale.regionCode
-//        var country = (countryLocale as NSLocale).displayName(forKey: NSLocale.Key.countryCode, value: countryCode)
-//        if country == "United States" {
-//            country  = "USA"
+//        for golden in SideMenuListVM.shared.goldenBeaverListing {
+//            if golden.name == region.identifier && golden.geofencingStatus == 1 {
+//                let notificationText = "\(region.identifier) \(golden.geofencingMessage ?? "")"
+//                fireNotification(notificationText: notificationText, title: region.identifier, didEnter: true)
+//                if DataManager.notificationStatus == 1 {
+//                    CoreDataManager.saveLocalGeoNotificationData(title: notificationText, body: stringDate)
+//                }
+//            }
 //        }
-//       // DataManager.currentCountry = country ?? ""
-//        currentCountry = country ?? ""
+//        for recreation in SideMenuListVM.shared.recreationListing {
+//            if recreation.name == region.identifier && recreation.geofencingStatus == 1 {
+//                let notificationText = "\(region.identifier) \(recreation.geofencingMessage ?? "")"
+//                fireNotification(notificationText: notificationText, title: region.identifier, didEnter: true)
+//                if DataManager.notificationStatus == 1 {
+//                    CoreDataManager.saveLocalGeoNotificationData(title: notificationText, body: stringDate)
+//                }
+//            }
+//
+//        }
+//        for calendar in SideMenuListVM.shared.calendarData {
+//            if calendar.eventName == region.identifier && calendar.geofencingStatus == 1{
+//                let notificationText = "\(region.identifier) \(calendar.geofencingMessage ?? "")"
+//                fireNotification(notificationText: notificationText, title: region.identifier, didEnter: true)
+//                if DataManager.notificationStatus == 1 {
+//                    CoreDataManager.saveLocalGeoNotificationData(title: notificationText, body: stringDate)
+//                }
+//            }
+//        }
+////        let notificationText = "You are around \(region.identifier) area."
+////        let notificationText = "\(region.identifier) \(SideMenuListVM.shared.geoFencingMessage)"
+////        fireNotification(notificationText: notificationText, title: region.identifier, didEnter: true)
+////        self.createLocalNotification(message: EnteredRegionMessage, identifier: EnteredRegionMessageNotificationId,title: localGeoNotificationTitle)
 //    }
+//
+//    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+//        print(region.identifier)
+//    //    locationManager.stopMonitoring(for: region)
+//        print("Stop Monitoring Region: \(region.identifier)")
+////        showCustomAlert(title: region.identifier, message: "Thanks for the visit in \(region.identifier)")
+////        let notificationText = "Thanks for the visit in \(region.identifier)"
+////        fireNotification(notificationText: notificationText, title: region.identifier , didEnter: false)
+//
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+//        print("Started Monitoring Region: \(region.identifier)")
+//    }
+//
+//    //MARK: - MKMapViewDelegate
+//      func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//          let overlayRenderer : MKCircleRenderer = MKCircleRenderer(overlay: overlay);
+//          overlayRenderer.lineWidth = 4.0
+//        overlayRenderer.strokeColor = UIColor(red: 0.0/255.0, green: 203.0/255.0, blue: 208.0/255.0, alpha: 1)
+//        overlayRenderer.fillColor = UIColor(red: 7.0/255.0, green: 106.0/255.0, blue: 255.0/255.0, alpha: 1)
+//        overlayRenderer.alpha = 0.5
+//
+//          return overlayRenderer
+//      }
 //}
 //
-//extension UINavigationBar {
-//    func transparentNavigationBar() {
-////    self.setBackgroundImage(UIImage(), for: .default)
-////    self.shadowImage = UIImage()
-//    self.isTranslucent = true
-//    }
-//}
+//extension BaseVC {
+//      func isLocationEnabled(lat: CLLocationDegrees, long: CLLocationDegrees, title: String) {
+//              if CLLocationManager.locationServicesEnabled() {
+//                 switch CLLocationManager.authorizationStatus() {
+//                    case .notDetermined, .restricted, .denied:
+//                 showCustomAlert(title: "Location", message: "Please enable location permissions in settings.", cancelButtonTitle: "No thanks", doneButtonTitle: "Open Settings", cancelCallback: {
+//                            skipLocationPermission = true
+//                        }) {
+//                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+//                        }
 //
+//                    case .authorizedAlways, .authorizedWhenInUse:
+//                            LocationManager.shared.askPermissionsAndFetchLocationWithCompletion { (location, placeMark, error) in
+//                           guard location != nil else {return}
+//                           let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude:(location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)))
+//                           source.name = "CurrentLocation"
+//                           let latitude = Double(lat)
+//                           let longitude = Double(long)
+//    //                       let latitude = (self.locationLatitude! as NSString).doubleValue
+//    //                       let longitude = (self.locationLongitude! as NSString).doubleValue
+//                           let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: latitude , longitude: longitude)))
+//                           destination.name = title
+//                           MKMapItem.openMaps(with: [source, destination ], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+//                       }
+//
+//                 }
+//              } else {
+//               showCustomAlert(title: "Location", message: "Please enable location permissions in settings.", cancelButtonTitle: "No thanks", doneButtonTitle: "Open Settings", cancelCallback: {
+//                   skipLocationPermission = true
+//               }) {
+//                   UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+//               }
+//              }
+//           }
+//}

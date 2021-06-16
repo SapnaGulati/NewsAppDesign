@@ -110,7 +110,8 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
         view.addSubview(sourcesTable)
         sourcesTable.delegate = self
         sourcesTable.dataSource = self
-        self.getSources()
+//        self.getSources()
+//        self.callA
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -144,14 +145,24 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SourcesViewController {
-    func getSources() {
-        self.present(self.loadingVC, animated: true, completion: nil)
-        SourcesVM.shared.getSources() { (newsSources) in
-            self.newsSources = newsSources
-            self.sourcesTable.delegate = self
-            self.sourcesTable.dataSource = self
-            self.sourcesTable.reloadData()
-            self.dismiss(animated: true, completion: nil)
+    func callApiToGetSources(){
+        SourcesVM.shared.callApiToGetSources() { (message, error) in
+            if error != nil {
+                self.showErrorMessage(error: error)
+            }else {
+                self.sourcesTable.reloadData()
+              
+            }
         }
     }
+//    func getSources() {
+//        self.present(self.loadingVC, animated: true, completion: nil)
+//        SourcesVM.shared.getSources() { (newsSources) in
+//            self.newsSources = newsSources
+//            self.sourcesTable.delegate = self
+//            self.sourcesTable.dataSource = self
+//            self.sourcesTable.reloadData()
+//            self.dismiss(animated: true, completion: nil)
+//        }
+//    }
 }

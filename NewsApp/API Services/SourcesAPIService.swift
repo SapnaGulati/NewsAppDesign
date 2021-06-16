@@ -9,7 +9,7 @@ import Foundation
 
 enum SourcesAPIService: APIService {
     
-    case getSources(dict:JSONDictionary)
+    case getSources
 
     var path: String{
         var path = ""
@@ -24,14 +24,24 @@ enum SourcesAPIService: APIService {
         var resource : Resource!
         let header  = [APIKeys.kAuthorizationToken:"Bearer \(DataManager.accessToken ?? "")","Accept":"application/json"]
         switch self {
-        case let .getSources(dict):
-            resource = Resource(method: .post, parameters: dict, headers: nil)
+        case .getSources:
+            resource = Resource(method: .get, parameters: nil, headers: header)
         }
         return resource
     }
 }
 
-//extension APIManager{
+extension APIManager{
+    
+    class func callApiToGetSources(successCallback:@escaping JSONDictionaryResponseCallback,failureCallBack:@escaping APIServiceFailureCallback){
+        SourcesAPIService.getSources.request(success: { (response) in
+            if let responseDict = response as? JSONDictionary {
+                successCallback(responseDict)
+            }else{
+                successCallback([:])
+            }
+        }, failure: failureCallBack)
+    }
 //    class func callApiForSources( successCallback: @escaping JSONDictionaryResponseCallback, failureCallback: @escaping APIServiceFailureCallback){
 //        SourcesAPIService.getSources.request( success: { (response) in
 //            if let responseDict = response as? JSONDictionary {
@@ -41,4 +51,4 @@ enum SourcesAPIService: APIService {
 //                successCallback([:])
 //            }
 //        }, failure: failureCallback)
-//}
+}

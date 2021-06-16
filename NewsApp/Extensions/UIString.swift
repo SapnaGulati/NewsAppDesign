@@ -9,6 +9,41 @@ import Foundation
 import UIKit
 
 extension String {
+    var amountValue: String {
+        return "$\(self)"
+    }
+
+    func attributedText() -> NSMutableAttributedString {
+        
+        let attributedString = NSMutableAttributedString(string: self)
+        
+        // *** Create instance of `NSMutableParagraphStyle`
+        let paragraphStyle = NSMutableParagraphStyle()
+        
+        // *** set LineSpacing property in points ***
+        paragraphStyle.lineSpacing = 1.6
+        paragraphStyle.alignment = .center
+        
+        // *** Apply attribute to string ***
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        
+        return attributedString
+    }
+    var numberOfWords: Int {
+        let inputRange = CFRangeMake(0, utf16.count)
+        let flag = UInt(kCFStringTokenizerUnitWord)
+        let locale = CFLocaleCopyCurrent()
+        let tokenizer = CFStringTokenizerCreate(kCFAllocatorDefault, self as CFString, inputRange, flag, locale)
+        var tokenType = CFStringTokenizerAdvanceToNextToken(tokenizer)
+        var count = 0
+        
+        while tokenType != [] {
+            count += 1
+            tokenType = CFStringTokenizerAdvanceToNextToken(tokenizer)
+        }
+        return count
+    }
+    
     func image() -> UIImage? {
         let size = CGSize(width: 30, height: 30)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)

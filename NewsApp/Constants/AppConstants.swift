@@ -8,3 +8,7 @@
 import Foundation
 
 var BASEURL = "https://newsapi.org/v2/"
+let kSomethingWentWrong = "Something went wrong."
+let kError = "Error"
+let kOkay = "Okay"
+let kSuccess = "Success"
