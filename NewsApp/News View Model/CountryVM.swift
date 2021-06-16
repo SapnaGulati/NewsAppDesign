@@ -9,10 +9,11 @@ import Foundation
 
 class CountryVM {
 
-static var shared = CountryVM()
-private init() {}
-var country = [CountryDM]()
-var selectedCountry = [CountryDM]()
+    static var shared = CountryVM()
+    var country = [CountryDM]()
+    var selectedCountry = [CountryDM]()
+    
+    private init() {}
     
     func callApiForCountry( response: @escaping responseCallBack){
            APIManager.callApiForCountry( successCallback: { (responseDict) in

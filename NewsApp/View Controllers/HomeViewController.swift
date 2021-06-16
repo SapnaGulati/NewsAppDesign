@@ -31,9 +31,6 @@ class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         setupNavigationBarItems()
         self.setupTableView()
-        let selectedCategory = Selection.instance.selectedCategory
-        let selectedCountry = Selection.instance.selectedCountryCode
-        self.getArticles(selectedCategory: selectedCategory, selectedCountry: selectedCountry)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,6 +80,7 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         self.homeTableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
+        self.callApiToGetArticles()
     }
     
     // MARK: Table View Delegate Function
@@ -139,14 +137,15 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
 }
 
 extension HomeViewController {
-    func getArticles(selectedCategory: String, selectedCountry: String) {
-        self.present(self.loadingVC, animated: true, completion: nil)
-        NewsVM.shared.getArticles(selectedCategory: selectedCategory, selectedCountry: selectedCountry) { (newsData) in
-            self.newsData = newsData
-            self.homeTableView.delegate = self
-            self.homeTableView.dataSource = self
-            self.homeTableView.reloadData()
-            self.dismiss(animated: true, completion: nil)
+    func callApiToGetArticles() {
+        NewsVM.shared.callApiToGetArticlesByCounAndCat(selectedCountry: Selection.instance.selectedCountry, selectedCategory: Selection.instance.selectedCategory) { (message, error) in
+            if error != nil {
+        //                self.showErrorMessage(error: error)
+                print(error as Any)
+            }else {
+                self.homeTableView.reloadData()
+              
+            }
         }
     }
 }

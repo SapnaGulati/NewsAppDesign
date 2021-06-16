@@ -110,7 +110,6 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
         view.addSubview(sourcesTable)
         sourcesTable.delegate = self
         sourcesTable.dataSource = self
-//        self.getSources()
         self.callApiToGetSources()
     }
     
@@ -156,14 +155,4 @@ extension SourcesViewController {
             }
         }
     }
-//    func getSources() {
-//        self.present(self.loadingVC, animated: true, completion: nil)
-//        SourcesVM.shared.getSources() { (newsSources) in
-//            self.newsSources = newsSources
-//            self.sourcesTable.delegate = self
-//            self.sourcesTable.dataSource = self
-//            self.sourcesTable.reloadData()
-//            self.dismiss(animated: true, completion: nil)
-//        }
-//    }
 }

@@ -29,7 +29,6 @@ class NewsViewController: UIViewController {
         
         setupTableView()
         setupNavigationBarItems(title: Selection.instance.selectedSourceName)
-        self.getArticles(selectedSource: Selection.instance.selectedSourceId)
     }
     
     // MARK: Custom Navigation Bar
@@ -64,6 +63,7 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
         self.newsTableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.newsTableView.delegate = self
         self.newsTableView.dataSource = self
+        self.callApiToGetArticles()
     }
     
     // MARK: Table View Delegate Function
@@ -111,14 +111,16 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
 }
 
 extension NewsViewController {
-    func getArticles(selectedSource: String) {
-        self.present(self.loadingVC, animated: true, completion: nil)
-        NewsVM.shared.getArticles(selectedSource: selectedSource) { (newsData) in
-            self.newsData = newsData
-            self.newsTableView.delegate = self
-            self.newsTableView.dataSource = self
-            self.newsTableView.reloadData()
-            self.dismiss(animated: true, completion: nil)
+    
+    func callApiToGetArticles() {
+        NewsVM.shared.callApiToGetArticlesBySource(selectedSource: Selection.instance.selectedSourceId) { (message, error) in
+            if error != nil {
+        //                self.showErrorMessage(error: error)
+                print(error as Any)
+            }else {
+                self.newsTableView.reloadData()
+              
+            }
         }
     }
 }

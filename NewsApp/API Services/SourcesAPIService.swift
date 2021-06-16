@@ -42,13 +42,4 @@ extension APIManager{
             }
         }, failure: failureCallBack)
     }
-//    class func callApiForSources( successCallback: @escaping JSONDictionaryResponseCallback, failureCallback: @escaping APIServiceFailureCallback){
-//        SourcesAPIService.getSources.request( success: { (response) in
-//            if let responseDict = response as? JSONDictionary {
-//                successCallback(responseDict)
-//
-//            }else {
-//                successCallback([:])
-//            }
-//        }, failure: failureCallback)
 }
