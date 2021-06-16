@@ -11,7 +11,7 @@ class SearchTableViewController: UIViewController {
     
     // MARK: Data Initialization
     let data = ["Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data"]
-    var searchParams: String!
+    var searchParams: String = ""
     var filteredData: [String]!
     private var newsData : NewsDM!
     
@@ -32,7 +32,11 @@ class SearchTableViewController: UIViewController {
         searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
         searchView.layer.cornerRadius = 22
         searchView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        tableViewHeight.constant = CGFloat((self.filteredData.count) * 40)
+        if(CGFloat((self.filteredData.count) * 40) <= self.view.frame.height/2.5) {
+            tableViewHeight.constant = CGFloat((self.filteredData.count) * 40)
+        } else {
+            tableViewHeight.constant = self.view.frame.height/2.5
+        }
     }
     
     @IBAction func doneButton(_ sender: Any) {
@@ -95,6 +99,7 @@ class SearchTableViewController: UIViewController {
 // MARK: Search Bar Data Update
 extension SearchTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.callApiToGetArticles()
         filteredData = []
         
         if searchText == "" {
@@ -142,7 +147,8 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(filteredData.count == 0) {
+//        if(filteredData.count == 0) {
+        if(NewsVM.shared.newsData.articles.count == 0) {
             searchView.backgroundColor = .none
             searchBar.layer.borderWidth = 2
             if #available(iOS 13.0, *) {
@@ -152,7 +158,8 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         else {
             searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
         }
-        return filteredData.count
+//        return filteredData.count
+        return NewsVM.shared.newsData.articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -204,17 +204,17 @@ extension SelectCountryViewController: UISearchBarDelegate{
     
     // MARK: Search Bar Data Update
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredData = [CountryDM]()
-        
-        if searchText == "" {
-            filteredData = countries
-            print(filteredData)
+        self.filteredData.removeAll()
+        if(searchBar.text?.isEmpty)! {
+            self.filteredData = self.countries
         }
         else {
-            for character in countries {
-                if ((character.name?.lowercased().contains(searchText.lowercased())) != nil) {
-                    filteredData.append(character)
-                    print(filteredData)
+            if self.countries.count > 0 {
+                for i in 0...self.countries.count - 1 {
+                    let coun = self.countries[i]
+                    if coun.name?.range(of: searchBar.text!, options: .caseInsensitive) != nil {
+                        self.filteredData.append(coun)
+                    }
                 }
             }
         }
