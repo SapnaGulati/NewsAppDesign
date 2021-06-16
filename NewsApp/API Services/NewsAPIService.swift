@@ -72,7 +72,7 @@ extension APIManager{
         }, failure: failureCallBack)
     }
     
-    class func callApiToGetArticlesBySearch(searchParams: String, successCallback:@escaping JSONArrayResponseCallback, failureCallBack:@escaping APIServiceFailureCallback){
+    class func callApiToGetArticlesBySearch(searchParams: String, successCallback:@escaping JSONDictionaryResponseCallback, failureCallBack:@escaping APIServiceFailureCallback){
         NewsAPIService.callApiToGetArticlesBySearch(searchParams: searchParams).request( success: { (response) in
             if let responseDict = response as? JSONDictionary {
                 successCallback(responseDict)
