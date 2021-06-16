@@ -258,10 +258,9 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let code = CountryCode.shared.getCode(country: filteredData[indexPath.row].name!)
         Selection.instance.selectedCountry = filteredData[indexPath.row].name ?? ""
-        Selection.instance.selectedCountryCode = filteredData[indexPath.row].code ?? ""
-        print(Selection.instance.selectedCountryCode)
-//        countryFlagEmoji.get([countryCode])
+        Selection.instance.selectedCountryCode = code
         delegate?.setCountry(cName: Selection.instance.selectedCountry)
         
         if comeFrom == .SelectCategory {
