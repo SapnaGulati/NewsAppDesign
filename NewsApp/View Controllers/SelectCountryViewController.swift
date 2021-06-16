@@ -55,13 +55,11 @@ class SelectCountryViewController: UIViewController {
     // MARK: Keyboard Functions
     @objc func keyboardWillShow(notification: Notification) {
         if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
-            print("Notification: Keyboard will show")
             self.countryTableView.setBottomInset(to: keyboardHeight)
         }
     }
 
     @objc func keyboardWillHide(notification: Notification) {
-        print("Notification: Keyboard will hide")
         self.countryTableView.setBottomInset(to: 0.0)
     }
     
@@ -244,18 +242,14 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
-//        return countries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = countryTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CountryCell
         cell.countryNameLabel.text = filteredData[indexPath.row].name
         let flagString: String?
-        flagString = CountryCode.shared.getFlag(country: countries[indexPath.row].name!)
-//        print(flagString as Any)
+        flagString = CountryCode.shared.getFlag(country: filteredData[indexPath.row].name!)
         cell.countryImageView.image = flagString?.image()
-//        cell.countryImageView.image = UIImage(named: flagString ?? "")
-//        cell.countryImageView.image = UIImage(named: countries[indexPath.row].name ?? "")
         return cell
     }
 
@@ -266,6 +260,8 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Selection.instance.selectedCountry = filteredData[indexPath.row].name ?? ""
         Selection.instance.selectedCountryCode = filteredData[indexPath.row].code ?? ""
+        print(Selection.instance.selectedCountryCode)
+//        countryFlagEmoji.get([countryCode])
         delegate?.setCountry(cName: Selection.instance.selectedCountry)
         
         if comeFrom == .SelectCategory {

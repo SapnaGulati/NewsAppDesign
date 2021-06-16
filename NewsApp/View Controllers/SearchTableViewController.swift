@@ -191,6 +191,8 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor(hexString: "#555454")
         cell?.selectedBackgroundView = bgColorView
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "NewsViewController") as! NewsViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
