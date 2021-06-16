@@ -138,7 +138,7 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
 
 extension HomeViewController {
     func callApiToGetArticles() {
-        NewsVM.shared.callApiToGetArticlesByCounAndCat(selectedCountry: Selection.instance.selectedCountry, selectedCategory: Selection.instance.selectedCategory) { (message, error) in
+        NewsVM.shared.callApiToGetArticlesByCounAndCat(selectedCountry: Selection.instance.selectedCountryCode, selectedCategory: Selection.instance.selectedCategory) { (message, error) in
             if error != nil {
         //                self.showErrorMessage(error: error)
                 print(error as Any)
