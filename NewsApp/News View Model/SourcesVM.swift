@@ -22,25 +22,39 @@ class SourcesVM {
     func callApiToGetSources(response:@escaping responseCallBack){
     APIManager.callApiToGetSources(successCallback: { (responseDict) in
         let message = responseDict[APIKeys.kMessage] as? String ?? kSomethingWentWrong
-        response(message, nil)
+        if self.parseGetSources(response: responseDict){
+            response(message, nil)
+        } else {
+            response(nil, nil)
+        }
     }) { (errorReason, error) in
             response(nil, APIManager.errorForNetworkErrorReason(errorReason: errorReason!))
         }
     }
-//    func getSources(dict: JSONDictionary, response: @escaping responseCallBack) {
-//        APIManager.getSources(dict: dict, successCallback: { (responseDict) in
-//            let message = responseDict[APIKeys.kMessage] as? String ?? APIManager.OTHER_ERROR
-//            if self.parseUserData(response: responseDict) {
-//                response(message, nil)
-//            } else {
-//                response(nil, nil)
-//            }
-//
-//        }) { (errorReason, error) in
-//            response(nil, APIManager.errorForNetworkErrorReason(errorReason: errorReason!))
-//        }
-//    }
-    
+}
+
+extension SourcesVM{
+    func parseGetSources(response: JSONDictionary) -> Bool{
+        sourcesDataArray.removeAll()
+        if let data = response[APIKeys.kSources] as? JSONArray {
+            for src in data {
+                let model = Sources(dict: src)
+                self.sourcesDataArray.append(model)
+            }
+            self.newsSources.sources = self.sourcesDataArray
+        }
+        return true
+    }
+}
+
+
+
+
+
+
+
+
+
 //    func getSources(completion: @escaping (SourcesDM) ->()) {
 //        let url = "https://newsapi.org/v2/sources?apiKey=4d3e1ce2523f46418ff4a356b80f556d"
 //
@@ -64,4 +78,3 @@ class SourcesVM {
 //            }
 //        }
 //    }
-}

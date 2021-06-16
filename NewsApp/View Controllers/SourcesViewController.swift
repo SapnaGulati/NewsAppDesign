@@ -111,7 +111,7 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
         sourcesTable.delegate = self
         sourcesTable.dataSource = self
 //        self.getSources()
-//        self.callA
+        self.callApiToGetSources()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -148,7 +148,8 @@ extension SourcesViewController {
     func callApiToGetSources(){
         SourcesVM.shared.callApiToGetSources() { (message, error) in
             if error != nil {
-                self.showErrorMessage(error: error)
+//                self.showErrorMessage(error: error)
+                print(error as Any)
             }else {
                 self.sourcesTable.reloadData()
               

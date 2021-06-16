@@ -183,42 +183,42 @@ extension BaseVC {
 
 // MARK:- Custom Alert Methods
 extension BaseVC {
-    func showCustomAlert(title: String? = kSuccess, message: String?,cancelButtonTitle: String? = nil, doneButtonTitle: String? = kOkay,cancelCallback: (() ->())? = nil,  doneCallback: (() ->())? = nil) {
-        let customAlert = CustomAlert(title: title, message: message, cancelButtonTitle: cancelButtonTitle, doneButtonTitle: doneButtonTitle)
-
-        customAlert.doneButton.addTarget(for: .touchUpInside) {
-            if doneCallback != nil { doneCallback!()}
-            customAlert.remove()
-        }
-
-        customAlert.cancelButton.addTarget(for: .touchUpInside) {
-
-            if cancelCallback != nil { cancelCallback!()}
-            customAlert.remove()
-        }
-
-        customAlert.show()
-    }
-
-    func showErrorMessage(error: Error?) {
-        /*
-         STATUS CODES:
-         200: Success (If request sucessfully done and data is also come in response)
-         204: No Content (If request successfully done and no data is available for response)
-         401: Unauthorized (If token got expired)
-         402: Block (If User blocked by admin)
-         403: Delete (If User deleted by admin)
-         406: Not Acceptable (If user is registered with the application but not verified)
-         */
-        let message = (error! as NSError).userInfo[APIKeys.kMessage] as? String ?? kSomethingWentWrong
-        self.showCustomAlert(title: kError, message: message, cancelButtonTitle: nil) {
-            //ok button action
-            let code = (error! as NSError).code
-            if code == 401 || code == 402 || code == 403 || code == 406 {
-                enableMonitoring = false
-            }
-        }
-    }
+//    func showCustomAlert(title: String? = kSuccess, message: String?,cancelButtonTitle: String? = nil, doneButtonTitle: String? = kOkay,cancelCallback: (() ->())? = nil,  doneCallback: (() ->())? = nil) {
+//        let customAlert = CustomAlert(title: title, message: message, cancelButtonTitle: cancelButtonTitle, doneButtonTitle: doneButtonTitle)
+//
+//        customAlert.doneButton.addTarget(for: .touchUpInside) {
+//            if doneCallback != nil { doneCallback!()}
+//            customAlert.remove()
+//        }
+//
+//        customAlert.cancelButton.addTarget(for: .touchUpInside) {
+//
+//            if cancelCallback != nil { cancelCallback!()}
+//            customAlert.remove()
+//        }
+//
+//        customAlert.show()
+//    }
+//
+//    func showErrorMessage(error: Error?) {
+//        /*
+//         STATUS CODES:
+//         200: Success (If request sucessfully done and data is also come in response)
+//         204: No Content (If request successfully done and no data is available for response)
+//         401: Unauthorized (If token got expired)
+//         402: Block (If User blocked by admin)
+//         403: Delete (If User deleted by admin)
+//         406: Not Acceptable (If user is registered with the application but not verified)
+//         */
+//        let message = (error! as NSError).userInfo[APIKeys.kMessage] as? String ?? kSomethingWentWrong
+//        self.showCustomAlert(title: kError, message: message, cancelButtonTitle: nil) {
+//            //ok button action
+//            let code = (error! as NSError).code
+//            if code == 401 || code == 402 || code == 403 || code == 406 {
+//                enableMonitoring = false
+//            }
+//        }
+//    }
 
 
 }

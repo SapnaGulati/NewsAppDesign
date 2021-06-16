@@ -22,7 +22,7 @@ enum SourcesAPIService: APIService {
 
     var resource: Resource{
         var resource : Resource!
-        let header  = [APIKeys.kAuthorizationToken:"Bearer \(DataManager.accessToken ?? "")","Accept":"application/json"]
+        let header  = [APIKeys.kAuthorizationToken:"Bearer \(APIKeys.kAccessToken)","Accept":"application/json"]
         switch self {
         case .getSources:
             resource = Resource(method: .get, parameters: nil, headers: header)
