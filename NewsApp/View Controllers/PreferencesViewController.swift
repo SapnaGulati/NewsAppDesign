@@ -51,7 +51,7 @@ class PreferencesViewController: UIViewController, SelectCountry {
     private func setupTextField() {
         let padding = 10
         let size = 30
-        self.textField.text = Selection.instance.selectedCountry
+        self.textField.text = DataManager.selectedCountry
         let leftImage = Selection.instance.selectedFlag.image()
         let outerLeftView = UIView(frame: CGRect(x: 20, y: 0, width: size+padding+16, height: 36))
         let anotherView = UIView(frame: CGRect(x:20, y:2, width: size+6, height: 32))
@@ -156,7 +156,7 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCell
-        if indexPath.row == Selection.instance.selectedCategoryCell {
+        if indexPath.row == DataManager.selectedCategoryIndex {
             cell.isSelected = true
         }
         else {
@@ -180,8 +180,8 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        Selection.instance.selectedCategory = categories[indexPath.row].name!
-        Selection.instance.selectedCategoryCell = indexPath.row
+        DataManager.selectedCategory  = categories[indexPath.row].name!
+        DataManager.selectedCategoryIndex = indexPath.row
         self.categoryCollectionView.reloadData()
     }
     

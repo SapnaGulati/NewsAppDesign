@@ -18,9 +18,6 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
     @IBOutlet weak var continueLabel: UILabel!
     
     // MARK: Variables
-    let defaults = UserDefaults.standard
-    var googleLogIn: Bool?
-    var facebookLogIn: Bool?
     var username: UITextField!
     var password: UITextField!
     
@@ -31,8 +28,6 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
         setupFonts()
         preferredStatusBarStyle.setupStatusBar(string: "#ffffff")
         GIDSignIn.sharedInstance()?.delegate = self
-        defaults.set(false, forKey: "googleLogIn")
-        defaults.set(false, forKey: "facebookLogIn")
         if #available(iOS 13.0, *) {
             let statusBar = UIView(frame: UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
             statusBar.backgroundColor = UIColor.systemBackground
@@ -53,9 +48,8 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
     
     // MARK: Button Action
     @IBAction func facebookButton(_ sender: UIButton) {
-        facebookLogIn = defaults.bool(forKey: "facebookLogIn")
-        if (GIDSignIn.sharedInstance().hasPreviousSignIn() || facebookLogIn!) {
-            gotoCountryVC()
+        if (DataManager.loginStatus) {
+            gotoHomeVC()
         }
         else {
             facebookLogin()
@@ -63,15 +57,14 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
     }
     
     @IBAction func googleButton(_ sender: UIButton) {
-        googleLogIn = defaults.bool(forKey: "googleLogIn")
-        facebookLogIn = defaults.bool(forKey: "facebookLogIn")
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        if (facebookLogIn!) {
-            gotoCountryVC()
+        if (DataManager.loginStatus) {
+            gotoHomeVC()
         }
         else {
+            GIDSignIn.sharedInstance()?.presentingViewController = self
             if GIDSignIn.sharedInstance().hasPreviousSignIn(){
                 GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+                gotoHomeVC()
             }
             else {
                 GIDSignIn.sharedInstance()?.signIn()
@@ -80,10 +73,8 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
     }
     
     @IBAction func appleButton(_ sender: UIButton) {
-        googleLogIn = defaults.bool(forKey: "googleLogIn")
-        facebookLogIn = defaults.bool(forKey: "facebookLogIn")
-        if (GIDSignIn.sharedInstance().hasPreviousSignIn() || facebookLogIn!) {
-            gotoCountryVC()
+        if (DataManager.loginStatus) {
+            gotoHomeVC()
         }
         else {
             if #available(iOS 13.0, *) {
@@ -101,9 +92,9 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
     // MARK: Google Sign In Delegate
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
-            defaults.set(true, forKey: "googleLogIn")
-            print(user.userID!)
             gotoCountryVC()
+            DataManager.loginStatus = true
+            DataManager.googleLogIn = true
         }
     }
     
@@ -112,14 +103,14 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
         manager.logIn(permissions: [.publicProfile], viewController: self) { (result) in
             switch result {
             case .success:
-                self.defaults.set(true, forKey: "facebookLogIn")
                 if let token = AccessToken.current,
                 !token.isExpired {
                     let token = token.tokenString
                     let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "id, email, first_name, last_name, picture, short_name, name, middle_name, name_format,age_range"], tokenString: token, version: nil, httpMethod: .get)
                     request.start { (connection, result, error) in
-                    print("\(String(describing: result))")
-                    self.gotoCountryVC()
+                        self.gotoCountryVC()
+                        DataManager.loginStatus = true
+                        DataManager.facebookLogIn = true
                     }
                 }
             case .cancelled:
@@ -134,6 +125,11 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SelectCountryViewController") as! SelectCountryViewController
         vc.comeFrom = .LogIn
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func gotoHomeVC() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -176,8 +172,9 @@ extension LogInViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             print(appleIdCred.fullName?.familyName ?? "")
             print(appleIdCred.email ?? "")
         }
-        defaults.set(true, forKey: "appleLogIn")
         gotoCountryVC()
+        DataManager.loginStatus = true
+        DataManager.appleLogIn = true
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

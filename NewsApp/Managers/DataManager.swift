@@ -10,16 +10,82 @@ import Foundation
 
 class DataManager {
 
-    static var loginStatus: Bool? {
-           set {
-               UserDefaults.standard.setValue(newValue, forKey: APIKeys.kStatus)
-               UserDefaults.standard.synchronize()
-           }
+    static var loginStatus: Bool {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kStatus)
+            UserDefaults.standard.synchronize()
+        }
 
-           get {
-            return UserDefaults.standard.bool(forKey: APIKeys.kStatus)
-           }
-       }
+        get {
+        return UserDefaults.standard.bool(forKey: APIKeys.kStatus)
+        }
+    }
+
+    static var facebookLogIn: Bool? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kFacebookLogIn)
+            UserDefaults.standard.synchronize()
+        }
+
+        get {
+        return UserDefaults.standard.bool(forKey: APIKeys.kFacebookLogIn)
+        }
+    }
+
+    static var googleLogIn: Bool? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kGoogleLogIn)
+            UserDefaults.standard.synchronize()
+        }
+
+        get {
+        return UserDefaults.standard.bool(forKey: APIKeys.kGoogleLogIn)
+        }
+    }
+
+    static var appleLogIn: Bool? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kAppleLogIn)
+            UserDefaults.standard.synchronize()
+        }
+
+        get {
+        return UserDefaults.standard.bool(forKey: APIKeys.kAppleLogIn)
+        }
+    }
+    
+    static var selectedCategory: String? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kCategory)
+            UserDefaults.standard.synchronize()
+        }
+
+        get {
+        return UserDefaults.standard.string(forKey: APIKeys.kCategory)
+        }
+    }
+    
+    static var selectedCategoryIndex: Int? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kCategoryIndex)
+            UserDefaults.standard.synchronize()
+        }
+
+        get {
+            return UserDefaults.standard.integer(forKey: APIKeys.kCategoryIndex)
+        }
+    }
+
+    static var selectedCountry: String? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: APIKeys.kCountry)
+            UserDefaults.standard.synchronize()
+        }
+
+        get {
+        return UserDefaults.standard.string(forKey: APIKeys.kCountry)
+        }
+    }
 
     static var accessToken: String? {
         set {

@@ -11,10 +11,6 @@ class Selection {
     private init() {}
     
     // MARK: Global Variables
-    var selectedCountry = ""
-    var selectedCategory = ""
-    var selectedCountryCode = ""
-    var selectedCategoryCell = 0
     var selectedSourceName = ""
     var selectedSourceId = ""
     var selectedFlag = ""

@@ -102,7 +102,6 @@ extension SearchTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         Selection.instance.searchParams = searchText
         self.callApiToGetArticles()
-        self.searchTableView.reloadData()
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -126,7 +125,6 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         self.searchTableView.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.searchTableView.layer.shadowOpacity = 0.8
         self.searchTableView.layer.masksToBounds = true
-        self.searchTableView.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -103,10 +103,10 @@ extension SelectCategoryViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        DataManager.selectedCategory = categories[indexPath.row].name!
+        DataManager.selectedCategoryIndex = indexPath.row
         let cell = categoryCollectionView.cellForItem(at: indexPath)
         cell?.isSelected = true
-        Selection.instance.selectedCategory = categories[indexPath.row].name!
-        Selection.instance.selectedCategoryCell = indexPath.row
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }

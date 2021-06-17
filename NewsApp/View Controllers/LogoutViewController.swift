@@ -17,9 +17,6 @@ class LogoutViewController: UIViewController {
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var outerView: UIView!
-    
-    // MARK: Variables
-    let defaults = UserDefaults.standard
 
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -57,18 +54,20 @@ class LogoutViewController: UIViewController {
     }
     
     @IBAction func yesButtonTapped(_ sender: UIButton) {
-        let googleLogIn = defaults.bool(forKey: "googleLogIn")
-        let facebookLogIn = defaults.bool(forKey: "facebookLogIn")
-        if(googleLogIn) {
-            GIDSignIn.sharedInstance()?.signOut()
-        }
-        else if(facebookLogIn) {
-            let fbLoginManager = LoginManager()
-            fbLoginManager.logOut()
-        }
-        else {
-            let preferences = UserDefaults.standard
-            preferences.removeObject(forKey: "session")
+        if(DataManager.loginStatus ?? false) {
+            DataManager.loginStatus = false
+            if(DataManager.googleLogIn ?? false) {
+                DataManager.googleLogIn = false
+                GIDSignIn.sharedInstance()?.signOut()
+            }
+            else if(DataManager.facebookLogIn ?? false) {
+                DataManager.facebookLogIn = false
+                let fbLoginManager = LoginManager()
+                fbLoginManager.logOut()
+            }
+            else if(DataManager.appleLogIn ?? false) {
+                DataManager.appleLogIn = false
+            }
         }
         gotoLogIn()
     }

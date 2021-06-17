@@ -258,12 +258,10 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let code = CountryCode.shared.getCode(country: filteredData[indexPath.row].name!)
-        flagString = CountryCode.shared.getFlag(country: filteredData[indexPath.row].name!)
-        Selection.instance.selectedCountry = filteredData[indexPath.row].name ?? ""
-        Selection.instance.selectedCountryCode = code
+        DataManager.selectedCountry = filteredData[indexPath.row].name
+        flagString = CountryCode.shared.getFlag(country: DataManager.selectedCountry ?? "")
         Selection.instance.selectedFlag = flagString ?? ""
-        delegate?.setCountry(cName: Selection.instance.selectedCountry, flag: Selection.instance.selectedFlag)
+        delegate?.setCountry(cName: DataManager.selectedCountry ?? "", flag: Selection.instance.selectedFlag)
         
         if comeFrom == .LogIn {
             self.view.endEditing(true)
