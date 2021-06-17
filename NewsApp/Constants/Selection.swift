@@ -18,4 +18,5 @@ class Selection {
     var selectedSourceName = ""
     var selectedSourceId = ""
     var selectedFlag = ""
+    var searchParams = ""
 }

@@ -90,12 +90,6 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if NewsVM.shared.newsData.articles.count == 0 {
-            self.homeTableView.setEmptyView(message: "News Not Available.")
-        }
-        else {
-            self.homeTableView.restore()
-        }
         return NewsVM.shared.newsData.articles.count
     }
     
@@ -143,6 +137,12 @@ extension HomeViewController {
         //                self.showErrorMessage(error: error)
                 print(error as Any)
             }else {
+                if NewsVM.shared.newsData.articles.count == 0 {
+                    self.homeTableView.setEmptyView(message: "News Not Available.")
+                }
+                else {
+                    self.homeTableView.restore()
+                }
                 self.homeTableView.reloadData()
             }
         }

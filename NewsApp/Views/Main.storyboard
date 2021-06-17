@@ -1161,15 +1161,23 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News not found." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzL-Hd-JXO">
+                                        <rect key="frame" x="114" y="402.5" width="186" height="31.5"/>
+                                        <fontDescription key="fontDescription" name=".SFNS-Regular" family=".AppleSystemUIFont" pointSize="28"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="v3k-CI-vD4" firstAttribute="leading" secondItem="HI5-01-bO0" secondAttribute="leading" constant="20" id="3OV-Ri-80a"/>
+                                    <constraint firstItem="kzL-Hd-JXO" firstAttribute="centerY" secondItem="HI5-01-bO0" secondAttribute="centerY" id="4h5-4Y-aqw"/>
                                     <constraint firstItem="JeJ-9K-YTl" firstAttribute="top" secondItem="HI5-01-bO0" secondAttribute="top" constant="40" id="D4P-Qz-3h0"/>
                                     <constraint firstItem="JeJ-9K-YTl" firstAttribute="leading" secondItem="HI5-01-bO0" secondAttribute="leading" constant="20" id="GDa-hw-V3C"/>
                                     <constraint firstAttribute="trailing" secondItem="JeJ-9K-YTl" secondAttribute="trailing" constant="20" id="Lq7-6o-Iis"/>
                                     <constraint firstItem="v3k-CI-vD4" firstAttribute="top" secondItem="JeJ-9K-YTl" secondAttribute="bottom" id="TT1-YW-Il5"/>
                                     <constraint firstAttribute="trailing" secondItem="v3k-CI-vD4" secondAttribute="trailing" constant="20" id="cfl-si-Avb"/>
+                                    <constraint firstItem="kzL-Hd-JXO" firstAttribute="centerX" secondItem="HI5-01-bO0" secondAttribute="centerX" id="inb-Cg-x79"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1185,6 +1193,7 @@
                     </view>
                     <connections>
                         <outlet property="doneToolbar" destination="m5V-Kp-Muv" id="iOT-4G-yJw"/>
+                        <outlet property="newsNotFoundLabel" destination="kzL-Hd-JXO" id="3sr-5t-Oxu"/>
                         <outlet property="searchBar" destination="ooQ-I1-dZW" id="tTg-5Q-tq1"/>
                         <outlet property="searchTableView" destination="v3k-CI-vD4" id="L3e-b6-xCL"/>
                         <outlet property="searchView" destination="JeJ-9K-YTl" id="f3l-Le-mJW"/>

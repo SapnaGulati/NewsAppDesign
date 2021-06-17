@@ -114,12 +114,6 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if SourcesVM.shared.newsSources.sources.count == 0 {
-            self.sourcesTable.setEmptyView(message: "Sources Not Available.")
-        }
-        else {
-            self.sourcesTable.restore()
-        }
         return SourcesVM.shared.newsSources.sources.count
     }
     
@@ -139,6 +133,7 @@ extension SourcesViewController: UITableViewDelegate, UITableViewDataSource {
         Selection.instance.selectedSourceId = sources.id ?? ""
         Selection.instance.selectedSourceName = sources.name ?? ""
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "NewsViewController") as! NewsViewController
+        vc.newsComeFrom = .Sources
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -150,6 +145,12 @@ extension SourcesViewController {
 //                self.showErrorMessage(error: error)
                 print(error as Any)
             }else {
+                if SourcesVM.shared.newsSources.sources.count == 0 {
+                    self.sourcesTable.setEmptyView(message: "Sources Not Available.")
+                }
+                else {
+                    self.sourcesTable.restore()
+                }
                 self.sourcesTable.reloadData()
               
             }

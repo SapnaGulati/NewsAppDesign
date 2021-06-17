@@ -9,6 +9,11 @@ import UIKit
 import SafariServices
 import SDWebImage
 
+enum NewsComeFrom: String {
+    case Search
+    case Sources
+}
+
 class NewsViewController: UIViewController {
     
     // MARK: Outlets
@@ -18,6 +23,7 @@ class NewsViewController: UIViewController {
     var url: URL!
     var loadingVC: UIViewController!
     private var newsData : NewsDM!
+    var newsComeFrom: NewsComeFrom = .Sources
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +43,12 @@ class NewsViewController: UIViewController {
             self.navigationController?.navigationBar.backgroundColor = .systemBackground
         }
         let titleText = UILabel()
-        titleText.text = title
+        if newsComeFrom == .Sources {
+            titleText.text = title
+        }
+        else {
+            titleText.text = Selection.instance.searchParams
+        }
         titleText.font = UIFont(name: "Poppins-Medium", size: 21)
         titleText.textColor = UIColor(hexString: "#b80d00")
         titleText.frame = CGRect(x:0, y: 0, width: 100, height: 34)
@@ -73,12 +84,6 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
     
     // MARK: Table View Data Source Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if NewsVM.shared.newsData.articles.count == 0 {
-            self.newsTableView.setEmptyView(message: "News Not Available.")
-        }
-        else {
-            self.newsTableView.restore()
-        }
         return NewsVM.shared.newsData.articles.count
     }
     
@@ -118,6 +123,12 @@ extension NewsViewController {
         //                self.showErrorMessage(error: error)
                 print(error as Any)
             }else {
+                if NewsVM.shared.newsData.articles.count == 0 {
+                    self.newsTableView.setEmptyView(message: "News Not Available.")
+                }
+                else {
+                    self.newsTableView.restore()
+                }
                 self.newsTableView.reloadData()
               
             }

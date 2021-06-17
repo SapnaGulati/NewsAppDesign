@@ -10,7 +10,6 @@ import UIKit
 class SearchTableViewController: UIViewController {
     
     // MARK: Data Initialization
-    let data = ["Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data"]
     var searchParams: String = ""
     private var newsData : NewsDM!
     
@@ -20,6 +19,7 @@ class SearchTableViewController: UIViewController {
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var doneToolbar: UIToolbar!
     @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var newsNotFoundLabel: UILabel!
     
     // View Cycle
     override func viewDidLoad() {
@@ -27,14 +27,11 @@ class SearchTableViewController: UIViewController {
         setupNavigationBarItems()
         setupSearchBar()
         setupTableView()
-        searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
         searchView.layer.cornerRadius = 22
         searchView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        if(CGFloat((NewsVM.shared.newsData.articles.count) * 40) <= self.view.frame.height/2.5) {
-            tableViewHeight.constant = CGFloat((NewsVM.shared.newsData.articles.count) * 40)
-        } else {
-            tableViewHeight.constant = self.view.frame.height/2.5
-        }
+        tableViewHeight.constant = self.view.frame.height/2.6
+        newsNotFoundLabel.font = UIFont(name: "Poppins-SemiBold", size: 17)
+        newsNotFoundLabel.textColor = UIColor.gray
     }
     
     @IBAction func doneButton(_ sender: Any) {
@@ -105,6 +102,7 @@ class SearchTableViewController: UIViewController {
 extension SearchTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchParams = searchText
+        Selection.instance.searchParams = searchParams
         self.callApiToGetArticles()
         self.searchTableView.reloadData()
     }
@@ -131,6 +129,7 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         self.searchTableView.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.searchTableView.layer.shadowOpacity = 0.8
         self.searchTableView.layer.masksToBounds = true
+        self.searchTableView.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -138,18 +137,6 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(NewsVM.shared.newsData.articles.count == 0) {
-            self.view.setEmptyData(message: "News not found.")
-            searchView.backgroundColor = .none
-            searchBar.layer.borderWidth = 2
-            if #available(iOS 13.0, *) {
-                searchBar.layer.borderColor = UIColor.systemGray6.cgColor
-            }
-        }
-        else {
-            self.view.restoreView()
-            searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
-        }
         return NewsVM.shared.newsData.articles.count
     }
     
@@ -182,6 +169,7 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         bgColorView.backgroundColor = UIColor(hexString: "#555454")
         cell?.selectedBackgroundView = bgColorView
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "NewsViewController") as! NewsViewController
+        vc.newsComeFrom = .Search
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -200,6 +188,20 @@ extension SearchTableViewController {
             if error != nil {
                 print(error as Any)
             }else {
+                if(NewsVM.shared.newsData.articles.count == 0) {
+                    self.newsNotFoundLabel.alpha = 1
+                    self.searchView.backgroundColor = .none
+                    self.searchTableView.backgroundColor = .none
+                    self.searchBar.layer.borderWidth = 2
+                    if #available(iOS 13.0, *) {
+                        self.searchBar.layer.borderColor = UIColor.systemGray6.cgColor
+                    }
+                }
+                else {
+                    self.newsNotFoundLabel.alpha = 0
+                    self.searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
+                    self.searchTableView.backgroundColor = UIColor(hexString: "#d6d4d3")
+                }
                 self.searchTableView.reloadData()
             }
         }
