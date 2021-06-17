@@ -10,7 +10,6 @@ import UIKit
 class SearchTableViewController: UIViewController {
     
     // MARK: Data Initialization
-    var searchParams: String = ""
     private var newsData : NewsDM!
     
     // MARK: Outlets
@@ -101,8 +100,7 @@ class SearchTableViewController: UIViewController {
 // MARK: Search Bar Data Update
 extension SearchTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchParams = searchText
-        Selection.instance.searchParams = searchParams
+        Selection.instance.searchParams = searchText
         self.callApiToGetArticles()
         self.searchTableView.reloadData()
     }
@@ -123,7 +121,6 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         self.searchTableView.layer.borderWidth = 0
         self.searchTableView.layer.cornerRadius = 12
         self.searchTableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        self.searchTableView.backgroundColor = UIColor(hexString: "#d6d4d3")
         self.searchTableView.layer.shadowColor = UIColor.black.cgColor
         self.searchTableView.layer.shadowRadius = 5
         self.searchTableView.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -184,7 +181,7 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
 
 extension SearchTableViewController {
     func callApiToGetArticles() {
-        NewsVM.shared.callApiToGetArticlesBySearch(searchParams: searchParams) { (message, error) in
+        NewsVM.shared.callApiToGetArticlesBySearch(searchParams: Selection.instance.searchParams) { (message, error) in
             if error != nil {
                 print(error as Any)
             }else {

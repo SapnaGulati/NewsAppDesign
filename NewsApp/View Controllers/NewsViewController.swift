@@ -104,7 +104,6 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
         cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
         cell.sourceLabel?.text = items.sourceName
         self.url = URL(string: items.url ?? "")
-        self.url = URL(string: "https://www.google.com")
         return cell
     }
     
