@@ -17,4 +17,5 @@ class Selection {
     var selectedCategoryCell = 0
     var selectedSourceName = ""
     var selectedSourceId = ""
+    var selectedFlag = ""
 }

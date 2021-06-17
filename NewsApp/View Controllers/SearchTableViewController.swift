@@ -12,7 +12,6 @@ class SearchTableViewController: UIViewController {
     // MARK: Data Initialization
     let data = ["Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data", "Trump has a data"]
     var searchParams: String = ""
-    var filteredData: [String]!
     private var newsData : NewsDM!
     
     // MARK: Outlets
@@ -26,14 +25,13 @@ class SearchTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItems()
-        filteredData = data
         setupSearchBar()
         setupTableView()
         searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
         searchView.layer.cornerRadius = 22
         searchView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        if(CGFloat((self.filteredData.count) * 40) <= self.view.frame.height/2.5) {
-            tableViewHeight.constant = CGFloat((self.filteredData.count) * 40)
+        if(CGFloat((NewsVM.shared.newsData.articles.count) * 40) <= self.view.frame.height/2.5) {
+            tableViewHeight.constant = CGFloat((NewsVM.shared.newsData.articles.count) * 40)
         } else {
             tableViewHeight.constant = self.view.frame.height/2.5
         }
@@ -99,21 +97,8 @@ class SearchTableViewController: UIViewController {
 // MARK: Search Bar Data Update
 extension SearchTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchParams = searchText
         self.callApiToGetArticles()
-        filteredData = []
-        
-        if searchText == "" {
-            filteredData = data
-        }
-        else {
-            searchParams = searchText
-            for search in data {
-                if search.lowercased().contains(searchText.lowercased()) {
-                    filteredData.append(search)
-                }
-            }
-        }
-        self.tableViewHeight.constant = CGFloat((self.filteredData.count) * 40)
         self.searchTableView.reloadData()
     }
     
@@ -129,7 +114,6 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     func setupTableView() {
         self.searchTableView.delegate = self
         self.searchTableView.dataSource = self
-        self.callApiToGetArticles()
         self.searchTableView.layer.borderColor = UIColor.lightGray.cgColor
         self.searchTableView.layer.borderWidth = 0
         self.searchTableView.layer.cornerRadius = 12
@@ -147,8 +131,8 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if(filteredData.count == 0) {
         if(NewsVM.shared.newsData.articles.count == 0) {
+            self.view.setEmptyData(message: "News not found.")
             searchView.backgroundColor = .none
             searchBar.layer.borderWidth = 2
             if #available(iOS 13.0, *) {
@@ -156,9 +140,9 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
             }
         }
         else {
+            self.view.restoreView()
             searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
         }
-//        return filteredData.count
         return NewsVM.shared.newsData.articles.count
     }
     
@@ -166,7 +150,6 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = searchTableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         
         cell.textLabel?.text = NewsVM.shared.newsData.articles[indexPath.row].title ?? ""
-//        cell.textLabel?.text = filteredData[indexPath.row]
         cell.textLabel?.font = UIFont(name: "Poppins-Medium", size: 15)
         cell.textLabel?.highlightedTextColor = UIColor(hexString: "#d9d3cc")
         let bgColorView = UIView()

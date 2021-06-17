@@ -7,5 +7,5 @@
 
 import UIKit
 protocol SelectCountry {
-    func setCountry(cName: String)
+    func setCountry(cName: String, flag: String)
 }

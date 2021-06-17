@@ -49,18 +49,18 @@ class PreferencesViewController: UIViewController, SelectCountry {
     
     // MARK: Text Field Setup
     private func setupTextField() {
-        let padding = 28
-        let size = 25
-        let selectedCountry = Selection.instance.selectedCountry
-        self.textField.text = selectedCountry
-        let leftImage = UIImage(named: selectedCountry)
-        let outerLeftView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding, height: 36))
-        let anotherView = UIView(frame: CGRect(x:15, y:3, width: size+6, height: 30))
-        leftIconView  = UIImageView(frame: CGRect(x: 3, y: 5, width: size, height: 17))
+        let padding = 10
+        let size = 30
+        self.textField.text = Selection.instance.selectedCountry
+        let leftImage = Selection.instance.selectedFlag.image()
+        let outerLeftView = UIView(frame: CGRect(x: 20, y: 0, width: size+padding+16, height: 36))
+        let anotherView = UIView(frame: CGRect(x:20, y:2, width: size+6, height: 32))
+        leftIconView  = UIImageView(frame: CGRect(x: 0, y: 0, width: size+4, height: 30))
         anotherView.layer.borderWidth = 0.5
         anotherView.layer.borderColor = UIColor.lightGray.cgColor
         anotherView.layer.cornerRadius = 3.5
         leftIconView.contentMode = .center
+        leftIconView.clipsToBounds = true
         leftIconView.backgroundColor = .white
         leftIconView.image = leftImage
         leftIconView.layer.shadowColor = UIColor.systemGray.cgColor
@@ -98,8 +98,8 @@ class PreferencesViewController: UIViewController, SelectCountry {
     }
     
     // MARK: Setting choosen name and image
-    func setCountry(cName: String) {
-        leftIconView.image = UIImage(named: cName)
+    func setCountry(cName: String, flag: String) {
+        leftIconView.image = flag.image()
         textField.text = cName
     }
     

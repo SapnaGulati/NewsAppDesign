@@ -8,7 +8,7 @@
 import UIKit
 
 enum ComeFrom: String {
-    case SelectCategory
+    case LogIn
     case Preferences
 }
 
@@ -22,9 +22,10 @@ class SelectCountryViewController: UIViewController {
     
     // MARK: Variables
     var delegate: SelectCountry?
-    var comeFrom: ComeFrom = .SelectCategory
+    var comeFrom: ComeFrom = .LogIn
     private var countries = [CountryDM]()
     var filteredData = [CountryDM]()
+    var flagString: String?
 
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -247,7 +248,6 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = countryTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CountryCell
         cell.countryNameLabel.text = filteredData[indexPath.row].name
-        let flagString: String?
         flagString = CountryCode.shared.getFlag(country: filteredData[indexPath.row].name!)
         cell.countryImageView.image = flagString?.image()
         return cell
@@ -259,11 +259,13 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let code = CountryCode.shared.getCode(country: filteredData[indexPath.row].name!)
+        flagString = CountryCode.shared.getFlag(country: filteredData[indexPath.row].name!)
         Selection.instance.selectedCountry = filteredData[indexPath.row].name ?? ""
         Selection.instance.selectedCountryCode = code
-        delegate?.setCountry(cName: Selection.instance.selectedCountry)
+        Selection.instance.selectedFlag = flagString ?? ""
+        delegate?.setCountry(cName: Selection.instance.selectedCountry, flag: Selection.instance.selectedFlag)
         
-        if comeFrom == .SelectCategory {
+        if comeFrom == .LogIn {
             self.view.endEditing(true)
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "SelectCategoryViewController") as! SelectCategoryViewController
             self.navigationController?.pushViewController(vc, animated: true)

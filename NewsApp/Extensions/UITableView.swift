@@ -16,9 +16,8 @@ extension UITableView {
         messageLabel.textColor = UIColor.gray
         messageLabel.font = UIFont(name: "Nexa-Bold", size: 17)
         emptyView.addSubview(messageLabel)
-        messageLabel.topAnchor.constraint(equalTo: emptyView.topAnchor, constant: 230).isActive = true
-        messageLabel.leftAnchor.constraint(equalTo: emptyView.leftAnchor, constant: 20).isActive = true
-        messageLabel.rightAnchor.constraint(equalTo: emptyView.rightAnchor, constant: -20).isActive = true
+        messageLabel.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor).isActive = true
+        messageLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
         messageLabel.text = message
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center

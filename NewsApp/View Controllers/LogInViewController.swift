@@ -133,7 +133,7 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
     func gotoCountryVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SelectCountryViewController") as! SelectCountryViewController
-        vc.comeFrom = .SelectCategory
+        vc.comeFrom = .LogIn
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
