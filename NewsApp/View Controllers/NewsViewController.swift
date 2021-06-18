@@ -104,6 +104,7 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
         cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
         cell.sourceLabel?.text = items.sourceName
         self.url = URL(string: items.url ?? "")
+        cell.shareButton.addTarget(self, action: #selector(self.shareButtonPressed), for: .touchUpInside)
         return cell
     }
     
@@ -111,6 +112,12 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
     func moreLabelTapped(_ tap: UITapGestureRecognizer) {
         let safariViewController = SFSafariViewController(url: self.url)
         present(safariViewController, animated: true)
+    }
+    
+    @objc func shareButtonPressed() {
+        let activityVC = UIActivityViewController(activityItems: [self.url ?? ""], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.present(activityVC, animated: true, completion: nil)
     }
 }
 
