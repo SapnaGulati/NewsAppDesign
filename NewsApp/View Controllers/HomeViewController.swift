@@ -114,6 +114,7 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
         cell.sourceLabel?.text = items.sourceName
         self.url = URL(string: items.url ?? "")
+        cell.shareButton.addTarget(self, action: #selector(self.shareButtonPressed), for: .touchUpInside)
         return cell
     }
 
@@ -126,6 +127,12 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
     @objc func sourceLabelTapped(_ tap: UITapGestureRecognizer) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "SourcesViewController") as! SourcesViewController
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func shareButtonPressed() {
+        let activityVC = UIActivityViewController(activityItems: [self.url ?? ""], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.present(activityVC, animated: true, completion: nil)
     }
 }
 
