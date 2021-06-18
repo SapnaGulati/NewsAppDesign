@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SourcesViewController: UIViewController{
+class SourcesViewController: BaseVC{
 
     // MARK: Outlets
     @IBOutlet weak var sourcesTable: UITableView!
@@ -142,8 +142,7 @@ extension SourcesViewController {
     func callApiToGetSources(){
         SourcesVM.shared.callApiToGetSources() { (message, error) in
             if error != nil {
-//                self.showErrorMessage(error: error)
-                print(error as Any)
+                self.showErrorMessage(error: error)
             }else {
                 if SourcesVM.shared.newsSources.sources.count == 0 {
                     self.sourcesTable.setEmptyView(message: "Sources Not Available.")

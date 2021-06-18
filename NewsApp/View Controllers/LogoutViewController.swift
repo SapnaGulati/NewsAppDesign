@@ -54,7 +54,7 @@ class LogoutViewController: UIViewController {
     }
     
     @IBAction func yesButtonTapped(_ sender: UIButton) {
-        if(DataManager.loginStatus ?? false) {
+        if(DataManager.loginStatus) {
             DataManager.loginStatus = false
             if(DataManager.googleLogIn ?? false) {
                 DataManager.googleLogIn = false

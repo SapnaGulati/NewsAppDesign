@@ -11,7 +11,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import AuthenticationServices
 
-class LogInViewController: UIViewController, GIDSignInDelegate {
+class LogInViewController: BaseVC, GIDSignInDelegate {
     
     // MARK: Outlet
     @IBOutlet weak var underlineView: UIView!
@@ -23,7 +23,12 @@ class LogInViewController: UIViewController, GIDSignInDelegate {
     
     // MARK: View Cycle
     override func viewDidLoad() {
-        super.viewDidLoad()
+        if (DataManager.loginStatus) {
+            gotoHomeVC()
+        }
+        else {
+            super.viewDidLoad()
+        }
         self.navigationController?.isNavigationBarHidden = true
         setupFonts()
         preferredStatusBarStyle.setupStatusBar(string: "#ffffff")
@@ -178,6 +183,6 @@ extension LogInViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print(error.localizedDescription)
+        self.showErrorMessage(error: error)
     }
 }

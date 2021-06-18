@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchTableViewController: UIViewController {
+class SearchTableViewController: BaseVC {
     
     // MARK: Data Initialization
     private var newsData : NewsDM!
@@ -181,7 +181,7 @@ extension SearchTableViewController {
     func callApiToGetArticles() {
         NewsVM.shared.callApiToGetArticlesBySearch(searchParams: Selection.instance.searchParams) { (message, error) in
             if error != nil {
-                print(error as Any)
+                self.showErrorMessage(error: error)
             }else {
                 if(NewsVM.shared.newsData.articles.count == 0) {
                     self.newsNotFoundLabel.alpha = 1

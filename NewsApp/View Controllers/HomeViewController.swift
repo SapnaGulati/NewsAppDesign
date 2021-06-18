@@ -9,7 +9,7 @@ import UIKit
 import SafariServices
 import SDWebImage
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseVC {
     
     // MARK: Outlets
     @IBOutlet weak var homeTableView: UITableView!
@@ -133,8 +133,7 @@ extension HomeViewController {
     func callApiToGetArticles() {
         NewsVM.shared.callApiToGetArticlesByCounAndCat(selectedCountry: CountryCode.shared.getCode(country: DataManager.selectedCountry ?? ""), selectedCategory: DataManager.selectedCategory ?? "") { (message, error) in
             if error != nil {
-        //                self.showErrorMessage(error: error)
-                print(error as Any)
+                self.showErrorMessage(error: error)
             }else {
                 if NewsVM.shared.newsData.articles.count == 0 {
                     self.homeTableView.setEmptyView(message: "News Not Available.")

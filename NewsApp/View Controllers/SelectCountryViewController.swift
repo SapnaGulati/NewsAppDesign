@@ -12,7 +12,7 @@ enum ComeFrom: String {
     case Preferences
 }
 
-class SelectCountryViewController: UIViewController {
+class SelectCountryViewController: BaseVC {
 
     // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -279,8 +279,7 @@ extension SelectCountryViewController {
         countries.removeAll()
         CountryVM.shared.callApiForCountry() { (message, error) in
             if error != nil {
-                print(error?.localizedDescription as Any)
-                
+                self.showErrorMessage(error: error)
             }else {
                 self.countries = CountryVM.shared.country
                 self.filteredData = self.countries

@@ -14,7 +14,7 @@ enum NewsComeFrom: String {
     case Sources
 }
 
-class NewsViewController: UIViewController {
+class NewsViewController: BaseVC {
     
     // MARK: Outlets
     @IBOutlet weak var newsTableView: UITableView!
@@ -119,8 +119,7 @@ extension NewsViewController {
     func callApiToGetArticles() {
         NewsVM.shared.callApiToGetArticlesBySource(selectedSource: Selection.instance.selectedSourceId) { (message, error) in
             if error != nil {
-        //                self.showErrorMessage(error: error)
-                print(error as Any)
+                self.showErrorMessage(error: error)
             }else {
                 if NewsVM.shared.newsData.articles.count == 0 {
                     self.newsTableView.setEmptyView(message: "News Not Available.")
