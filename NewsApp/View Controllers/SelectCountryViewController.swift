@@ -226,6 +226,9 @@ extension SelectCountryViewController: UISearchBarDelegate{
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if self.filteredData.count == 0 {
+            self.view.endEditing(true)
+        }
         self.countryTableView.reloadData()
     }
 }
@@ -287,6 +290,12 @@ extension SelectCountryViewController {
             if error != nil {
                 self.showErrorMessage(error: error)
             }else {
+                if self.filteredData.count == 0 {
+                    self.countryTableView.setEmptyView(message: "No such country exist. Please search for some valid country.")
+                }
+                else {
+                    self.countryTableView.restore()
+                }
                 self.countries = CountryVM.shared.country
                 self.filteredData = self.countries
                 self.countryTableView.reloadData()

@@ -12,6 +12,7 @@ import SDWebImage
 enum NewsComeFrom: String {
     case Search
     case Sources
+    case Preferences
 }
 
 class NewsViewController: BaseVC {
@@ -47,7 +48,7 @@ class NewsViewController: BaseVC {
             titleText.text = title
         }
         else {
-            titleText.text = Selection.instance.searchParams
+            titleText.text = "Home"
         }
         titleText.font = UIFont(name: "Poppins-Medium", size: 21)
         titleText.textColor = UIColor(hexString: "#b80d00")
@@ -75,6 +76,9 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
         self.newsTableView.delegate = self
         self.newsTableView.dataSource = self
         if newsComeFrom == .Sources {
+            self.callApiToGetArticlesBySources()
+        }
+        else if newsComeFrom == .Preferences {
             self.callApiToGetArticles()
         }
         else {
@@ -105,7 +109,14 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
         let items = NewsVM.shared.newsData.articles[indexPath.row]
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
-        cell.dateLabel?.text = items.publishedAt
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//        let date = dateFormatter.date(from: "2017-01-09T11:00:00.000Z")
+//        print("date: \(date)")
+        cell.dateLabel?.text = items.publishedAt?.description
+//        let date = items.publishedAt?.description
+//        date.parse("2020-05-08T11:12:13+0001", DateFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ"))
         cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
         cell.sourceLabel?.text = items.sourceName
         self.url = URL(string: items.url ?? "")
@@ -128,7 +139,7 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
 
 extension NewsViewController {
     
-    func callApiToGetArticles() {
+    func callApiToGetArticlesBySources() {
         NewsVM.shared.callApiToGetArticlesBySource(selectedSource: Selection.instance.selectedSourceId) { (message, error) in
             if error != nil {
                 self.showErrorMessage(error: error)
@@ -146,6 +157,22 @@ extension NewsViewController {
     
     func callApiToGetArticlesBySearch() {
         NewsVM.shared.callApiToGetArticlesBySearch(searchParams: Selection.instance.searchParams) { (message, error) in
+            if error != nil {
+                self.showErrorMessage(error: error)
+            }else {
+                if NewsVM.shared.newsData.articles.count == 0 {
+                    self.newsTableView.setEmptyView(message: "News Not Available.")
+                }
+                else {
+                    self.newsTableView.restore()
+                }
+                self.newsTableView.reloadData()
+            }
+        }
+    }
+    
+    func callApiToGetArticles() {
+        NewsVM.shared.callApiToGetArticlesByCounAndCat(selectedCountry: CountryCode.shared.getCode(country: DataManager.selectedCountry ?? ""), selectedCategory: DataManager.selectedCategory ?? "") { (message, error) in
             if error != nil {
                 self.showErrorMessage(error: error)
             }else {

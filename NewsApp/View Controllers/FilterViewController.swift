@@ -41,6 +41,15 @@ class FilterViewController: UIViewController {
         resetButton.titleLabel?.textColor = UIColor(hexString: "#ffffff")
         resetButton.backgroundColor = UIColor(hexString: "#b80d00")
         resetButton.layer.cornerRadius = 10
+        dataLabel.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.gotoSearch(_:)))
+        tap.numberOfTapsRequired = 1
+        dataLabel.addGestureRecognizer(tap)
+    }
+    
+    @objc func gotoSearch(_ tap: UITapGestureRecognizer) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "SearchTableViewController") as! SearchTableViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: Reset Button Click Handling

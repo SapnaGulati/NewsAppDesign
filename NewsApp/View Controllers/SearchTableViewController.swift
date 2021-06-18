@@ -85,17 +85,10 @@ class SearchTableViewController: BaseVC {
         deleteButton.setImage(UIImage(named: "delete")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: UIControl.State.normal)
         deleteButton.frame = CGRect(x: 0, y:0, width: 34, height: 34)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: deleteButton)
-        deleteButton.addTarget(self, action: #selector(clearSearch), for: .touchUpInside)
     }
     
     @objc func gotoTab() {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func clearSearch() {
-        if #available(iOS 13.0, *) {
-            searchBar.searchTextField.text = ""
-        }
     }
 }
 
