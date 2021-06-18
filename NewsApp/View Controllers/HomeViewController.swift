@@ -29,16 +29,24 @@ class HomeViewController: BaseVC {
         loadingVC.modalTransitionStyle = .crossDissolve
         
         self.navigationController?.isNavigationBarHidden = false
+        preferredStatusBarStyle.setupStatusBar(string: "#b80d00")
         setupNavigationBarItems()
         self.setupTableView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
         setupNavigationBarItems()
     }
     
     // MARK: Custom Navigation Bar
     private func setupNavigationBarItems() {
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = (UIImage())
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         if #available(iOS 13.0, *) {
             self.navigationController?.navigationBar.backgroundColor = .systemBackground
         }
