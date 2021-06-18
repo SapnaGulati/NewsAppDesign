@@ -67,17 +67,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         if DataManager.loginStatus{
-            let tabvc = storyboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-            self.navigationController = UINavigationController(rootViewController: tabvc)
-            self.window?.rootViewController = navigationController
-            self.window?.makeKeyAndVisible()
+            if (DataManager.selectedCategory != "" && DataManager.selectedCountry != ""){
+                let tabvc = storyboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+                self.navigationController = UINavigationController(rootViewController: tabvc)
+            }
+            else if (DataManager.selectedCountry == ""){
+                let countryvc = storyboard.instantiateViewController(withIdentifier: "SelectCountryViewController") as! SelectCountryViewController
+                self.navigationController = UINavigationController(rootViewController: countryvc)
+            }
+            else{
+                let categoryvc = storyboard.instantiateViewController(withIdentifier: "SelectCategoryViewController") as! SelectCategoryViewController
+                self.navigationController = UINavigationController(rootViewController: categoryvc)
+            }
         }
         else{
             let loginvc = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
             self.navigationController = UINavigationController(rootViewController: loginvc)
-            self.window?.rootViewController = navigationController
-            self.window?.makeKeyAndVisible()
         }
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
     }
 }
 

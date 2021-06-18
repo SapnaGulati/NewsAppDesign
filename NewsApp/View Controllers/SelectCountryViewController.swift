@@ -32,10 +32,10 @@ class SelectCountryViewController: BaseVC {
         super.viewDidLoad()
         preferredStatusBarStyle.setupStatusBar(string: "#b80d00")
         setupNavigationBarItems()
-        callApiForCountry()
         setupSearchBar()
         setupTableView()
         setupFonts()
+//        countryTableView.isScrolling
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -239,6 +239,7 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         view.addSubview(countryTableView)
         countryTableView.delegate = self
         countryTableView.dataSource = self
+        callApiForCountry()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -271,6 +272,11 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         else {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.resignFirstResponder()
+        self.view.endEditing(true)
     }
 }
 

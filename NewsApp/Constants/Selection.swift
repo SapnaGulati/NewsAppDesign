@@ -13,6 +13,6 @@ class Selection {
     // MARK: Global Variables
     var selectedSourceName = ""
     var selectedSourceId = ""
-    var selectedFlag = ""
+    var selectedFlag = CountryCode.shared.getFlag(country: DataManager.selectedCountry ?? "")
     var searchParams = ""
 }

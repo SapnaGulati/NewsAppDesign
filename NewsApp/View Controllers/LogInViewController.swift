@@ -16,6 +16,7 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     // MARK: Outlet
     @IBOutlet weak var underlineView: UIView!
     @IBOutlet weak var continueLabel: UILabel!
+    @IBOutlet weak var appleButton: UIButton!
     
     // MARK: Variables
     var username: UITextField!
@@ -36,6 +37,7 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
         else {
             let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
             statusBar?.backgroundColor = .none
+            appleButton.removeFromSuperview()
         }
     }
     
@@ -162,6 +164,6 @@ extension LogInViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        self.showErrorMessage(error: error)
+        print(error)
     }
 }

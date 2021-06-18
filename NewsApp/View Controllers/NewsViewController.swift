@@ -74,7 +74,12 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
         self.newsTableView.register(UINib.init(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.newsTableView.delegate = self
         self.newsTableView.dataSource = self
-        self.callApiToGetArticles()
+        if newsComeFrom == .Sources {
+            self.callApiToGetArticles()
+        }
+        else {
+            self.callApiToGetArticlesBySearch()
+        }
     }
     
     // MARK: Table View Delegate Function
@@ -125,6 +130,22 @@ extension NewsViewController {
     
     func callApiToGetArticles() {
         NewsVM.shared.callApiToGetArticlesBySource(selectedSource: Selection.instance.selectedSourceId) { (message, error) in
+            if error != nil {
+                self.showErrorMessage(error: error)
+            }else {
+                if NewsVM.shared.newsData.articles.count == 0 {
+                    self.newsTableView.setEmptyView(message: "News Not Available.")
+                }
+                else {
+                    self.newsTableView.restore()
+                }
+                self.newsTableView.reloadData()
+            }
+        }
+    }
+    
+    func callApiToGetArticlesBySearch() {
+        NewsVM.shared.callApiToGetArticlesBySearch(searchParams: Selection.instance.searchParams) { (message, error) in
             if error != nil {
                 self.showErrorMessage(error: error)
             }else {

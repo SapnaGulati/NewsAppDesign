@@ -151,6 +151,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gXB-dr-MeX"/>
                     <connections>
+                        <outlet property="appleButton" destination="7Pn-TO-Pqt" id="DoI-59-8gn"/>
                         <outlet property="continueLabel" destination="HnY-iK-J2f" id="tUi-Rg-9Eb"/>
                         <outlet property="underlineView" destination="gUj-FM-Qjn" id="QTZ-7J-Qlu"/>
                     </connections>
@@ -168,7 +169,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJT-zq-mtE" userLabel="TopView">
-                                <rect key="frame" x="20" y="36" width="372.5" height="107"/>
+                                <rect key="frame" x="20" y="36" width="372.5" height="115"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="b69-ny-yYu">
                                         <rect key="frame" x="0.0" y="8" width="372.5" height="50"/>
@@ -187,7 +188,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="paY-Vx-0nu" secondAttribute="bottom" id="KRl-Rn-eOp"/>
+                                    <constraint firstAttribute="bottom" secondItem="paY-Vx-0nu" secondAttribute="bottom" constant="8" id="KRl-Rn-eOp"/>
                                     <constraint firstAttribute="trailing" secondItem="paY-Vx-0nu" secondAttribute="trailing" constant="16" id="Ptr-h7-T0Y"/>
                                     <constraint firstItem="paY-Vx-0nu" firstAttribute="top" secondItem="b69-ny-yYu" secondAttribute="bottom" constant="8" id="TNe-oc-btL"/>
                                     <constraint firstItem="paY-Vx-0nu" firstAttribute="leading" secondItem="iJT-zq-mtE" secondAttribute="leading" constant="16" id="dLw-3E-vpj"/>
@@ -209,7 +210,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wxs-zk-hZY">
-                                <rect key="frame" x="20" y="143" width="372.5" height="753"/>
+                                <rect key="frame" x="20" y="151" width="372.5" height="745"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>

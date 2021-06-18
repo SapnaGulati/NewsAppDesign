@@ -43,17 +43,19 @@ class SearchTableViewController: BaseVC {
         NSAttributedString.Key.foregroundColor: UIColor(hexString: "#b80d00"),
         NSAttributedString.Key.font : UIFont(name: "Poppins-Medium", size: 13)!
         ]
+        searchBar.backgroundColor = .white
+        searchBar.clipsToBounds = true
+        searchBar.layer.frame.size.height = 40
+        searchBar.layer.cornerRadius = 22
+        searchView.backgroundColor = .none
+        searchBar.layer.borderWidth = 2
         if #available(iOS 13.0, *) {
             searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes:attributes)
-            searchBar.backgroundColor = .white
-            searchBar.clipsToBounds = true
-            searchBar.layer.frame.size.height = 40
             searchBar.searchTextField.backgroundColor = .white
             searchBar.searchTextField.layer.borderColor = UIColor.white.cgColor
             searchBar.searchTextField.layer.borderWidth = 2
             searchBar.searchTextField.textColor = .black
             searchBar.layer.borderColor = UIColor.systemGray6.cgColor
-            searchBar.layer.cornerRadius = 22
         }
         searchBar.delegate = self
         searchBar.tintColor = UIColor(hexString: "#b80d00")
@@ -100,13 +102,18 @@ class SearchTableViewController: BaseVC {
 // MARK: Search Bar Data Update
 extension SearchTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        Selection.instance.searchParams = searchText
-        self.callApiToGetArticles()
+        if searchText != "" {
+            Selection.instance.searchParams = searchText
+        }
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.inputAccessoryView = doneToolbar
         return true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.callApiToGetArticles()
     }
 }
 
@@ -158,6 +165,7 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = searchTableView.cellForRow(at: indexPath)
+        self.callApiToGetArticles()
         cell?.isSelected = true
         cell?.isHighlighted = true
         let bgColorView = UIView()
