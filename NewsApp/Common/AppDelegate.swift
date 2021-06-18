@@ -13,7 +13,10 @@ import FBSDKCoreKit
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
     var window: UIWindow?
+    var navigationController = UINavigationController()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Thread.sleep(forTimeInterval: 3.0)
         GIDSignIn.sharedInstance().clientID = "224073299943-v0j0ijecqeroero43rpmqqved6rausmm.apps.googleusercontent.com"
@@ -21,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application,
             didFinishLaunchingWithOptions: launchOptions
         )
+        navigateToLogin()
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .light
         }
@@ -51,6 +55,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         annotation: options[UIApplication.OpenURLOptionsKey.annotation]
       )
         return (GIDSignIn.sharedInstance()?.handle(url))!
+    }
+    
+    @objc func navigateToLogin() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if DataManager.loginStatus{
+            let tabvc = storyboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+            self.navigationController = UINavigationController(rootViewController: tabvc)
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
+        }
+        else{
+            let loginvc = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
+            self.navigationController = UINavigationController(rootViewController: loginvc)
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
+        }
     }
 }
 

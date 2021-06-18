@@ -35,6 +35,8 @@ class TableViewCell: UITableViewCell {
         shareButton.alpha = 0
         bookmarkButton.alpha = 0
         soundButton.alpha = 0
+        bookmarkButton.isEnabled = false
+        soundButton.isEnabled = false
         moreLabel.isUserInteractionEnabled = true
         scrollView.isScrollEnabled = false
     }

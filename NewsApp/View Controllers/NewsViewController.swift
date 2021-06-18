@@ -135,7 +135,6 @@ extension NewsViewController {
                     self.newsTableView.restore()
                 }
                 self.newsTableView.reloadData()
-              
             }
         }
     }

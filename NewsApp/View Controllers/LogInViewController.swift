@@ -23,12 +23,7 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     
     // MARK: View Cycle
     override func viewDidLoad() {
-        if (DataManager.loginStatus) {
-            gotoHomeVC()
-        }
-        else {
-            super.viewDidLoad()
-        }
+        super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         setupFonts()
         preferredStatusBarStyle.setupStatusBar(string: "#ffffff")
@@ -53,44 +48,28 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     
     // MARK: Button Action
     @IBAction func facebookButton(_ sender: UIButton) {
-        if (DataManager.loginStatus) {
-            gotoHomeVC()
-        }
-        else {
-            facebookLogin()
-        }
+        facebookLogin()
     }
     
     @IBAction func googleButton(_ sender: UIButton) {
-        if (DataManager.loginStatus) {
-            gotoHomeVC()
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        if GIDSignIn.sharedInstance().hasPreviousSignIn(){
+            GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         }
         else {
-            GIDSignIn.sharedInstance()?.presentingViewController = self
-            if GIDSignIn.sharedInstance().hasPreviousSignIn(){
-                GIDSignIn.sharedInstance()?.restorePreviousSignIn()
-                gotoHomeVC()
-            }
-            else {
-                GIDSignIn.sharedInstance()?.signIn()
-            }
+            GIDSignIn.sharedInstance()?.signIn()
         }
     }
     
     @IBAction func appleButton(_ sender: UIButton) {
-        if (DataManager.loginStatus) {
-            gotoHomeVC()
-        }
-        else {
-            if #available(iOS 13.0, *) {
-                let appleIDProvider = ASAuthorizationAppleIDProvider()
-                let request = appleIDProvider.createRequest()
-                request.requestedScopes = [.fullName, .email]
-                let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-                authorizationController.delegate = self
-                authorizationController.presentationContextProvider = self
-                authorizationController.performRequests()
-            }
+        if #available(iOS 13.0, *) {
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
         }
     }
   

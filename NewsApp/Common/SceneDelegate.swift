@@ -12,6 +12,7 @@ import FBSDKCoreKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var navigationController = UINavigationController()
 
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -31,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        navigateToLogin()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -59,6 +61,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+    
+    @objc func navigateToLogin() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if DataManager.loginStatus{
+            let tabvc = storyboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+            self.navigationController = UINavigationController(rootViewController: tabvc)
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
+        }
+        else{
+            let loginvc = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
+            self.navigationController = UINavigationController(rootViewController: loginvc)
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
+        }
     }
 }
 
