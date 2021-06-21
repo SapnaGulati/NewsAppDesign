@@ -35,7 +35,6 @@ class SelectCountryViewController: BaseVC {
         setupSearchBar()
         setupTableView()
         setupFonts()
-//        countryTableView.isScrolling
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -185,17 +184,6 @@ class CountryCell: UITableViewCell {
         countryNameLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 50).isActive = true
         countryNameLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 150).isActive = true
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-         super.setSelected(selected, animated: animated)
-         if selected {
-            cellView.backgroundColor = UIColor(hexString: "#b80d00")
-            cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1.5), shadowOpacity: 1, shadowRadius: 3.5)
-         } else {
-            cellView.backgroundColor = UIColor(hexString: "#616163")
-            cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1.5), shadowOpacity: 1, shadowRadius: 3.5)
-         }
-     }
 }
 
 // MARK: Search Bar Delegate
@@ -251,6 +239,14 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = countryTableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CountryCell
+        if cell.isSelected || DataManager.selectedCountry == filteredData[indexPath.row].name{
+            cell.cellView.backgroundColor = UIColor(hexString: "#b80d00")
+            cell.cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1.5), shadowOpacity: 1, shadowRadius: 3.5)
+        }
+        else {
+            cell.cellView.backgroundColor = UIColor(hexString: "#616163")
+            cell.cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1.5), shadowOpacity: 1, shadowRadius: 3.5)
+        }
         cell.countryNameLabel.text = filteredData[indexPath.row].name
         flagString = CountryCode.shared.getFlag(country: filteredData[indexPath.row].name!)
         cell.countryImageView.image = flagString?.image()
@@ -262,6 +258,8 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = countryTableView.cellForRow(at: indexPath)
+        cell?.isSelected = true
         DataManager.selectedCountry = filteredData[indexPath.row].name
         flagString = CountryCode.shared.getFlag(country: DataManager.selectedCountry ?? "")
         Selection.instance.selectedFlag = flagString ?? ""
@@ -290,15 +288,19 @@ extension SelectCountryViewController {
             if error != nil {
                 self.showErrorMessage(error: error)
             }else {
+                self.countryTableView.restore()
+                self.countries = CountryVM.shared.country
+//                self.countries.sort(by: (CountryDM.T))
+//                for i in 0...self.countries.count-1 {
+//                    self.countries.sort(by: {_,_ in self.countries[$0].name! < self.countries[$1].name!})
+//                }
+                self.filteredData = self.countries
                 if self.filteredData.count == 0 {
-                    self.countryTableView.setEmptyView(message: "No such country exist. Please search for some valid country.")
+                    self.countryTableView.setEmptyView(message: "Invalid Search")
                 }
                 else {
-                    self.countryTableView.restore()
+                    self.countryTableView.reloadData()
                 }
-                self.countries = CountryVM.shared.country
-                self.filteredData = self.countries
-                self.countryTableView.reloadData()
             }
         }
     }

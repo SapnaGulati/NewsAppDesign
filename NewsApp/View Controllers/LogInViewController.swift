@@ -78,7 +78,15 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     // MARK: Google Sign In Delegate
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
-            gotoCountryVC()
+            if DataManager.selectedCountry?.isEmpty == true && DataManager.selectedCategory?.isEmpty == true {
+                gotoCountryVC()
+            }
+            else if DataManager.selectedCategory?.isEmpty == true {
+                gotoCategoryVC()
+            }
+            else {
+                gotoHomeVC()
+            }
             DataManager.loginStatus = true
             DataManager.googleLogIn = true
         }
@@ -94,7 +102,15 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
                     let token = token.tokenString
                     let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "id, email, first_name, last_name, picture, short_name, name, middle_name, name_format,age_range"], tokenString: token, version: nil, httpMethod: .get)
                     request.start { (connection, result, error) in
-                        self.gotoCountryVC()
+                        if DataManager.selectedCountry?.isEmpty == true && DataManager.selectedCategory?.isEmpty == true {
+                            self.gotoCountryVC()
+                        }
+                        else if DataManager.selectedCategory?.isEmpty == true {
+                            self.gotoCategoryVC()
+                        }
+                        else {
+                            self.gotoHomeVC()
+                        }
                         DataManager.loginStatus = true
                         DataManager.facebookLogIn = true
                     }
@@ -111,6 +127,12 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SelectCountryViewController") as! SelectCountryViewController
         vc.comeFrom = .LogIn
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func gotoCategoryVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SelectCategoryViewController") as! SelectCategoryViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -158,7 +180,15 @@ extension LogInViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             print(appleIdCred.fullName?.familyName ?? "")
             print(appleIdCred.email ?? "")
         }
-        gotoCountryVC()
+        if DataManager.selectedCountry?.isEmpty == true && DataManager.selectedCategory?.isEmpty == true {
+            gotoCountryVC()
+        }
+        else if DataManager.selectedCategory?.isEmpty == true {
+            gotoCategoryVC()
+        }
+        else {
+            gotoHomeVC()
+        }
         DataManager.loginStatus = true
         DataManager.appleLogIn = true
     }

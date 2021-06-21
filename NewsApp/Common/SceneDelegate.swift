@@ -67,11 +67,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         if DataManager.loginStatus{
-            if (DataManager.selectedCategory != "" && DataManager.selectedCountry != ""){
+            if !(DataManager.selectedCategory?.isEmpty == true && DataManager.selectedCountry?.isEmpty == true){
                 let tabvc = storyboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
                 self.navigationController = UINavigationController(rootViewController: tabvc)
             }
-            else if (DataManager.selectedCountry == ""){
+            else if (DataManager.selectedCountry?.isEmpty == true){
                 let countryvc = storyboard.instantiateViewController(withIdentifier: "SelectCountryViewController") as! SelectCountryViewController
                 self.navigationController = UINavigationController(rootViewController: countryvc)
             }

@@ -77,8 +77,6 @@ class LogoutViewController: UIViewController {
         defaults.removeObject(forKey: "googleLogIn")
         defaults.removeObject(forKey: "facebookLogIn")
         defaults.synchronize()
-        DataManager.selectedCountry = ""
-        DataManager.selectedCategory = ""
         self.show(self.storyboard!.instantiateViewController(withIdentifier: "LogInViewController"), sender: self)
     }
 }
