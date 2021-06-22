@@ -291,10 +291,6 @@ extension SelectCountryViewController {
             }else {
                 self.countryTableView.restore()
                 self.countries = CountryVM.shared.country
-//                self.countries.sort(by: (CountryDM.T))
-//                for i in 0...self.countries.count-1 {
-//                    self.countries.sort(by: {_,_ in self.countries[$0].name! < self.countries[$1].name!})
-//                }
                 self.filteredData = self.countries
                 if self.filteredData.count == 0 {
                     self.countryTableView.setEmptyView(message: "Invalid Search")
