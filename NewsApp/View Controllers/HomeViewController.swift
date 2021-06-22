@@ -118,7 +118,16 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
         let items = NewsVM.shared.newsData.articles[indexPath.row]
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
-        cell.dateLabel?.text = items.publishedAt
+        
+        // MARK: Decode date into right format
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+
+        if let date = dateFormatterGet.date(from: items.publishedAt ?? "") {
+            cell.dateLabel?.text = (dateFormatterPrint.string(from: date))
+        }
         cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
         cell.sourceLabel?.text = items.sourceName
         self.url = URL(string: items.url ?? "")

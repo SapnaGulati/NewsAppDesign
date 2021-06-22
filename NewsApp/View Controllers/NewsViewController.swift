@@ -109,14 +109,16 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
         let items = NewsVM.shared.newsData.articles[indexPath.row]
         cell.titleLabel?.text = items.title ?? ""
         cell.contentLabel?.text = items.description
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-//        let date = dateFormatter.date(from: "2017-01-09T11:00:00.000Z")
-//        print("date: \(date)")
-        cell.dateLabel?.text = items.publishedAt?.description
-//        let date = items.publishedAt?.description
-//        date.parse("2020-05-08T11:12:13+0001", DateFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ"))
+        
+        // MARK: Decode date into right format
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+
+        if let date = dateFormatterGet.date(from: items.publishedAt ?? "") {
+            cell.dateLabel?.text = (dateFormatterPrint.string(from: date))
+        }
         cell.homeImageView.sd_setImage(with: URL(string: items.urlToImage  ?? ""), placeholderImage: #imageLiteral(resourceName: "HomeImage"), options: .refreshCached, completed: nil)
         cell.sourceLabel?.text = items.sourceName
         self.url = URL(string: items.url ?? "")

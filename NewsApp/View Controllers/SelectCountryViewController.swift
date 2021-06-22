@@ -247,6 +247,7 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
             cell.cellView.backgroundColor = UIColor(hexString: "#616163")
             cell.cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1.5), shadowOpacity: 1, shadowRadius: 3.5)
         }
+        self.filteredData = self.filteredData.sorted { $0.name?.lowercased() ?? "" < $1.name?.lowercased() ?? ""}
         cell.countryNameLabel.text = filteredData[indexPath.row].name
         flagString = CountryCode.shared.getFlag(country: filteredData[indexPath.row].name!)
         cell.countryImageView.image = flagString?.image()
