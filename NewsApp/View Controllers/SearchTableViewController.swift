@@ -11,6 +11,7 @@ class SearchTableViewController: BaseVC {
     
     // MARK: Data Initialization
     private var newsData : NewsDM!
+    var searchButtonClicked = false
     
     // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -107,6 +108,7 @@ extension SearchTableViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.callApiToGetArticles()
+        self.searchButtonClicked = true
     }
 }
 
@@ -149,6 +151,9 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
             cell.textLabel?.textColor = UIColor(hexString: "#918e8c")
             cell.backgroundColor = UIColor(hexString: "#d6d4d3")
         }
+        if Selection.instance.searchParams == "" || self.searchButtonClicked == false{
+            self.searchTableView.reloadData()
+        }
         return cell
     }
     
@@ -158,7 +163,9 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = searchTableView.cellForRow(at: indexPath)
-        self.callApiToGetArticles()
+        if Selection.instance.searchParams != "" {
+            self.callApiToGetArticles()
+        }
         cell?.isSelected = true
         cell?.isHighlighted = true
         let bgColorView = UIView()
@@ -184,6 +191,7 @@ extension SearchTableViewController {
             if error != nil {
                 self.showErrorMessage(error: error)
             }else {
+                self.searchTableView.reloadData()
                 if(NewsVM.shared.newsData.articles.count == 0) {
                     self.newsNotFoundLabel.alpha = 1
                     self.searchView.backgroundColor = .none
@@ -198,7 +206,6 @@ extension SearchTableViewController {
                     self.searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
                     self.searchTableView.backgroundColor = UIColor(hexString: "#d6d4d3")
                 }
-                self.searchTableView.reloadData()
             }
         }
     }

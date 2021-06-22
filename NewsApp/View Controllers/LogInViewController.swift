@@ -78,10 +78,10 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     // MARK: Google Sign In Delegate
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
-            if DataManager.selectedCountry?.isEmpty == true && DataManager.selectedCategory?.isEmpty == true {
+            if DataManager.selectedCountry == nil && DataManager.selectedCategory == nil {
                 gotoCountryVC()
             }
-            else if DataManager.selectedCategory?.isEmpty == true {
+            else if DataManager.selectedCategory == nil {
                 gotoCategoryVC()
             }
             else {
@@ -102,10 +102,10 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
                     let token = token.tokenString
                     let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "id, email, first_name, last_name, picture, short_name, name, middle_name, name_format,age_range"], tokenString: token, version: nil, httpMethod: .get)
                     request.start { (connection, result, error) in
-                        if DataManager.selectedCountry?.isEmpty == true && DataManager.selectedCategory?.isEmpty == true {
+                        if DataManager.selectedCountry == nil && DataManager.selectedCategory == nil {
                             self.gotoCountryVC()
                         }
-                        else if DataManager.selectedCategory?.isEmpty == true {
+                        else if DataManager.selectedCategory == nil {
                             self.gotoCategoryVC()
                         }
                         else {
@@ -180,10 +180,10 @@ extension LogInViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             print(appleIdCred.fullName?.familyName ?? "")
             print(appleIdCred.email ?? "")
         }
-        if DataManager.selectedCountry?.isEmpty == true && DataManager.selectedCategory?.isEmpty == true {
+        if DataManager.selectedCountry == nil && DataManager.selectedCategory == nil {
             gotoCountryVC()
         }
-        else if DataManager.selectedCategory?.isEmpty == true {
+        else if DataManager.selectedCategory == nil {
             gotoCategoryVC()
         }
         else {

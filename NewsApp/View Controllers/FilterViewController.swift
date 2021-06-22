@@ -54,7 +54,7 @@ class FilterViewController: UIViewController {
     
     // MARK: Reset Button Click Handling
     @IBAction func ResetButton(_ sender: UIButton) {
-        DataManager.selectedCategory = selectedCategory
+        Selection.instance.selectedCategory = selectedCategory
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -119,7 +119,7 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCell", for: indexPath) as! FilterCell
-        if indexPath.row == DataManager.selectedCategoryIndex {
+        if indexPath.row == Selection.instance.selectedCategoryIndex {
             cell.isSelected = true
         }
         else {
@@ -143,7 +143,7 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        DataManager.selectedCategoryIndex = indexPath.row
+        Selection.instance.selectedCategoryIndex = indexPath.row
         selectedCategory = categories[indexPath.row].name
         self.filterCategoriesCollectionView.reloadData()
     }

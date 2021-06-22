@@ -10,8 +10,8 @@ import Foundation
 class APIKeys {
     static let kMessage = "message"
     static let kAuthorizationToken = "Authorization"
-//    static let kAccessToken = "537f81739ffa4a09b7bc1511841e6729"
-    static let kAccessToken = "4d3e1ce2523f46418ff4a356b80f556d"
+    static let kAccessToken = "537f81739ffa4a09b7bc1511841e6729"
+//    static let kAccessToken = "4d3e1ce2523f46418ff4a356b80f556d"
     static let kStatus = "status"
     static let kFacebookLogIn = "facebooklogin"
     static let kGoogleLogIn = "googlelogin"
