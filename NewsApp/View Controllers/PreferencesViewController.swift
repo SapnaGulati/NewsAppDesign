@@ -17,7 +17,6 @@ class PreferencesViewController: BaseVC, SelectCountry {
     // MARK: Variables
     var leftIconView: UIImageView!
     private let categories = CategoryList.getCategories()
-    var countrySelected = false
 
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -95,7 +94,6 @@ class PreferencesViewController: BaseVC, SelectCountry {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SelectCountryViewController") as! SelectCountryViewController
         vc.delegate = self
         vc.comeFrom = .Preferences
-        countrySelected = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -184,16 +182,10 @@ extension PreferencesViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         DataManager.selectedCategory  = categories[indexPath.row].name!
         DataManager.selectedCategoryIndex = indexPath.row
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "NewsViewController") as! NewsViewController
-        vc.newsComeFrom = .Preferences
-        if countrySelected {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+        let tab = self.storyboard!.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        tab.categoryComeFrom = .Preferences
         self.navigationController?.pushViewController(vc, animated: true)
-        }
-        else {
-            let alert = UIAlertController(title: "Alert", message: "Please select country to continue", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
         self.categoryCollectionView.reloadData()
     }
     

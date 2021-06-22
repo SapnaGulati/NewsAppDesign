@@ -9,6 +9,11 @@ import UIKit
 import SafariServices
 import SDWebImage
 
+enum CategoryComeFrom: String {
+    case Filters
+    case Preferences
+}
+
 class HomeViewController: BaseVC {
     
     // MARK: Outlets
@@ -18,6 +23,7 @@ class HomeViewController: BaseVC {
     var url: URL!
     var loadingVC: UIViewController!
     private var newsData : NewsDM!
+    var categoryComeFrom: CategoryComeFrom = .Preferences
     
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -155,7 +161,14 @@ extension HomeViewController:  UITableViewDelegate, UITableViewDataSource{
 
 extension HomeViewController {
     func callApiToGetArticles() {
-        NewsVM.shared.callApiToGetArticlesByCounAndCat(selectedCountry: CountryCode.shared.getCode(country: DataManager.selectedCountry ?? ""), selectedCategory: DataManager.selectedCategory ?? "") { (message, error) in
+        let selectedCategory: String!
+        if categoryComeFrom == .Filters {
+            selectedCategory = DataManager.selectedCategory
+        }
+        else {
+            selectedCategory = Selection.instance.selectedCategory
+        }
+        NewsVM.shared.callApiToGetArticlesByCounAndCat(selectedCountry: CountryCode.shared.getCode(country: DataManager.selectedCountry ?? ""), selectedCategory: selectedCategory ?? "") { (message, error) in
             if error != nil {
                 self.showErrorMessage(error: error)
             }else {

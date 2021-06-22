@@ -12,7 +12,6 @@ import SDWebImage
 enum NewsComeFrom: String {
     case Search
     case Sources
-    case Preferences
 }
 
 class NewsViewController: BaseVC {
@@ -77,9 +76,6 @@ extension NewsViewController:  UITableViewDelegate, UITableViewDataSource{
         self.newsTableView.dataSource = self
         if newsComeFrom == .Sources {
             self.callApiToGetArticlesBySources()
-        }
-        else if newsComeFrom == .Preferences {
-            self.callApiToGetArticles()
         }
         else {
             self.callApiToGetArticlesBySearch()
@@ -159,22 +155,6 @@ extension NewsViewController {
     
     func callApiToGetArticlesBySearch() {
         NewsVM.shared.callApiToGetArticlesBySearch(searchParams: Selection.instance.searchParams) { (message, error) in
-            if error != nil {
-                self.showErrorMessage(error: error)
-            }else {
-                if NewsVM.shared.newsData.articles.count == 0 {
-                    self.newsTableView.setEmptyView(message: "News Not Available.")
-                }
-                else {
-                    self.newsTableView.restore()
-                }
-                self.newsTableView.reloadData()
-            }
-        }
-    }
-    
-    func callApiToGetArticles() {
-        NewsVM.shared.callApiToGetArticlesByCounAndCat(selectedCountry: CountryCode.shared.getCode(country: DataManager.selectedCountry ?? ""), selectedCategory: DataManager.selectedCategory ?? "") { (message, error) in
             if error != nil {
                 self.showErrorMessage(error: error)
             }else {

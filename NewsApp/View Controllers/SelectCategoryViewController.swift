@@ -19,11 +19,16 @@ class SelectCategoryViewController: UIViewController {
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        preferredStatusBarStyle.setupStatusBar(string: "#b80d00")
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.hidesBackButton = true
         setupNavigationBarItems()
         setupCollectionView()
         setupFonts()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
     }
     
     // MARK: Set up Fonts

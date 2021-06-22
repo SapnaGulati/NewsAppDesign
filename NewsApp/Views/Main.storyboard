@@ -177,7 +177,7 @@
                                             <constraint firstAttribute="height" constant="50" id="qGz-Cz-fCK"/>
                                         </constraints>
                                         <color key="tintColor" red="0.2042620778" green="0.20368760820000001" blue="0.1959866881" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="yes" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a country you are interested in, to get news updates." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paY-Vx-0nu">
                                         <rect key="frame" x="16" y="66" width="340.5" height="41"/>
@@ -1119,10 +1119,10 @@
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HI5-01-bO0" userLabel="Main View">
-                                <rect key="frame" x="0.0" y="60" width="414" height="836"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeJ-9K-YTl" userLabel="Search View">
-                                        <rect key="frame" x="20" y="40" width="374" height="53"/>
+                                        <rect key="frame" x="20" y="8" width="374" height="53"/>
                                         <subviews>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ooQ-I1-dZW">
                                                 <rect key="frame" x="0.0" y="1" width="374" height="42"/>
@@ -1130,7 +1130,7 @@
                                                     <constraint firstAttribute="height" constant="42" id="ql0-Fy-fuH"/>
                                                 </constraints>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="yes" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                             </searchBar>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1143,7 +1143,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v3k-CI-vD4">
-                                        <rect key="frame" x="20" y="93" width="374" height="200"/>
+                                        <rect key="frame" x="20" y="61" width="374" height="200"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="JTY-rC-FqN"/>
@@ -1160,7 +1160,7 @@
                                         </prototypes>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News not found." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzL-Hd-JXO">
-                                        <rect key="frame" x="114" y="402.5" width="186" height="31.5"/>
+                                        <rect key="frame" x="114" y="410.5" width="186" height="31.5"/>
                                         <fontDescription key="fontDescription" name=".SFNS-Regular" family=".AppleSystemUIFont" pointSize="28"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1170,7 +1170,7 @@
                                 <constraints>
                                     <constraint firstItem="v3k-CI-vD4" firstAttribute="leading" secondItem="HI5-01-bO0" secondAttribute="leading" constant="20" id="3OV-Ri-80a"/>
                                     <constraint firstItem="kzL-Hd-JXO" firstAttribute="centerY" secondItem="HI5-01-bO0" secondAttribute="centerY" id="4h5-4Y-aqw"/>
-                                    <constraint firstItem="JeJ-9K-YTl" firstAttribute="top" secondItem="HI5-01-bO0" secondAttribute="top" constant="40" id="D4P-Qz-3h0"/>
+                                    <constraint firstItem="JeJ-9K-YTl" firstAttribute="top" secondItem="HI5-01-bO0" secondAttribute="top" constant="8" id="D4P-Qz-3h0"/>
                                     <constraint firstItem="JeJ-9K-YTl" firstAttribute="leading" secondItem="HI5-01-bO0" secondAttribute="leading" constant="20" id="GDa-hw-V3C"/>
                                     <constraint firstAttribute="trailing" secondItem="JeJ-9K-YTl" secondAttribute="trailing" constant="20" id="Lq7-6o-Iis"/>
                                     <constraint firstItem="v3k-CI-vD4" firstAttribute="top" secondItem="JeJ-9K-YTl" secondAttribute="bottom" id="TT1-YW-Il5"/>
@@ -1182,10 +1182,9 @@
                         <viewLayoutGuide key="safeArea" id="cuH-Lz-6ld"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="HI5-01-bO0" firstAttribute="top" secondItem="DLl-8F-8Du" secondAttribute="top" constant="60" id="AYE-3Y-Z8T"/>
+                            <constraint firstItem="HI5-01-bO0" firstAttribute="top" secondItem="cuH-Lz-6ld" secondAttribute="top" id="AYE-3Y-Z8T"/>
                             <constraint firstItem="HI5-01-bO0" firstAttribute="leading" secondItem="DLl-8F-8Du" secondAttribute="leading" id="EB6-gW-K4t"/>
                             <constraint firstAttribute="trailing" secondItem="HI5-01-bO0" secondAttribute="trailing" id="Ft1-20-vIc"/>
-                            <constraint firstItem="HI5-01-bO0" firstAttribute="top" secondItem="cuH-Lz-6ld" secondAttribute="top" constant="16" id="KfU-hf-l2i"/>
                             <constraint firstAttribute="bottom" secondItem="HI5-01-bO0" secondAttribute="bottom" id="emO-ib-XJg"/>
                         </constraints>
                     </view>
@@ -1379,7 +1378,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ybw-0u-Bvc">
-                                <rect key="frame" x="0.0" y="70" width="414" height="792"/>
+                                <rect key="frame" x="0.0" y="52" width="414" height="810"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -1388,7 +1387,7 @@
                         <constraints>
                             <constraint firstItem="Ybw-0u-Bvc" firstAttribute="leading" secondItem="MZu-8C-Ddf" secondAttribute="leading" id="9eK-U8-fSP"/>
                             <constraint firstAttribute="trailing" secondItem="Ybw-0u-Bvc" secondAttribute="trailing" id="KxR-ZJ-7Gt"/>
-                            <constraint firstItem="Ybw-0u-Bvc" firstAttribute="top" secondItem="vfS-kX-7lx" secondAttribute="top" constant="26" id="anM-3z-w24"/>
+                            <constraint firstItem="Ybw-0u-Bvc" firstAttribute="top" secondItem="vfS-kX-7lx" secondAttribute="top" constant="8" id="anM-3z-w24"/>
                             <constraint firstAttribute="bottom" secondItem="Ybw-0u-Bvc" secondAttribute="bottom" constant="34" id="lVt-el-RIK"/>
                         </constraints>
                     </view>

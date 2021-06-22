@@ -109,6 +109,7 @@ extension SearchTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.callApiToGetArticles()
         self.searchButtonClicked = true
+        self.view.endEditing(true)
     }
 }
 
@@ -118,6 +119,7 @@ extension SearchTableViewController: UITableViewDelegate, UITableViewDataSource 
     func setupTableView() {
         self.searchTableView.delegate = self
         self.searchTableView.dataSource = self
+        self.searchTableView.backgroundColor = .none
         self.searchTableView.layer.borderColor = UIColor.lightGray.cgColor
         self.searchTableView.layer.borderWidth = 0
         self.searchTableView.layer.cornerRadius = 12
@@ -191,7 +193,6 @@ extension SearchTableViewController {
             if error != nil {
                 self.showErrorMessage(error: error)
             }else {
-                self.searchTableView.reloadData()
                 if(NewsVM.shared.newsData.articles.count == 0) {
                     self.newsNotFoundLabel.alpha = 1
                     self.searchView.backgroundColor = .none
@@ -206,6 +207,7 @@ extension SearchTableViewController {
                     self.searchView.backgroundColor = UIColor(hexString: "#d6d4d3")
                     self.searchTableView.backgroundColor = UIColor(hexString: "#d6d4d3")
                 }
+                self.searchTableView.reloadData()
             }
         }
     }

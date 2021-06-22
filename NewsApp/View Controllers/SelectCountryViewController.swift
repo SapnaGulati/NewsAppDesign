@@ -205,6 +205,12 @@ extension SelectCountryViewController: UISearchBarDelegate{
                 }
             }
         }
+        if self.filteredData.count == 0 {
+            self.countryTableView.setEmptyView(message: "Invalid Search")
+        }
+        else {
+            self.countryTableView.restore()
+        }
         self.countryTableView.reloadData()
     }
     
@@ -247,7 +253,6 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
             cell.cellView.backgroundColor = UIColor(hexString: "#616163")
             cell.cellView.addShadow(shadowColor: UIColor(hexString: "#303030").cgColor, shadowOffset: CGSize(width: 1, height: 1.5), shadowOpacity: 1, shadowRadius: 3.5)
         }
-        self.filteredData = self.filteredData.sorted { $0.name?.lowercased() ?? "" < $1.name?.lowercased() ?? ""}
         cell.countryNameLabel.text = filteredData[indexPath.row].name
         flagString = CountryCode.shared.getFlag(country: filteredData[indexPath.row].name!)
         cell.countryImageView.image = flagString?.image()
@@ -289,15 +294,10 @@ extension SelectCountryViewController {
             if error != nil {
                 self.showErrorMessage(error: error)
             }else {
-                self.countryTableView.restore()
                 self.countries = CountryVM.shared.country
+                self.countries = self.countries.sorted { $0.name?.lowercased() ?? "" < $1.name?.lowercased() ?? ""}
                 self.filteredData = self.countries
-                if self.filteredData.count == 0 {
-                    self.countryTableView.setEmptyView(message: "Invalid Search")
-                }
-                else {
-                    self.countryTableView.reloadData()
-                }
+                self.countryTableView.reloadData()
             }
         }
     }

@@ -18,7 +18,6 @@ class FilterViewController: UIViewController {
     
     // MARK: Variables
     private let categories = CategoryList.getCategories()
-    var selectedCategory: String!
 
     // MARK: View Cycle
     override func viewDidLoad() {
@@ -41,6 +40,7 @@ class FilterViewController: UIViewController {
         resetButton.titleLabel?.textColor = UIColor(hexString: "#ffffff")
         resetButton.backgroundColor = UIColor(hexString: "#b80d00")
         resetButton.layer.cornerRadius = 10
+        dataLabel.text = Selection.instance.searchParams
         dataLabel.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.gotoSearch(_:)))
         tap.numberOfTapsRequired = 1
@@ -54,7 +54,8 @@ class FilterViewController: UIViewController {
     
     // MARK: Reset Button Click Handling
     @IBAction func ResetButton(_ sender: UIButton) {
-        Selection.instance.selectedCategory = selectedCategory
+        Selection.instance.selectedCategory = "All"
+        Selection.instance.selectedCategoryIndex = 0
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -143,8 +144,12 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        Selection.instance.selectedCategory = categories[indexPath.row].name
         Selection.instance.selectedCategoryIndex = indexPath.row
-        selectedCategory = categories[indexPath.row].name
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+        let tab = self.storyboard!.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        tab.categoryComeFrom = .Filters
+        self.navigationController?.pushViewController(vc, animated: true)
         self.filterCategoriesCollectionView.reloadData()
     }
 }
