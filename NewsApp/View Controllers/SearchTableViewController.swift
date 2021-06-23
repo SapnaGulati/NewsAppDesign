@@ -14,7 +14,7 @@ class SearchTableViewController: BaseVC {
     var searchButtonClicked = false
     
     // MARK: Outlets
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var newsSearchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var doneToolbar: UIToolbar!
@@ -44,24 +44,24 @@ class SearchTableViewController: BaseVC {
         NSAttributedString.Key.foregroundColor: UIColor(hexString: "#b80d00"),
         NSAttributedString.Key.font : UIFont(name: "Poppins-Medium", size: 13)!
         ]
-        searchBar.backgroundColor = .white
-        searchBar.clipsToBounds = true
-        searchBar.layer.frame.size.height = 40
-        searchBar.layer.cornerRadius = 22
-        searchView.backgroundColor = .none
-        searchBar.layer.borderWidth = 2
+        newsSearchBar.backgroundColor = .white
+        newsSearchBar.clipsToBounds = true
+        newsSearchBar.layer.frame.size.height = 40
+        newsSearchBar.layer.cornerRadius = 22
+        newsSearchBar.backgroundColor = .none
+        newsSearchBar.layer.borderWidth = 2
         if #available(iOS 13.0, *) {
-            searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes:attributes)
-            searchBar.searchTextField.backgroundColor = .white
-            searchBar.searchTextField.layer.borderColor = UIColor.white.cgColor
-            searchBar.searchTextField.layer.borderWidth = 2
-            searchBar.searchTextField.textColor = .black
-            searchBar.layer.borderColor = UIColor.systemGray6.cgColor
+            newsSearchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes:attributes)
+            newsSearchBar.searchTextField.backgroundColor = .white
+            newsSearchBar.searchTextField.layer.borderColor = UIColor.white.cgColor
+            newsSearchBar.searchTextField.layer.borderWidth = 2
+            newsSearchBar.searchTextField.textColor = .black
+            newsSearchBar.layer.borderColor = UIColor.systemGray6.cgColor
         }
-        searchBar.delegate = self
-        searchBar.tintColor = UIColor(hexString: "#b80d00")
-        searchBar.setImage(UIImage(named: "searchR"), for: .search, state: .normal)
-        searchBar.backgroundImage = UIImage()
+        newsSearchBar.delegate = self
+        newsSearchBar.tintColor = UIColor(hexString: "#b80d00")
+        newsSearchBar.setImage(UIImage(named: "searchR"), for: .search, state: .normal)
+        newsSearchBar.backgroundImage = UIImage()
     }
     
     // MARK: Custom Navigation Bar
@@ -197,9 +197,9 @@ extension SearchTableViewController {
                     self.newsNotFoundLabel.alpha = 1
                     self.searchView.backgroundColor = .none
                     self.searchTableView.backgroundColor = .none
-                    self.searchBar.layer.borderWidth = 2
+                    self.newsSearchBar.layer.borderWidth = 2
                     if #available(iOS 13.0, *) {
-                        self.searchBar.layer.borderColor = UIColor.systemGray6.cgColor
+                        self.newsSearchBar.layer.borderColor = UIColor.systemGray6.cgColor
                     }
                 }
                 else {
