@@ -38,21 +38,21 @@ class HomeViewController: BaseVC {
         self.navigationController?.isNavigationBarHidden = false
         preferredStatusBarStyle.setupStatusBar(string: "#b80d00")
         setupNavigationBarItems()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users")
-        request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                DataManager.selectedCountry = data.value(forKey: "selectedCountry") as? String
-                DataManager.selectedCategory = data.value(forKey: "selectedCategory") as? String
-            }
-        }
-        catch {
-            print("failed")
-        }
         self.setupTableView()
+        fetchUser()
+    }
+    
+    func fetchUser()
+    {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        debugPrint(path[0])
+        do {
+            guard let result = try PersistentStorage.shared.context.fetch(Users.fetchRequest()) as? [Users] else {return}
+            result.forEach({debugPrint(($0.userId ?? "") as String)})
+        } catch let error
+        {
+            debugPrint(error)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

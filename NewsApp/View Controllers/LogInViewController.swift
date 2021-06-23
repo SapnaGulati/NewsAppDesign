@@ -19,14 +19,9 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     @IBOutlet weak var continueLabel: UILabel!
     @IBOutlet weak var appleButton: UIButton!
     
-    // MARK: Variables
-    var context: NSManagedObjectContext!
-    
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        context = appDelegate.persistentContainer.viewContext
         self.navigationController?.isNavigationBarHidden = true
         setupFonts()
         preferredStatusBarStyle.setupStatusBar(string: "#ffffff")
@@ -83,7 +78,7 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
             DataManager.loginStatus = true
             DataManager.googleLogIn = true
             DataManager.userId = user.userID
-            setDefaults()
+            createUser()
             if DataManager.selectedCountry == nil && DataManager.selectedCategory == nil {
                 gotoCountryVC()
             }
@@ -110,7 +105,7 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
                         DataManager.facebookLogIn = true
                         let userData = result as? [String:AnyObject]
                         DataManager.userId = userData?["id"] as? String
-                        self.setDefaults()
+                        self.createUser()
                         if DataManager.selectedCountry == nil && DataManager.selectedCategory == nil {
                             self.gotoCountryVC()
                         }
@@ -206,7 +201,27 @@ extension LogInViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
 }
 
 extension LogInViewController {
-    func setDefaults() {
+    func createUser()
+        {
+            let user = Users(context: PersistentStorage.shared.context)
+            user.userId = DataManager.userId
+            PersistentStorage.shared.saveContext()
+        }
+
+        func fetchUser()
+        {
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            debugPrint(path[0])
+            
+            do {
+                guard let result = try PersistentStorage.shared.context.fetch(Users.fetchRequest()) as? [Users] else {return}
+                result.forEach({debugPrint(($0.userId ?? "") as String)})
+            } catch let error
+            {
+                debugPrint(error)
+            }
+        }
+//    func setDefaults() {
 //        if someEntityExists(id: DataManager.userId ?? "") {
 //            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: DataManager.userId ?? "")
 //            fetchRequest.predicate = NSPredicate(format: "user = %@", (DataManager.userId ?? "") as String)
@@ -218,29 +233,29 @@ extension LogInViewController {
 //            }
 //        }
 //            else {
-                let entity = NSEntityDescription.entity(forEntityName: "Users", in: self.context)
-                let newUser = NSManagedObject(entity: entity!, insertInto: self.context)
-                newUser.setValue(DataManager.userId, forKey: "user")
-                newUser.setValue(DataManager.selectedCountry, forKey: "selectedCountry")
-                newUser.setValue(DataManager.selectedCategory, forKey: "selectedCategory")
-                do {
-                    try context.save()
-                } catch {
-                    print("Failed saving")
-                }
+//                let entity = NSEntityDescription.entity(forEntityName: "Users", in: self.context)
+//                let newUser = NSManagedObject(entity: entity!, insertInto: self.context)
+//                newUser.setValue(DataManager.userId, forKey: "user")
+//                newUser.setValue(DataManager.selectedCountry, forKey: "selectedCountry")
+//                newUser.setValue(DataManager.selectedCategory, forKey: "selectedCategory")
+//                do {
+//                    try context.save()
+//                } catch {
+//                    print("Failed saving")
+//                }
 //            }
-    }
+//    }
     
-    func someEntityExists(id: String) -> Bool {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: DataManager.userId ?? "")
-        fetchRequest.includesSubentities = false
-        var entitiesCount = 0
-        do {
-            entitiesCount = try context.count(for: fetchRequest)
-        }
-        catch {
-            print("error executing fetch request: \(error)")
-        }
-        return entitiesCount > 0
-    }
+//    func someEntityExists(id: String) -> Bool {
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: DataManager.userId ?? "")
+//        fetchRequest.includesSubentities = false
+//        var entitiesCount = 0
+//        do {
+//            entitiesCount = try context.count(for: fetchRequest)
+//        }
+//        catch {
+//            print("error executing fetch request: \(error)")
+//        }
+//        return entitiesCount > 0
+//    }
 }
