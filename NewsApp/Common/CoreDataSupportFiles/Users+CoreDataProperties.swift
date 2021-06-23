@@ -18,6 +18,5 @@ extension Users {
 
     @NSManaged public var selectedCategory: String?
     @NSManaged public var selectedCountry: String?
-    @NSManaged public var userId: String?
-
+    @NSManaged public var userId: UUID?
 }
