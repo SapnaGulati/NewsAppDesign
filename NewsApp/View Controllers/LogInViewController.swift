@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 import GoogleSignIn
 import FBSDKLoginKit
 import FBSDKCoreKit
@@ -19,12 +20,13 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     @IBOutlet weak var appleButton: UIButton!
     
     // MARK: Variables
-    var username: UITextField!
-    var password: UITextField!
+    var context: NSManagedObjectContext!
     
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        context = appDelegate.persistentContainer.viewContext
         self.navigationController?.isNavigationBarHidden = true
         setupFonts()
         preferredStatusBarStyle.setupStatusBar(string: "#ffffff")
@@ -78,6 +80,10 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     // MARK: Google Sign In Delegate
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
+            DataManager.loginStatus = true
+            DataManager.googleLogIn = true
+            DataManager.userId = user.userID
+            setDefaults()
             if DataManager.selectedCountry == nil && DataManager.selectedCategory == nil {
                 gotoCountryVC()
             }
@@ -87,8 +93,6 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
             else {
                 gotoHomeVC()
             }
-            DataManager.loginStatus = true
-            DataManager.googleLogIn = true
         }
     }
     
@@ -102,6 +106,11 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
                     let token = token.tokenString
                     let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "id, email, first_name, last_name, picture, short_name, name, middle_name, name_format,age_range"], tokenString: token, version: nil, httpMethod: .get)
                     request.start { (connection, result, error) in
+                        DataManager.loginStatus = true
+                        DataManager.facebookLogIn = true
+                        let userData = result as? [String:AnyObject]
+                        DataManager.userId = userData?["id"] as? String
+                        self.setDefaults()
                         if DataManager.selectedCountry == nil && DataManager.selectedCategory == nil {
                             self.gotoCountryVC()
                         }
@@ -111,8 +120,6 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
                         else {
                             self.gotoHomeVC()
                         }
-                        DataManager.loginStatus = true
-                        DataManager.facebookLogIn = true
                     }
                 }
             case .cancelled:
@@ -195,5 +202,45 @@ extension LogInViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print(error)
+    }
+}
+
+extension LogInViewController {
+    func setDefaults() {
+//        if someEntityExists(id: DataManager.userId ?? "") {
+//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: DataManager.userId ?? "")
+//            fetchRequest.predicate = NSPredicate(format: "user = %@", (DataManager.userId ?? "") as String)
+//            let results = try? context.fetch(fetchRequest)
+//            if results?.count != 0 {
+//                let newUser = results?[0] as AnyObject
+//                newUser.setValue(DataManager.selectedCountry, forKey: "selectedCountry")
+//                newUser.setValue(DataManager.selectedCategory, forKey: "selectedCategory")
+//            }
+//        }
+//            else {
+                let entity = NSEntityDescription.entity(forEntityName: "Users", in: self.context)
+                let newUser = NSManagedObject(entity: entity!, insertInto: self.context)
+                newUser.setValue(DataManager.userId, forKey: "user")
+                newUser.setValue(DataManager.selectedCountry, forKey: "selectedCountry")
+                newUser.setValue(DataManager.selectedCategory, forKey: "selectedCategory")
+                do {
+                    try context.save()
+                } catch {
+                    print("Failed saving")
+                }
+//            }
+    }
+    
+    func someEntityExists(id: String) -> Bool {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: DataManager.userId ?? "")
+        fetchRequest.includesSubentities = false
+        var entitiesCount = 0
+        do {
+            entitiesCount = try context.count(for: fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        return entitiesCount > 0
     }
 }

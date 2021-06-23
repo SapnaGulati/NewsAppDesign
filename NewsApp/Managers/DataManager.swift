@@ -9,6 +9,17 @@
 import Foundation
 
 class DataManager {
+    
+    static var userId: String? {
+    set {
+        UserDefaults.standard.setValue(newValue, forKey: APIKeys.kUserId)
+        UserDefaults.standard.synchronize()
+    }
+
+    get {
+    return UserDefaults.standard.string(forKey: APIKeys.kUserId)
+    }
+}
 
     static var loginStatus: Bool {
         set {
