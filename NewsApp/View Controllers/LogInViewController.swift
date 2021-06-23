@@ -201,61 +201,24 @@ extension LogInViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
 }
 
 extension LogInViewController {
-    func createUser()
-        {
-            let user = Users(context: PersistentStorage.shared.context)
-            user.userId = DataManager.userId
-            PersistentStorage.shared.saveContext()
-        }
+    func createUser() {
+        let user = Users(context: PersistentStorage.shared.context)
+        user.userId = DataManager.userId
+        user.selectedCategory = DataManager.selectedCategory
+        user.selectedCountry = DataManager.selectedCountry
+        PersistentStorage.shared.saveContext()
+    }
 
-        func fetchUser()
+    func fetchUser() {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        debugPrint(path[0])
+        
+        do {
+            guard let result = try PersistentStorage.shared.context.fetch(Users.fetchRequest()) as? [Users] else {return}
+            result.forEach({debugPrint(($0.userId ?? "") as String)})
+        } catch let error
         {
-            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            debugPrint(path[0])
-            
-            do {
-                guard let result = try PersistentStorage.shared.context.fetch(Users.fetchRequest()) as? [Users] else {return}
-                result.forEach({debugPrint(($0.userId ?? "") as String)})
-            } catch let error
-            {
-                debugPrint(error)
-            }
+            debugPrint(error)
         }
-//    func setDefaults() {
-//        if someEntityExists(id: DataManager.userId ?? "") {
-//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: DataManager.userId ?? "")
-//            fetchRequest.predicate = NSPredicate(format: "user = %@", (DataManager.userId ?? "") as String)
-//            let results = try? context.fetch(fetchRequest)
-//            if results?.count != 0 {
-//                let newUser = results?[0] as AnyObject
-//                newUser.setValue(DataManager.selectedCountry, forKey: "selectedCountry")
-//                newUser.setValue(DataManager.selectedCategory, forKey: "selectedCategory")
-//            }
-//        }
-//            else {
-//                let entity = NSEntityDescription.entity(forEntityName: "Users", in: self.context)
-//                let newUser = NSManagedObject(entity: entity!, insertInto: self.context)
-//                newUser.setValue(DataManager.userId, forKey: "user")
-//                newUser.setValue(DataManager.selectedCountry, forKey: "selectedCountry")
-//                newUser.setValue(DataManager.selectedCategory, forKey: "selectedCategory")
-//                do {
-//                    try context.save()
-//                } catch {
-//                    print("Failed saving")
-//                }
-//            }
-//    }
-    
-//    func someEntityExists(id: String) -> Bool {
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: DataManager.userId ?? "")
-//        fetchRequest.includesSubentities = false
-//        var entitiesCount = 0
-//        do {
-//            entitiesCount = try context.count(for: fetchRequest)
-//        }
-//        catch {
-//            print("error executing fetch request: \(error)")
-//        }
-//        return entitiesCount > 0
-//    }
+    }
 }
