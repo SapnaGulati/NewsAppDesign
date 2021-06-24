@@ -10,47 +10,51 @@ import CoreData
 
 protocol UserRepo {
 
-    func create(user: Users)
-    func getAll() -> [Users]?
-    func get(byIdentifier id: UUID) -> Users?
-    func update(user: Users)
-    func delete(id: UUID)
+    func create(user: User)
+    func getAll() -> [User]?
+    func get(byIdentifier userId: String) -> User?
+    func update(user: User)
+    func delete(userId: String)
 }
 
 struct UserRepository : UserRepo
 {
-    func create(user: Users) {
-        let cdUser = Users(context: PersistentStorage.shared.context)
+    func create(user: User) {
+        let cdUser = CDUsers(context: PersistentStorage.shared.context)
         cdUser.userId = user.userId
         cdUser.selectedCategory = user.selectedCategory
         cdUser.selectedCountry = user.selectedCountry
+        cdUser.selectedCategoryIndex = user.selectedCategoryIndex ?? 0
         PersistentStorage.shared.saveContext()
     }
 
-    func getAll() -> [Users]? {
-        let result = PersistentStorage.shared.fetchManagedObject(managedObject: Users.self)
-        return result
+    func getAll() -> [User]? {
+        let result = PersistentStorage.shared.fetchManagedObject(managedObject: CDUsers.self)
+        
+        var users : [User] = []
+        result?.forEach({ (cdUser) in
+            users.append(cdUser.convertToUser())
+        })
+        return users
     }
 
-    func get(byIdentifier id: UUID) -> Users? {
-        let fetchRequest = NSFetchRequest<Users>(entityName: "CDEmployee")
-        let predicate = NSPredicate(format: "id==%@", id as CVarArg)
+    func get(byIdentifier userId: String) -> User? {
+        let fetchRequest = NSFetchRequest<CDUsers>(entityName: "CDUsers")
+        let predicate = NSPredicate(format: "userId==%@", userId as CVarArg)
         fetchRequest.predicate = predicate
         do {
             let result = try PersistentStorage.shared.context.fetch(fetchRequest).first
             guard result != nil else {return nil}
-            return result
+            return result?.convertToUser()
         } catch let error {
             debugPrint(error)
         }
         return nil
     }
 
-    func update(user: Users) {
-        // update code here
+    func update(user: User) {
     }
 
-    func delete(id: UUID) {
-        // delete code here
+    func delete(userId: String) {
     }
 }

@@ -47,7 +47,7 @@ class HomeViewController: BaseVC {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         debugPrint(path[0])
         do {
-            guard let result = try PersistentStorage.shared.context.fetch(Users.fetchRequest()) as? [Users] else {return}
+            guard let result = try PersistentStorage.shared.context.fetch(CDUsers.fetchRequest()) as? [CDUsers] else {return}
             result.forEach({debugPrint(($0.userId ?? "") as String)})
         } catch let error
         {

@@ -202,7 +202,7 @@ extension LogInViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
 
 extension LogInViewController {
     func createUser() {
-        let user = Users(context: PersistentStorage.shared.context)
+        let user = CDUsers(context: PersistentStorage.shared.context)
         user.userId = DataManager.userId
         user.selectedCategory = DataManager.selectedCategory
         user.selectedCountry = DataManager.selectedCountry
@@ -214,8 +214,8 @@ extension LogInViewController {
         debugPrint(path[0])
         
         do {
-            guard let result = try PersistentStorage.shared.context.fetch(Users.fetchRequest()) as? [Users] else {return}
-            result.forEach({debugPrint(($0.userId ?? "") as String)})
+            guard let result = try PersistentStorage.shared.context.fetch(CDUsers.fetchRequest()) as? [CDUsers] else {return}
+            result.forEach({debugPrint($0.userId! as String)})
         } catch let error
         {
             debugPrint(error)

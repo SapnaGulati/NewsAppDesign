@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Users" representedClassName="Users" syncable="YES">
+    <entity name="CDUsers" representedClassName="CDUsers" syncable="YES">
         <attribute name="selectedCategory" optional="YES" attributeType="String"/>
+        <attribute name="selectedCategoryIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="selectedCountry" optional="YES" attributeType="String"/>
-        <attribute name="userId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Users" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="CDUsers" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>
