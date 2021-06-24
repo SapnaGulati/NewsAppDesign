@@ -11,6 +11,8 @@ import GoogleSignIn
 import FBSDKLoginKit
 import FBSDKCoreKit
 import AuthenticationServices
+import Firebase
+import FirebaseDatabase
 
 class LogInViewController: BaseVC, GIDSignInDelegate {
     
@@ -19,10 +21,14 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     @IBOutlet weak var continueLabel: UILabel!
     @IBOutlet weak var appleButton: UIButton!
     
+    // MARK: Variables
+    var ref: DatabaseReference!
+
     // MARK: View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        ref = Database.database().reference()
         setupFonts()
         preferredStatusBarStyle.setupStatusBar(string: "#ffffff")
         GIDSignIn.sharedInstance()?.delegate = self
@@ -73,12 +79,13 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
     }
   
     // MARK: Google Sign In Delegate
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    func sign(_ signIn: GIDSignIn!, didSignInFor g_user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
             DataManager.loginStatus = true
             DataManager.googleLogIn = true
-            DataManager.userId = user.userID
-            createUser()
+            DataManager.userId = g_user.userID
+            self.ref.child("users").child(g_user.userID).setValue(g_user.userID)
+            self.ref.child(g_user.userID).setValue(["id": g_user.userID])
             if DataManager.selectedCountry == nil && DataManager.selectedCategory == nil {
                 gotoCountryVC()
             }
@@ -105,7 +112,7 @@ class LogInViewController: BaseVC, GIDSignInDelegate {
                         DataManager.facebookLogIn = true
                         let userData = result as? [String:AnyObject]
                         DataManager.userId = userData?["id"] as? String
-                        self.createUser()
+                        self.ref.child((userData?["id"] as! String)).setValue(["id": userData?["id"]])
                         if DataManager.selectedCountry == nil && DataManager.selectedCategory == nil {
                             self.gotoCountryVC()
                         }

@@ -29,6 +29,7 @@
 		8E94A614268432F000EB4726 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94A613268432F000EB4726 /* UserManager.swift */; };
 		8E94A61B268438A000EB4726 /* CDUsers+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94A619268438A000EB4726 /* CDUsers+CoreDataClass.swift */; };
 		8E94A61C268438A000EB4726 /* CDUsers+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94A61A268438A000EB4726 /* CDUsers+CoreDataProperties.swift */; };
+		8E94A62126843DF400EB4726 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E94A62026843DF400EB4726 /* GoogleService-Info.plist */; };
 		8EADD40B2669D8E900E88249 /* NewsDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E02669D8E900E88249 /* NewsDM.swift */; };
 		8EADD40D2669D8E900E88249 /* SettingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E22669D8E900E88249 /* SettingsList.swift */; };
 		8EADD40E2669D8E900E88249 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADD3E32669D8E900E88249 /* CategoryList.swift */; };
@@ -101,6 +102,7 @@
 		8E94A613268432F000EB4726 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		8E94A619268438A000EB4726 /* CDUsers+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUsers+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		8E94A61A268438A000EB4726 /* CDUsers+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDUsers+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		8E94A62026843DF400EB4726 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8EADD3E02669D8E900E88249 /* NewsDM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDM.swift; sourceTree = "<group>"; };
 		8EADD3E22669D8E900E88249 /* SettingsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsList.swift; sourceTree = "<group>"; };
 		8EADD3E32669D8E900E88249 /* CategoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				8EADD3FE2669D8E900E88249 /* Common */,
 				8EADD4012669D8E900E88249 /* Fonts */,
 				8EADD4092669D8E900E88249 /* Info.plist */,
+				8E94A62026843DF400EB4726 /* GoogleService-Info.plist */,
 				8E1A9E0F2682EA0A000F4843 /* NewsApp.xcdatamodeld */,
 			);
 			path = NewsApp;
@@ -399,8 +402,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8E708DF4264CEB160055F518 /* Build configuration list for PBXNativeTarget "NewsApp" */;
 			buildPhases = (
-				D4851EF0E9FE90E3996D902C /* [CP] Build Pods Frameworks */,
 				7B002771DF7A15593B0E02C7 /* [CP] Check Pods Manifest.lock */,
+				D4851EF0E9FE90E3996D902C /* [CP] Build Pods Frameworks */,
 				8E708DDC264CEB140055F518 /* Sources */,
 				8E708DDD264CEB140055F518 /* Frameworks */,
 				8E708DDE264CEB140055F518 /* Resources */,
@@ -458,6 +461,7 @@
 				8EADD4232669D8E900E88249 /* Preview Assets.xcassets in Resources */,
 				8E90FE2E267B654800FD2F7D /* CustomAlert.xib in Resources */,
 				8EADD42B2669D8E900E88249 /* Main.storyboard in Resources */,
+				8E94A62126843DF400EB4726 /* GoogleService-Info.plist in Resources */,
 				8EADD4292669D8E900E88249 /* Poppins-SemiBold.ttf in Resources */,
 				8EADD42A2669D8E900E88249 /* LaunchScreen.storyboard in Resources */,
 				8E154557267A180C00A71A73 /* flag-emojis.pretty.json in Resources */,

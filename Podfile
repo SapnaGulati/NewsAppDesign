@@ -12,5 +12,7 @@ target 'NewsApp' do
   pod 'Alamofire'
   pod 'SDWebImage'
   pod 'FloatRatingView'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Database'
 
 end
